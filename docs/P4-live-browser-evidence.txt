@@ -1,0 +1,1145 @@
+Live browser rehearsal: 2026-10-02T22:25:39.386Z
+
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 1
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [active] [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: received
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: ready
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - button "Start test"
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 7 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: Show me QA.
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 2
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "QA review" [active] [level=1]
+  - paragraph: SMP-1001 · Not submitted
+  - generic: Not submitted
+  - complementary:
+    - strong: Evidence controls approval
+    - paragraph: Complete testing and assessment, resolve any exception, then switch to QA and record a decision rationale.
+  - heading "Review summary" [level=2]
+  - term: Reviewer
+  - definition: Not recorded
+  - term: Sample status
+  - definition: received
+  - term: Test status
+  - definition: ready
+  - term: Result assessment
+  - definition: Not assessed
+  - term: Exception status
+  - definition: None
+  - term: Decision rationale
+  - definition: Not recorded
+  - button "Inspect exception evidence": Inspect exception evidence →
+  - button "View live audit history"
+  - button "Return to work queue"
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 13 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: Go back.
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 3
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [active] [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: received
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: ready
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - button "Start test"
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 19 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: Start this sample’s test.
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 4
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: in testing
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: in progress
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - text: Observed pH
+  - spinbutton "Observed pH": "6.4"
+  - text: Unit
+  - textbox "Unit": pH
+  - button "Enter measurement"
+  - button "Submit test" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit sample for QA review" [disabled]
+  - paragraph: Requires Analyst or Lab Manager and the appropriate workflow state/site.
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Start this sample’s test.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 25 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: Does Acme integrate with SAP?
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 5
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: in testing
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: in progress
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - text: Observed pH
+  - spinbutton "Observed pH": "6.4"
+  - text: Unit
+  - textbox "Unit": pH
+  - button "Enter measurement"
+  - button "Submit test" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit sample for QA review" [disabled]
+  - paragraph: Requires Analyst or Lab Manager and the appropriate workflow state/site.
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Start this sample’s test.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Does Acme integrate with SAP?
+      - paragraph:
+        - strong: Demo guide
+        - text: That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details" [active]
+    - paragraph: Product questions are captured for follow-up. This phase supports demo control and bounded explanations.
+    - heading "Captured questions" [level=3]
+    - list:
+      - listitem: Does Acme integrate with SAP? · captured
+    - heading "What you’ve shared" [level=3]
+    - list
+    - heading "Demo turns" [level=3]
+    - generic "Turn 1 · completed"
+    - generic "Turn 2 · completed"
+    - generic "Turn 3 · completed"
+    - generic "Turn 4 · completed"
+    - generic "Turn 5 · completed"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 29 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+RELOAD restored
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 5
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [active] [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: in testing
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: in progress
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - text: Observed pH
+  - spinbutton "Observed pH": "6.4"
+  - text: Unit
+  - textbox "Unit": pH
+  - button "Enter measurement"
+  - button "Submit test" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit sample for QA review" [disabled]
+  - paragraph: Requires Analyst or Lab Manager and the appropriate workflow state/site.
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Start this sample’s test.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Does Acme integrate with SAP?
+      - paragraph:
+        - strong: Demo guide
+        - text: That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 29 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: Stop.
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 6
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: in testing
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: in progress
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution": View test execution →
+  - button "View specification"
+  - button "View live audit history"
+  - button "Back to samples"
+  - heading "Workflow actions" [level=2]
+  - text: Observed pH
+  - spinbutton "Observed pH": "6.4"
+  - text: Unit
+  - textbox "Unit": pH
+  - button "Enter measurement"
+  - button "Submit test" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit sample for QA review" [disabled]
+  - paragraph: Requires Analyst or Lab Manager and the appropriate workflow state/site.
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Paused
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Start this sample’s test.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Does Acme integrate with SAP?
+      - paragraph:
+        - strong: Demo guide
+        - text: That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.
+      - paragraph:
+        - strong: You
+        - text: Stop.
+      - paragraph:
+        - strong: Demo guide
+        - text: Paused. Tell me where you’d like to go when you’re ready.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide"
+    - button "Send message" [disabled]
+    - button "Pause demo"
+    - button "End demo"
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 33 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.
+
+INPUT: End the demo.
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue" [disabled]:
+      - text: Work queue
+      - generic: ›
+    - button "Samples" [disabled]:
+      - text: Samples
+      - generic: ›
+    - button "QA review" [disabled]:
+      - text: QA review
+      - generic: ›
+    - button "Audit history" [disabled]:
+      - text: Audit history
+      - generic: ›
+  - strong: Deterministic demo
+  - paragraph: Execute a fictional workflow. Each session has its own records and history.
+- main:
+  - status: Session ended
+  - button "Start new session"
+  - button "End session" [disabled]
+  - text: Demo role
+  - combobox "Demo role" [disabled]:
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site" [disabled]:
+    - option "Harbor" [selected]
+  - button "Return" [disabled]
+  - button "Reset demo" [disabled]
+  - generic: Revision 7
+  - complementary:
+    - strong: This session has ended
+    - paragraph: Start a new session to explore from the beginning.
+  - navigation "Guided walkthrough":
+    - button "1 Sample" [disabled]:
+      - generic: "1"
+      - text: Sample
+    - button "2 Test" [disabled]:
+      - generic: "2"
+      - text: Test
+    - button "3 Result" [disabled]:
+      - generic: "3"
+      - text: Result
+    - button "4 Exception" [disabled]:
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review" [disabled]:
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "SMP-1001" [level=1]
+  - paragraph: Clearwater Buffer · CB-260928-A
+  - generic: in testing
+  - heading "Sample information" [level=2]
+  - term: Material
+  - definition: Clearwater Buffer
+  - term: Batch
+  - definition: CB-260928-A
+  - term: Site
+  - definition: Harbor
+  - term: Source
+  - definition: internal
+  - term: Partner
+  - definition: Internal lab
+  - term: Received by
+  - definition: Maya Chen
+  - heading "Testing summary" [level=2]
+  - term: Test
+  - definition: TST-1001
+  - term: Test status
+  - definition: in progress
+  - term: Observed pH
+  - definition: Not recorded
+  - term: Exception
+  - definition: None
+  - term: Review
+  - definition: Not submitted
+  - button "View test execution" [disabled]: View test execution →
+  - button "View specification" [disabled]
+  - button "View live audit history" [disabled]
+  - button "Back to samples" [disabled]
+  - heading "Workflow actions" [level=2]
+  - text: Observed pH
+  - spinbutton "Observed pH" [disabled]: "6.4"
+  - text: Unit
+  - textbox "Unit" [disabled]: pH
+  - button "Enter measurement" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit test" [disabled]
+  - paragraph: Requires Analyst and the appropriate workflow state/site.
+  - button "Submit sample for QA review" [disabled]
+  - paragraph: Requires Analyst or Lab Manager and the appropriate workflow state/site.
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me the first sample.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.
+      - paragraph:
+        - strong: You
+        - text: Go back.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Start this sample’s test.
+      - paragraph:
+        - strong: Demo guide
+        - text: Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.
+      - paragraph:
+        - strong: You
+        - text: Does Acme integrate with SAP?
+      - paragraph:
+        - strong: Demo guide
+        - text: That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.
+      - paragraph:
+        - strong: You
+        - text: Stop.
+      - paragraph:
+        - strong: Demo guide
+        - text: Paused. Tell me where you’d like to go when you’re ready.
+      - paragraph:
+        - strong: You
+        - text: End the demo.
+      - paragraph:
+        - strong: Demo guide
+        - text: The demo has ended. Thanks for exploring.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide" [disabled]
+    - button "Send message" [disabled]
+    - button "Pause demo" [disabled]
+    - button "End demo" [disabled]
+    - generic "Conversation details" [active]
+    - paragraph: Product questions are captured for follow-up. This phase supports demo control and bounded explanations.
+    - heading "Captured questions" [level=3]
+    - list:
+      - listitem: Does Acme integrate with SAP? · captured
+    - heading "What you’ve shared" [level=3]
+    - list
+    - heading "Demo turns" [level=3]
+    - generic "Turn 1 · completed"
+    - generic "Turn 2 · completed"
+    - generic "Turn 3 · completed"
+    - generic "Turn 4 · completed"
+    - generic "Turn 5 · completed"
+    - generic "Turn 6 · completed"
+    - generic "Turn 7 · completed"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 38 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.

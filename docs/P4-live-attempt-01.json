@@ -1,0 +1,515 @@
+{
+  "status": "FAIL",
+  "date": "2026-10-02T22:11:26.282Z",
+  "provider": "claude",
+  "model": "claude-sonnet-4-6",
+  "turns": [
+    {
+      "text": "Show me the first sample.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "User wants to open the first sample record, SMP-1001.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_RECORD",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "sample-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_RECORD",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 1,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Show me QA.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the QA review screen.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 2,
+      "screen": "review-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Go back.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "User wants to go back to the previous screen in history.",
+          "confidence": 0.99
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "RETURN",
+            "args": []
+          }
+        ],
+        "narrationIntent": "current_view",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "RETURN",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 3,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Show me the exception.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the Exception screen for SMP-1001.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_EXCEPTION",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "exception-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_EXCEPTION",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the exception evidence for this sample. A failing assessment needs an explicit synthetic disposition before QA approval.",
+      "revision": 4,
+      "screen": "exception-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Skip this.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to skip the current exception screen and advance to the next walkthrough target.",
+          "confidence": 0.9
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 5,
+      "screen": "review-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "What happens next?",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer asks what comes next in the walkthrough from the current QA review screen.",
+          "confidence": 0.9
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "audit-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the live history of actions requested and validated during this demo session.",
+      "revision": 6,
+      "screen": "audit-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Can you switch roles?",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "clarify",
+          "summary": "Customer asks to switch roles but has not specified which role to switch to.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "clarify_role",
+        "questionHandling": "none",
+        "nextStep": "clarify"
+      },
+      "actions": [],
+      "response": "Which demo role would you like: Analyst, QA, Lab Manager?",
+      "revision": 7,
+      "screen": "audit-1001",
+      "role": "analyst",
+      "paused": false
+    },
+    {
+      "text": "Switch to QA.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "User wants to switch to the QA role.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SWITCH_ROLE",
+            "args": [
+              {
+                "name": "roleId",
+                "value": "qa"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SWITCH_ROLE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the live history of actions requested and validated during this demo session.",
+      "revision": 8,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false
+    },
+    {
+      "text": "I care more about external labs.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "customer_update",
+          "summary": "Customer expresses stronger interest in external lab scenarios over the current internal-only setup.",
+          "confidence": 0.85
+        },
+        "customerModelUpdates": [
+          {
+            "field": "interest",
+            "key": "lab_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.9,
+            "evidenceQuote": "I care more about external labs."
+          }
+        ],
+        "requestedActions": [],
+        "narrationIntent": "acknowledge_interest",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [],
+      "response": "I’ve noted your interest. What would you like to explore next?",
+      "revision": 9,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false
+    },
+    {
+      "text": "We don’t work that way.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "clarify",
+          "summary": "Customer says 'we don't work that way' but no specific action or screen is in context to ground what they're objecting to. Need clarification on what they'd like to do differently.",
+          "confidence": 0.5
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "clarify_action",
+        "questionHandling": "none",
+        "nextStep": "clarify"
+      },
+      "actions": [],
+      "response": "What would you like to see instead?",
+      "revision": 10,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false
+    },
+    {
+      "text": "Actually, internal labs are my focus.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "customer_update",
+          "summary": "Customer is correcting their previously stated preference from external labs to internal labs.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [
+          {
+            "field": "interest",
+            "key": "lab_source_preference",
+            "value": "internal labs",
+            "status": "correction",
+            "confidence": 0.97,
+            "evidenceQuote": "internal labs are my focus"
+          }
+        ],
+        "requestedActions": [],
+        "narrationIntent": "acknowledge_interest",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [],
+      "response": "I’ve noted your interest. What would you like to explore next?",
+      "revision": 11,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false
+    },
+    {
+      "text": "Show the sample list.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the sample list screen.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "sample-list"
+              },
+              {
+                "name": "recordId",
+                "value": null
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "current_view",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 12,
+      "screen": "sample-list",
+      "role": "qa",
+      "paused": false
+    },
+    {
+      "text": "Filter the list to 1002.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to filter the sample list to show record 1002.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "FILTER",
+            "args": [
+              {
+                "name": "query",
+                "value": "SMP-1002"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "FILTER",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 13,
+      "screen": "sample-list",
+      "role": "qa",
+      "paused": false
+    }
+  ],
+  "reason": "Live acceptance assertion failed; inspect saved evidence."
+}

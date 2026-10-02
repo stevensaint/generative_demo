@@ -1,0 +1,133 @@
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P4
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue" [disabled]:
+      - text: Work queue
+      - generic: ›
+    - button "Samples" [disabled]:
+      - text: Samples
+      - generic: ›
+    - button "QA review" [disabled]:
+      - text: QA review
+      - generic: ›
+    - button "Audit history" [disabled]:
+      - text: Audit history
+      - generic: ›
+- main:
+  - status: Session ended
+  - button "Start new session"
+  - button "End session" [disabled]
+  - text: Demo role
+  - combobox "Demo role" [disabled]:
+    - option "Analyst" [selected]
+    - option "QA"
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site" [disabled]:
+    - option "Harbor" [selected]
+  - button "Return" [disabled]
+  - button "Reset demo" [disabled]
+  - generic: Revision 4
+  - complementary:
+    - strong: This session has ended
+    - paragraph: Start a new session to explore from the beginning.
+  - navigation "Guided walkthrough":
+    - button "1 Sample" [disabled]:
+      - generic: "1"
+      - text: Sample
+    - button "2 Test" [disabled]:
+      - generic: "2"
+      - text: Test
+    - button "3 Result" [disabled]:
+      - generic: "3"
+      - text: Result
+    - button "4 Exception" [disabled]:
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review" [disabled]:
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "Samples" [level=1]
+  - paragraph: Canonical records at Harbor
+  - generic: Live synthetic state
+  - text: Filter records
+  - searchbox "Filter records" [disabled]
+  - button "Apply filter" [disabled]
+  - table "Synthetic sample register":
+    - caption: Synthetic sample register
+    - rowgroup:
+      - row "Sample Batch Source Status Open record":
+        - columnheader "Sample"
+        - columnheader "Batch"
+        - columnheader "Source"
+        - columnheader "Status"
+        - columnheader "Open record":
+          - generic: Open record
+    - rowgroup:
+      - row "SMP-1001 CB-260928-A internal received Open SMP-1001":
+        - rowheader "SMP-1001"
+        - cell "CB-260928-A"
+        - cell "internal"
+        - cell "received"
+        - cell "Open SMP-1001":
+          - button "Open SMP-1001" [disabled]: Open SMP-1001 ↗
+      - row "SMP-1002 CB-260928-B internal received Open SMP-1002":
+        - rowheader "SMP-1002"
+        - cell "CB-260928-B"
+        - cell "internal"
+        - cell "received"
+        - cell "Open SMP-1002":
+          - button "Open SMP-1002" [disabled]: Open SMP-1002 ↗
+  - button "Return to work queue" [disabled]: Return to work queue →
+  - region "Text demo conversation":
+    - heading "Explore in your words" [level=2]
+    - generic: Text demo
+    - paragraph: Try “Show me QA”, “Go back”, or tell me what matters to you.
+    - list "Demo conversation":
+      - paragraph:
+        - strong: You
+        - text: Show me QA.
+      - paragraph:
+        - strong: Demo guide
+        - text: Text chat is unavailable right now. You can still use the demo controls.
+      - paragraph:
+        - strong: You
+        - text: Does Acme integrate with SAP?
+      - paragraph:
+        - strong: Demo guide
+        - text: That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.
+      - paragraph:
+        - strong: You
+        - text: Stop
+      - paragraph:
+        - strong: Demo guide
+        - text: Paused. Tell me where you’d like to go when you’re ready.
+      - paragraph:
+        - strong: You
+        - text: End the demo
+      - paragraph:
+        - strong: Demo guide
+        - text: The demo has ended. Thanks for exploring.
+    - status
+    - text: Message to demo guide
+    - textbox "Message to demo guide" [disabled]
+    - button "Send message" [disabled]
+    - button "Pause demo" [disabled]
+    - button "End demo" [disabled]
+    - generic "Conversation details"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 20 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.

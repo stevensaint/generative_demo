@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { EventSchema, SessionSchema, type Event, type ErrorCode, type Session, type SessionView, SnapshotSchema } from '../../contracts/src/index.js';
+import { TurnRecordSchema, type TurnRecord } from '../../contracts/src/turns.js';
 
 export class SessionError extends Error {
   constructor(public readonly code: ErrorCode) { super(code); }
@@ -10,16 +11,18 @@ export class SessionStore {
   private readonly sessions = new Map<string, Session>();
   private readonly events = new Map<string, Event[]>();
   private readonly systemEvents: Event[] = [];
+  private readonly turns = new Map<string, TurnRecord[]>();
 
   create(productPackId: string, initial?: Pick<Session, 'productState' | 'demoState' | 'productPackVersion'>): SessionView {
     const session = SessionSchema.parse({
       sessionId: randomUUID(), status: 'active', startedAt: new Date().toISOString(), endedAt: null,
       productPackId, productPackVersion: initial?.productPackVersion ?? '0.0.0', revision: 0,
-      productState: initial?.productState ?? { records: [] }, customerModel: {}, conversationState: { sequence: 0 },
+      productState: initial?.productState ?? { records: [] }, customerModel: { entries: [] }, conversationState: { sequence: 0, paused: false, recent: [], outstandingQuestions: [] },
       demoState: initial?.demoState ?? { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null, history: [], filters: {}, highlights: [], parameters: {} },
     });
     this.sessions.set(session.sessionId, session);
     this.events.set(session.sessionId, []);
+    this.turns.set(session.sessionId, []);
     this.append(session.sessionId, 'SESSION_STARTED');
     return this.get(session.sessionId);
   }
@@ -53,7 +56,27 @@ export class SessionStore {
     return this.get(sessionId);
   }
 
-  commandEvent(sessionId: string, type: Event['type'], metadata: Pick<Event, 'commandId' | 'commandType' | 'recordId' | 'revision'>, errorCode?: ErrorCode): Event {
+  commitTurn(sessionId: string, expectedRevision: number, proposed: Session, ended = false): SessionView {
+    const current = this.get(sessionId).session;
+    if (current.status !== 'active') throw new SessionError('SESSION_ENDED');
+    if (current.revision !== expectedRevision) throw new SessionError('REVISION_CONFLICT');
+    const next = SessionSchema.parse({ ...current, productState: proposed.productState, demoState: proposed.demoState,
+      customerModel: proposed.customerModel, conversationState: proposed.conversationState, revision: current.revision + 1,
+      ...(ended ? { status: 'ended', endedAt: new Date().toISOString() } : {}),
+    });
+    this.sessions.set(sessionId, next);
+    if (ended) this.append(sessionId, 'SESSION_ENDED');
+    return this.get(sessionId);
+  }
+
+  turnEvent(sessionId: string, type: Event['type'], turnId: string, errorCode?: ErrorCode) {
+    return this.append(sessionId, type, errorCode, { turnId, revision: this.get(sessionId).session.revision });
+  }
+  recordTurn(sessionId: string, turn: TurnRecord) { this.get(sessionId); this.turns.get(sessionId)!.push(TurnRecordSchema.parse(turn)); }
+  getTurns(sessionId: string): TurnRecord[] { this.get(sessionId); return structuredClone([...this.turns.get(sessionId)!].sort((a, b) => a.sequence - b.sequence).slice(-50)); }
+  nextTurnSequence(sessionId: string) { this.get(sessionId); return (this.turns.get(sessionId)!.reduce((max, turn) => Math.max(max, turn.sequence), 0) ?? 0) + 1; }
+
+  commandEvent(sessionId: string, type: Event['type'], metadata: Pick<Event, 'commandId' | 'commandType' | 'recordId' | 'revision' | 'turnId'>, errorCode?: ErrorCode): Event {
     return this.append(sessionId, type, errorCode, metadata);
   }
 

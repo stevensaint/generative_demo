@@ -1,0 +1,2587 @@
+{
+  "status": "PASS",
+  "date": "2026-10-02T22:20:21.760Z",
+  "provider": "claude",
+  "model": "claude-sonnet-4-6",
+  "turns": [
+    {
+      "text": "Show me the first sample.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "User wants to open the first sample record, SMP-1001.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_RECORD",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "sample-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_RECORD",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 1,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show me QA.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the QA review screen.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 2,
+      "screen": "review-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Go back.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to go back to the previous screen in history.",
+          "confidence": 0.99
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "RETURN",
+            "args": []
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "RETURN",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 3,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show me the exception.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the Exception screen for SMP-1001.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_EXCEPTION",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "exception-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_EXCEPTION",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the exception evidence for this sample. A failing assessment needs an explicit synthetic disposition before QA approval.",
+      "revision": 4,
+      "screen": "exception-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "exception-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Skip this.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to skip the current exception view and advance to the next walkthrough target.",
+          "confidence": 0.9
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 5,
+      "screen": "review-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "What happens next?",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer asks what happens next; current screen is QA review, so the logical next navigation target is the live audit history.",
+          "confidence": 0.82
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "audit-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the live history of actions requested and validated during this demo session.",
+      "revision": 6,
+      "screen": "audit-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Can you switch roles?",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "clarify",
+          "summary": "Customer asks to switch roles but has not specified which role to switch to.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "clarify_role",
+        "questionHandling": "none",
+        "nextStep": "clarify"
+      },
+      "actions": [],
+      "response": "Which demo role would you like: Analyst, QA, Lab Manager?",
+      "revision": 7,
+      "screen": "audit-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Switch to QA.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to switch to the QA role.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SWITCH_ROLE",
+            "args": [
+              {
+                "name": "roleId",
+                "value": "qa"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SWITCH_ROLE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the live history of actions requested and validated during this demo session.",
+      "revision": 8,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": []
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "I care more about external labs.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "customer_update",
+          "summary": "Customer expresses preference for external labs over internal; noting interest to shape demo parameters.",
+          "confidence": 0.85
+        },
+        "customerModelUpdates": [
+          {
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "evidenceQuote": "I care more about external labs."
+          }
+        ],
+        "requestedActions": [],
+        "narrationIntent": "acknowledge_interest",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [],
+      "response": "I’ve noted your interest. What would you like to explore next?",
+      "revision": 9,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": true,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "We don’t work that way.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "clarify",
+          "summary": "Customer says 'we don't work that way' but the referent is ambiguous — unclear which aspect of the current demo setup or workflow they are objecting to.",
+          "confidence": 0.45
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "clarify_action",
+        "questionHandling": "none",
+        "nextStep": "clarify"
+      },
+      "actions": [],
+      "response": "What would you like to see instead?",
+      "revision": 10,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": true,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Actually, internal labs are my focus.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "customer_update",
+          "summary": "Customer is correcting their earlier stated preference from external labs to internal labs.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [
+          {
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "correction",
+            "confidence": 0.97,
+            "evidenceQuote": "internal labs are my focus"
+          }
+        ],
+        "requestedActions": [],
+        "narrationIntent": "acknowledge_interest",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [],
+      "response": "I’ve noted your interest. What would you like to explore next?",
+      "revision": 11,
+      "screen": "audit-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "audit-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show the sample list.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the sample list screen.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "sample-list"
+              },
+              {
+                "name": "recordId",
+                "value": null
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here are the fictional samples in this session. You can filter the list or open a sample to follow its workflow.",
+      "revision": 12,
+      "screen": "sample-list",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "sample-list",
+        "recordId": null,
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Filter the list to 1002.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to filter the sample list to show only record 1002.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "FILTER",
+            "args": [
+              {
+                "name": "query",
+                "value": "1002"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "FILTER",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here are the fictional samples in this session. You can filter the list or open a sample to follow its workflow.",
+      "revision": 13,
+      "screen": "sample-list",
+      "role": "qa",
+      "paused": false,
+      "filters": {
+        "sample-list": "1002"
+      },
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "sample-list",
+        "recordId": null,
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Reset the demo.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer explicitly requests a demo reset.",
+          "confidence": 0.99
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "RESET",
+            "args": []
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "RESET",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here are the fictional samples in this session. Which part of the workflow would you like to explore?",
+      "revision": 14,
+      "screen": "work-queue",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "work-queue",
+        "recordId": null,
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show the first sample.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to open the first sample record, SMP-1001.",
+          "confidence": 0.92
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_RECORD",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "sample-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_RECORD",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 15,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Start this sample’s test.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to start the test for the current sample (TST-1001), which is enabled.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "START_TEST",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "TST-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "START_TEST",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 16,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "SMP-1001",
+          "beforeState": "received",
+          "after": {
+            "id": "SMP-1001",
+            "entityType": "Sample",
+            "state": "in-testing",
+            "values": {
+              "material": "Clearwater Buffer",
+              "batch": "CB-260928-A",
+              "site": "harbor",
+              "source": "internal",
+              "receivedBy": "Maya Chen",
+              "partner": null
+            }
+          }
+        },
+        {
+          "recordId": "TST-1001",
+          "beforeState": "ready",
+          "after": {
+            "id": "TST-1001",
+            "entityType": "Test",
+            "state": "in-progress",
+            "values": {
+              "sampleId": "SMP-1001",
+              "specificationId": "SPEC-CB-01",
+              "measurement": "pH",
+              "method": "ACME-PH-01",
+              "instrument": "BENCH-PH-03",
+              "analyst": "Maya Chen"
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Enter a measurement of 6.4 pH.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "User wants to enter a pH measurement of 6.4 for the current test TST-1001.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "ENTER_RESULT",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "TST-1001"
+              },
+              {
+                "name": "value",
+                "value": 6.4
+              },
+              {
+                "name": "unit",
+                "value": "pH"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "ENTER_RESULT",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 17,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "RES-1001",
+          "beforeState": null,
+          "after": {
+            "id": "RES-1001",
+            "entityType": "Result",
+            "state": "recorded",
+            "values": {
+              "testId": "TST-1001",
+              "sampleId": "SMP-1001",
+              "value": 6.4,
+              "unit": "pH",
+              "assessment": "unassessed"
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Submit the test.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to submit the test for TST-1001, which is enabled.",
+          "confidence": 0.98
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SUBMIT_TEST",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "TST-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SUBMIT_TEST",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.",
+      "revision": 18,
+      "screen": "sample-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "TST-1001",
+          "beforeState": "in-progress",
+          "after": {
+            "id": "TST-1001",
+            "entityType": "Test",
+            "state": "completed",
+            "values": {
+              "sampleId": "SMP-1001",
+              "specificationId": "SPEC-CB-01",
+              "measurement": "pH",
+              "method": "ACME-PH-01",
+              "instrument": "BENCH-PH-03",
+              "analyst": "Maya Chen"
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "sample-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show the results.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to view the result record for SMP-1001.",
+          "confidence": 0.95
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "results-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "These are the measurements recorded in this demo session. Assessment compares the entered pH with the fictional specification.",
+      "revision": 19,
+      "screen": "results-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "results-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Assess the recorded measurement against the specification.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to trigger assessment of the recorded pH result (6.4) against the specification for RES-1001.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "TRIGGER_EXCEPTION",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "RES-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "TRIGGER_EXCEPTION",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "These are the measurements recorded in this demo session. Assessment compares the entered pH with the fictional specification.",
+      "revision": 20,
+      "screen": "results-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "RES-1001",
+          "beforeState": "recorded",
+          "after": {
+            "id": "RES-1001",
+            "entityType": "Result",
+            "state": "assessed",
+            "values": {
+              "testId": "TST-1001",
+              "sampleId": "SMP-1001",
+              "value": 6.4,
+              "unit": "pH",
+              "assessment": "below-range"
+            }
+          }
+        },
+        {
+          "recordId": "EXC-1001",
+          "beforeState": null,
+          "after": {
+            "id": "EXC-1001",
+            "entityType": "Exception",
+            "state": "open",
+            "values": {
+              "sampleId": "SMP-1001",
+              "resultId": "RES-1001",
+              "owner": "Jordan Lee",
+              "rootCause": null,
+              "disposition": null
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "results-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Submit this sample for QA review.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer wants to submit SMP-1001 for QA review using the enabled SUBMIT_FOR_REVIEW workflow control.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SUBMIT_FOR_REVIEW",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SUBMIT_FOR_REVIEW",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "These are the measurements recorded in this demo session. Assessment compares the entered pH with the fictional specification.",
+      "revision": 21,
+      "screen": "results-1001",
+      "role": "analyst",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "SMP-1001",
+          "beforeState": "in-testing",
+          "after": {
+            "id": "SMP-1001",
+            "entityType": "Sample",
+            "state": "awaiting-qa",
+            "values": {
+              "material": "Clearwater Buffer",
+              "batch": "CB-260928-A",
+              "site": "harbor",
+              "source": "internal",
+              "receivedBy": "Maya Chen",
+              "partner": null
+            }
+          }
+        },
+        {
+          "recordId": "REV-1001",
+          "beforeState": null,
+          "after": {
+            "id": "REV-1001",
+            "entityType": "Review",
+            "state": "pending",
+            "values": {
+              "sampleId": "SMP-1001",
+              "reviewer": "Jordan Lee",
+              "rationale": null
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "results-1001",
+        "recordId": "SMP-1001",
+        "role": "analyst",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Switch to QA.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to QA review screen for SMP-1001.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SWITCH_ROLE",
+            "args": [
+              {
+                "name": "roleId",
+                "value": "qa"
+              }
+            ]
+          },
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SWITCH_ROLE",
+          "status": "approved",
+          "code": null
+        },
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 22,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show QA review.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to view the QA review screen, which is already the current screen.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "SHOW",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "current_view",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "SHOW",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 23,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Approve the review with rationale \"Synthetic evidence reviewed\".",
+      "status": "rejected",
+      "provider": "claude",
+      "errorCode": "ACTION_REJECTED",
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer requests APPROVE workflow action on REV-1001 with rationale 'Synthetic evidence reviewed'.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "APPROVE",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "REV-1001"
+              },
+              {
+                "name": "rationale",
+                "value": "Synthetic evidence reviewed"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "APPROVE",
+          "status": "rejected",
+          "code": "ACTION_REJECTED"
+        }
+      ],
+      "response": "I couldn’t make that change. We can use an available demo action or choose another direction.",
+      "revision": 23,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show the exception.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to open the exception record for SMP-1001.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "OPEN_EXCEPTION",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "exception-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "OPEN_EXCEPTION",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the exception evidence for this sample. A failing assessment needs an explicit synthetic disposition before QA approval.",
+      "revision": 24,
+      "screen": "exception-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "exception-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Resolve this exception with disposition \"Synthetic exception evidence reviewed\".",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "Customer requests RESOLVE_EXCEPTION on EXC-1001 with disposition 'Synthetic exception evidence reviewed'.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "RESOLVE_EXCEPTION",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "EXC-1001"
+              },
+              {
+                "name": "disposition",
+                "value": "Synthetic exception evidence reviewed"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "RESOLVE_EXCEPTION",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is the exception evidence for this sample. A failing assessment needs an explicit synthetic disposition before QA approval.",
+      "revision": 25,
+      "screen": "exception-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "EXC-1001",
+          "beforeState": "open",
+          "after": {
+            "id": "EXC-1001",
+            "entityType": "Exception",
+            "state": "resolved",
+            "values": {
+              "sampleId": "SMP-1001",
+              "resultId": "RES-1001",
+              "owner": "Jordan Lee",
+              "rootCause": null,
+              "disposition": "Synthetic exception evidence reviewed"
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "exception-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Show QA review.",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "navigate",
+          "summary": "Customer wants to navigate to the QA review screen for SMP-1001.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "NAVIGATE",
+            "args": [
+              {
+                "name": "screenId",
+                "value": "review-1001"
+              },
+              {
+                "name": "recordId",
+                "value": "SMP-1001"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "NAVIGATE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.",
+      "revision": 26,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Approve the review with rationale \"Synthetic evidence and disposition reviewed\".",
+      "status": "completed",
+      "provider": "claude",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "execute",
+          "summary": "User requests APPROVE on REV-1001 with rationale 'Synthetic evidence and disposition reviewed'.",
+          "confidence": 0.97
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [
+          {
+            "type": "APPROVE",
+            "args": [
+              {
+                "name": "recordId",
+                "value": "REV-1001"
+              },
+              {
+                "name": "rationale",
+                "value": "Synthetic evidence and disposition reviewed"
+              }
+            ]
+          }
+        ],
+        "narrationIntent": "after_action",
+        "questionHandling": "none",
+        "nextStep": "listen"
+      },
+      "actions": [
+        {
+          "type": "APPROVE",
+          "status": "approved",
+          "code": null
+        }
+      ],
+      "response": "The fictional review and sample are approved. The completed evidence and disposition are visible here.",
+      "revision": 27,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [
+        {
+          "recordId": "SMP-1001",
+          "beforeState": "awaiting-qa",
+          "after": {
+            "id": "SMP-1001",
+            "entityType": "Sample",
+            "state": "approved",
+            "values": {
+              "material": "Clearwater Buffer",
+              "batch": "CB-260928-A",
+              "site": "harbor",
+              "source": "internal",
+              "receivedBy": "Maya Chen",
+              "partner": null
+            }
+          }
+        },
+        {
+          "recordId": "REV-1001",
+          "beforeState": "pending",
+          "after": {
+            "id": "REV-1001",
+            "entityType": "Review",
+            "state": "approved",
+            "values": {
+              "sampleId": "SMP-1001",
+              "reviewer": "Jordan Lee",
+              "rationale": "Synthetic evidence and disposition reviewed"
+            }
+          }
+        }
+      ],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Does Acme integrate with SAP?",
+      "status": "completed",
+      "provider": "local-policy",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "question",
+          "summary": "Capture an out-of-scope factual question for follow-up.",
+          "confidence": 1
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "none",
+        "questionHandling": "capture",
+        "nextStep": "listen"
+      },
+      "actions": [],
+      "response": "That’s a good question. I don’t want to overstate what this demonstration supports yet, so I’ll capture that for follow-up.",
+      "revision": 28,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "Stop.",
+      "status": "completed",
+      "provider": "local-control",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "stop",
+          "summary": "Customer requested stop.",
+          "confidence": 1
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "none",
+        "questionHandling": "none",
+        "nextStep": "pause"
+      },
+      "actions": [],
+      "response": "Paused. Tell me where you’d like to go when you’re ready.",
+      "revision": 29,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": true,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "text": "End the demo.",
+      "status": "completed",
+      "provider": "local-control",
+      "errorCode": null,
+      "providerHttpStatus": null,
+      "proposal": {
+        "understanding": {
+          "intent": "end",
+          "summary": "Customer requested end.",
+          "confidence": 1
+        },
+        "customerModelUpdates": [],
+        "requestedActions": [],
+        "narrationIntent": "none",
+        "questionHandling": "none",
+        "nextStep": "end"
+      },
+      "actions": [],
+      "response": "The demo has ended. Thanks for exploring.",
+      "revision": 30,
+      "screen": "review-1001",
+      "role": "qa",
+      "paused": false,
+      "filters": {},
+      "customerModel": {
+        "entries": [
+          {
+            "id": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "external labs",
+            "status": "explicit",
+            "confidence": 0.85,
+            "active": false,
+            "supersedesId": null,
+            "provenance": {
+              "turnId": "79b6bb32-8aeb-4de0-90fd-fa7f02c85f6b",
+              "sequence": 9,
+              "source": "customer-text",
+              "kind": "statement",
+              "quote": "I care more about external labs."
+            }
+          },
+          {
+            "id": "c26f72a5-b0dc-46e6-bf5c-981ec2842163",
+            "field": "interest",
+            "key": "sample_source_preference",
+            "value": "internal labs",
+            "status": "explicit",
+            "confidence": 0.97,
+            "active": true,
+            "supersedesId": "fe70bf33-859b-498b-97a4-b6a36c0a9461",
+            "provenance": {
+              "turnId": "0dcc1291-eda3-4839-97bf-6e0449749f7d",
+              "sequence": 11,
+              "source": "customer-text",
+              "kind": "correction",
+              "quote": "internal labs are my focus"
+            }
+          }
+        ]
+      },
+      "productChanges": [],
+      "resultingContext": {
+        "screen": "review-1001",
+        "recordId": "SMP-1001",
+        "role": "qa",
+        "site": "harbor",
+        "lifecycle": "ended"
+      }
+    }
+  ],
+  "claudeTurns": 28
+}

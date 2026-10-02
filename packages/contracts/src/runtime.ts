@@ -20,6 +20,7 @@ export interface PackRuntime {
   validate(pack: ProductPack, state: ProductState): void;
   present(pack: ProductPack, session: Session, events: Event[]): DemoPresentation;
   controls(pack: ProductPack, session: Session): Control[];
+  narrative?(pack: ProductPack, session: Session): string;
 }
 
 export class RuleViolation extends Error {}

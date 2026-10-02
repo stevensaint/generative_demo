@@ -1,4 +1,4 @@
-# GDE — P3 Deterministic Demo Engine
+# GDE — P4 Text Demo Agent
 
 For transfer or a new coding-assistant session, begin with
 [HANDOFF.md](HANDOFF.md). [CLAUDE.md](CLAUDE.md) provides Claude's entry
@@ -9,6 +9,11 @@ Cloud**. Execute an isolated synthetic workflow:
 **Sample → Test → failing Result → Exception → QA Review → Approval**.
 The Product Pack owns every Acme action, rule and screen projection. The generic
 controller owns validation, atomic commands and canonical session state.
+
+P4 adds customer text control through a runtime-validated proposal, the Demo
+Controller and State Engine. **P4 PASS: automated checks, real Claude HTTP acceptance and
+live browser rehearsal are complete.** See [P4 validation](docs/P4-validation.md)
+and the user-supplied [frozen P4 scope](docs/architecture/P4-frozen.md).
 
 ## Run
 
@@ -27,8 +32,8 @@ npm start
 ```
 
 Open <http://127.0.0.1:3001>. Optional `.env` settings are listed in
-`.env.example`. Listeners bind to loopback. No external service credentials are
-required. Restart dev after backend edits; Ctrl+C stops the processes.
+`.env.example`. Listeners bind to loopback. Manual demo controls require no external credentials. Text chat requires a
+server-only `ANTHROPIC_API_KEY` in the ignored local `.env`; never commit it. Restart dev after backend edits; Ctrl+C stops the processes.
 
 ## Execute the golden workflow
 
@@ -62,9 +67,12 @@ npm run validate:pack
 node scripts/test-pack-runtime.mjs
 ```
 
-`check` runs strict TypeScript, 38 tests (including architectural boundaries),
-and frontend/backend builds. `test:http` runs nine API tests over actual loopback
-TCP. [P3 validation](docs/P3-validation.md) records the recovered PASS criteria,
+`check` runs strict TypeScript, 53 tests (including architectural boundaries),
+and frontend/backend builds. `test:http` runs 11 API tests over actual loopback
+TCP. [P4 validation](docs/P4-validation.md) distinguishes passing deterministic
+checks and completed live provider/browser acceptance. Run `npm run validate:agent:live`
+in an ordinary local Terminal with the configured key to exercise real Claude;
+the script saves credential-free results to `docs/P4-live-evidence.json`. [P3 validation](docs/P3-validation.md) records the recovered PASS criteria,
 HTTP evidence and browser rehearsal. P0/P1/P2 records remain historical; the P2
 browser handoff was verified before the P3 checkpoint.
 
@@ -73,6 +81,7 @@ browser handoff was verified before the P3 checkpoint.
 | Location | Responsibility |
 | --- | --- |
 | `packages/contracts` | Generic validated state, commands, events, snapshots, Pack/runtime and presentation shapes |
+| `packages/agent` | Bounded model context, structured Claude proposals and a single GDE Agent with no state/UI authority |
 | `packages/engine` | Controller, isolated canonical store, generic schema/reference/transition/guard validation |
 | `packages/product-packs/acme` | Fictional JSON configuration, deterministic handlers, cross-object rules and state projections |
 | `packages/product-packs/runtimes.ts` | Explicit trusted runtime registry, composed by the backend entry point |
@@ -87,21 +96,27 @@ validation and projection validation pass before a revision-checked commit.
 Failures retain the prior canonical state and revision.
 
 The engine/contracts/frontend contain no Acme semantics or Pack imports.
-CustomerModel and ConversationState are reserved empty/sequence-zero snapshot
-fields in this phase. No planner, Fast Router, AI, voice, provider SDK, database,
-proprietary/vendor materials or P4 behavior is introduced.
+CustomerModel stores grounded updates with provenance, confidence and correction
+history. ConversationState holds bounded recent context and outstanding questions.
+The model requests semantic actions; the Controller validates; the State Engine
+makes them true. Model output is never rendered as an unrestricted factual answer.
+Only bounded Pack narration is used; unsupported substantive questions receive
+the temporary capture response. P5 governed Q&A, voice, a separate planner, Fast
+Router, database and proprietary/vendor materials are outside this implementation.
+See [P4 engine](docs/P4-engine.md) for context, orchestration and chat contracts.
 
 ## API
 
 | Method | Path | Result |
 | --- | --- | --- |
-| GET | `/api/health` | Health and P3 marker |
+| GET | `/api/health` | Health and P4 marker |
 | GET | `/api/product-pack` | Fictional metadata |
 | GET | `/api/product-pack/manifest` | Validated versioned Pack |
 | GET | `/api/demo-presentation` | Authored initial blueprint; live views use workspace projection |
 | POST | `/api/sessions` | New isolated session, workspace, event and access token |
 | GET | `/api/sessions/:id` | Canonical session, events and projected workspace |
 | POST | `/api/sessions/:id/commands` | Atomic validated revision-checked command |
+| POST | `/api/sessions/:id/turns` | Customer text and expectedRevision; validated orchestration and inspectable turn result |
 | GET | `/api/sessions/:id/snapshot` | Detached current state and last event sequence, without event history |
 | POST | `/api/sessions/:id/navigation` | Compatibility navigation through the same controller |
 | POST | `/api/sessions/:id/end` | Idempotent lifecycle end |
@@ -119,7 +134,9 @@ and domain command mappings are documented in [P3 engine](docs/P3-engine.md).
 Stale revisions, illegal actions and ended sessions return sanitized errors.
 Valid parsed commands emit `COMMAND_REQUESTED` then `COMMAND_APPROVED` and
 `STATE_CHANGED`, or `COMMAND_REJECTED`. HTTP failures also emit `ERROR_OCCURRED`;
-lifecycle events remain. Logs never contain input values, tokens or stack traces.
+lifecycle events remain. Turn records intentionally contain customer text, parsed
+proposals, operational reasons and resulting effects; they contain no hidden
+chain-of-thought, credentials or raw provider errors. Error logs stay sanitized.
 
 The tab stores only its validated session ID/token pointer in `sessionStorage`;
 refresh fetches canonical state from the server. A new independent tab starts
@@ -141,5 +158,6 @@ See [P2 authoring guide](docs/P2-product-pack.md) for the original schema and
 P0 is pushed to `main` at `a66512b`. P1 is pushed on `p1-demo-twin` at `2029f29`.
 P2 was checkpointed locally at `df24449` before P3. P3 is on
 `p3-deterministic-demo-engine`, committed and pushed at `7ff7ef6`.
-**P3 PASS.** P4 is authorized but awaits its frozen specification; see
-[P4 scope status](docs/P4-scope-status.md).
+**P3 PASS.** **P4 PASS** is recorded locally on `p4-text-agent`: 31 live HTTP turns
+(28 real Claude calls) and live browser checks passed. P4 has not been committed or pushed.
+See [P4 scope status](docs/P4-scope-status.md). Stop before P5.

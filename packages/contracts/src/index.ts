@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { ContextSchema, ProductStateSchema, CommandTypeSchema } from './state.js';
 import { DemoPresentationSchema } from './presentation.js';
+import { CustomerModelSchema, ConversationStateSchema, TurnRecordSchema } from './turns.js';
 
 // P0 operational contracts. These do not define product objects or behavior.
-export const EventTypeSchema = z.enum(['SESSION_STARTED', 'SESSION_ENDED', 'ERROR_OCCURRED', 'COMMAND_REQUESTED', 'COMMAND_APPROVED', 'COMMAND_REJECTED', 'STATE_CHANGED']);
+export const EventTypeSchema = z.enum(['SESSION_STARTED', 'SESSION_ENDED', 'ERROR_OCCURRED', 'COMMAND_REQUESTED', 'COMMAND_APPROVED', 'COMMAND_REJECTED', 'STATE_CHANGED', 'CUSTOMER_SPOKE', 'INTENT_DETECTED', 'CUSTOMER_MODEL_UPDATED', 'DEMO_TURN_CREATED']);
 export const ErrorCodeSchema = z.enum([
-  'ACTION_REJECTED', 'REVISION_CONFLICT', 'INVALID_REQUEST', 'SESSION_NOT_FOUND', 'SESSION_ENDED', 'UNAUTHORIZED', 'NOT_FOUND', 'INTERNAL_ERROR',
+  'ACTION_REJECTED', 'REVISION_CONFLICT', 'INVALID_REQUEST', 'SESSION_NOT_FOUND', 'SESSION_ENDED', 'UNAUTHORIZED', 'NOT_FOUND', 'INTERNAL_ERROR', 'CAPABILITY_NOT_AVAILABLE', 'MODEL_OUTPUT_INVALID', 'PROVIDER_UNAVAILABLE', 'TURN_BUSY', 'TURN_CANCELLED',
 ]);
 export const EventSchema = z.object({
   eventId: z.string().uuid(), sessionId: z.string().uuid().nullable(),
@@ -13,6 +14,7 @@ export const EventSchema = z.object({
   errorCode: ErrorCodeSchema.optional(),
   commandId: z.string().uuid().optional(), commandType: z.string().max(100).optional(),
   actionId: z.string().max(100).optional(), recordId: z.string().max(100).nullable().optional(), revision: z.number().int().nonnegative().optional(),
+  turnId: z.string().uuid().optional(),
 }).strict();
 export const DemoStateSchema = ContextSchema;
 export const SessionSchema = z.object({
@@ -20,8 +22,8 @@ export const SessionSchema = z.object({
   startedAt: z.string().datetime(), endedAt: z.string().datetime().nullable(),
   productPackId: z.string(), productPackVersion: z.string(), revision: z.number().int().nonnegative(),
   productState: ProductStateSchema, demoState: DemoStateSchema,
-  customerModel: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])),
-  conversationState: z.object({ sequence: z.number().int().nonnegative() }).strict(),
+  customerModel: CustomerModelSchema,
+  conversationState: ConversationStateSchema,
 }).strict();
 export const ControlSchema = z.object({ id: z.string(), label: z.string(), commandType: CommandTypeSchema,
   args: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])),
@@ -30,13 +32,14 @@ export const ControlSchema = z.object({ id: z.string(), label: z.string(), comma
 }).strict();
 export const SessionViewSchema = z.object({ session: SessionSchema, events: z.array(EventSchema),
   workspace: z.object({ presentation: DemoPresentationSchema, controls: z.array(ControlSchema), siteIds: z.array(z.string()).optional() }).strict().optional(),
+  chat: z.object({ available: z.boolean(), provider: z.string(), model: z.string(), turns: z.array(TurnRecordSchema).max(50) }).strict().optional(),
 }).strict();
 export const SnapshotSchema = z.object({ formatVersion: z.literal('1.0'), session: SessionSchema, lastEventSequence: z.number().int().nonnegative(), capturedAt: z.string().datetime() }).strict();
 export const CreatedSessionSchema = SessionViewSchema.extend({ accessToken: z.string().uuid() });
 export const ProductPresentationSchema = z.object({
   packId: z.string(), name: z.string(), description: z.string(), fictional: z.literal(true),
 }).strict();
-export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.enum(['P0', 'P1', 'P2', 'P3']) }).strict();
+export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.enum(['P0', 'P1', 'P2', 'P3', 'P4']) }).strict();
 export const ApiErrorSchema = z.object({
   error: z.object({ code: ErrorCodeSchema, message: z.string(), eventId: z.string().uuid() }).strict(),
 }).strict();

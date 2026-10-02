@@ -9,8 +9,14 @@ import { NavigationTargetSchema } from '../../../packages/contracts/src/presenta
 import { DemoController } from '../../../packages/engine/src/controller.js';
 import type { PackRuntime } from '../../../packages/contracts/src/runtime.js';
 import type { ErrorCode } from '../../../packages/contracts/src/index.js';
+import type { ModelProvider } from '../../../packages/agent/src/model-provider.js';
+import { GDEAgent } from '../../../packages/agent/src/gde-agent.js';
+import { DemoTurnExecutor } from '../../../packages/engine/src/demo-turns.js';
 
 const messages: Record<ErrorCode, string> = {
+  CAPABILITY_NOT_AVAILABLE: 'That action is not available in this demo.',
+  MODEL_OUTPUT_INVALID: 'The response could not be interpreted safely.', PROVIDER_UNAVAILABLE: 'Text chat is unavailable. Use the demo controls or try again later.',
+  TURN_BUSY: 'A text turn is already running. Stop it or wait for the response.', TURN_CANCELLED: 'That turn was stopped.',
   ACTION_REJECTED: 'Complete the required role, site, workflow state, and evidence before this action.',
   REVISION_CONFLICT: 'This session changed. Refresh its state and try again.',
   INVALID_REQUEST: 'This request is not supported by the demo.',
@@ -19,6 +25,7 @@ const messages: Record<ErrorCode, string> = {
   NOT_FOUND: 'Endpoint not found.', INTERNAL_ERROR: 'The request could not be completed.',
 };
 const statuses: Record<ErrorCode, number> = {
+  CAPABILITY_NOT_AVAILABLE: 409, MODEL_OUTPUT_INVALID: 502, PROVIDER_UNAVAILABLE: 503, TURN_BUSY: 409, TURN_CANCELLED: 409,
   ACTION_REJECTED: 409, REVISION_CONFLICT: 409, INVALID_REQUEST: 400, SESSION_NOT_FOUND: 404, SESSION_ENDED: 409, UNAUTHORIZED: 403, NOT_FOUND: 404, INTERNAL_ERROR: 500,
 };
 const mime: Record<string, string> = {
@@ -52,17 +59,18 @@ async function jsonBody(req: IncomingMessage) {
   catch { throw new SessionError('INVALID_REQUEST'); }
 }
 
-export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; store?: SessionStore; staticDir?: string }) {
+export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; store?: SessionStore; staticDir?: string; provider?: ModelProvider }) {
   const store = options.store ?? new SessionStore();
   const pack = ProductPackSchema.parse(options.pack);
   const { metadata: presentation, presentation: demoPresentation } = pack;
   const controller = new DemoController(pack, store, options.runtime);
+  const turns = new DemoTurnExecutor(controller, options.provider ? new GDEAgent(options.provider) : undefined);
   const accessTokens = new Map<string, string>();
   const server = createServer(async (req, res) => {
     let sessionId: string | null = null;
     try {
       const path = new URL(req.url ?? '/', 'http://localhost').pathname;
-      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P3' });
+      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P4' });
       if (path === '/api/product-pack/manifest' && req.method === 'GET') return json(res, 200, pack);
       if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, presentation);
       if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, demoPresentation);
@@ -71,9 +79,9 @@ export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; s
         const view = controller.create();
         const accessToken = randomUUID();
         accessTokens.set(view.session.sessionId, accessToken);
-        return json(res, 201, { ...view, accessToken });
+        return json(res, 201, { ...turns.view(view.session.sessionId), accessToken });
       }
-      const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation|commands|snapshot))?$/.exec(path);
+      const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation|commands|snapshot|turns))?$/.exec(path);
       if (match) {
         const id = z.string().uuid().parse(match[1]);
         const token = accessTokens.get(id);
@@ -84,17 +92,20 @@ export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; s
           throw new SessionError('UNAUTHORIZED');
         }
         sessionId = id;
-        if (!match[2] && req.method === 'GET') return json(res, 200, controller.view(id));
+        if (!match[2] && req.method === 'GET') return json(res, 200, turns.view(id));
+        if (match[2] === '/turns' && req.method === 'POST') return json(res, 200, await turns.execute(id, await jsonBody(req)));
         if (match[2] === '/navigation' && req.method === 'POST') {
           const target = NavigationTargetSchema.parse(await jsonBody(req));
-          return json(res, 200, controller.execute(id, { type: 'NAVIGATE', expectedRevision: store.get(id).session.revision, args: target }));
+          controller.execute(id, { type: 'NAVIGATE', expectedRevision: store.get(id).session.revision, args: target });
+          return json(res, 200, turns.view(id));
         }
-        if (match[2] === '/commands' && req.method === 'POST') return json(res, 200, controller.execute(id, await jsonBody(req)));
+        if (match[2] === '/commands' && req.method === 'POST') { controller.execute(id, await jsonBody(req)); return json(res, 200, turns.view(id)); }
         if (match[2] === '/snapshot' && req.method === 'GET') return json(res, 200, store.snapshot(id));
         if (match[2] === '/end' && req.method === 'POST') {
           await emptyBody(req);
+          turns.cancel(id);
           store.end(id);
-          return json(res, 200, controller.view(id));
+          return json(res, 200, turns.view(id));
         }
         throw new SessionError('INVALID_REQUEST');
       }
@@ -120,5 +131,5 @@ export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; s
       json(res, statuses[code], { error: { code, message: messages[code], eventId: event.eventId } });
     }
   });
-  return { server, store, controller };
+  return { server, store, controller, turns };
 }

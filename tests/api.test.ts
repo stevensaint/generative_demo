@@ -129,7 +129,7 @@ test('manual navigation follows the fixed walkthrough and isolates session selec
     assert.deepEqual(view.events.slice(-3).map(event => event.type), ['COMMAND_REQUESTED', 'COMMAND_APPROVED', 'STATE_CHANGED']);
   }
   const other = SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json());
-  assert.deepEqual(other, { session: b.session, events: b.events, workspace: b.workspace });
+  assert.deepEqual(other, { session: b.session, events: b.events, workspace: b.workspace, chat: b.chat });
   assert.deepEqual(await (await fetch(url + '/api/demo-presentation')).json(), demo);
 });
 
@@ -229,4 +229,43 @@ test('HTTP commands execute the golden path, reject stale/invalid requests and r
   await fetch(path + '/end', { method: 'POST', headers: auth(a.accessToken) });
   assert.equal((await request({ type: 'RESET', args: {}, expectedRevision: view.session.revision })).status, 409);
   assert.equal((await fetch(path + '/snapshot', { headers: auth(b.accessToken) })).status, 403);
+});
+
+test('text turns are authorized, inspectable and isolated through HTTP', async t => {
+  let output: unknown = { understanding: { intent: 'navigate', summary: 'Open a record.', confidence: 0.9 }, customerModelUpdates: [], requestedActions: [{ type: 'NAVIGATE', args: [{ name: 'screenId', value: 'sample-1001' }, { name: 'recordId', value: 'SMP-1001' }] }], narrationIntent: 'current_view', questionHandling: 'none', nextStep: 'listen' }, calls = 0;
+  const { url, fetch } = await fixture(t, { provider: { name: 'test-provider', model: 'fixture-only', propose: async () => { calls++; return output; } } });
+  const start = async () => CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  const a = await start(), b = await start(), path = url + '/api/sessions/' + a.session.sessionId;
+  const headers = { ...auth(a.accessToken), 'Content-Type': 'application/json' };
+  const send = (body: unknown, supplied = headers) => fetch(path + '/turns', { method: 'POST', headers: supplied, body: JSON.stringify(body) });
+  assert.equal((await send({ text: 'Open the first record.', expectedRevision: 0 }, { ...headers, ...auth(b.accessToken) })).status, 403);
+  for (const body of [{ text: '', expectedRevision: 0 }, { text: 'x'.repeat(2001), expectedRevision: 0 }, { text: 'Open.', expectedRevision: 0, state: {} }]) assert.equal((await send(body)).status, 400);
+  assert.equal(calls, 0);
+  const opened = SessionViewSchema.parse(await (await send({ text: 'Open the first record.', expectedRevision: 0 })).json());
+  assert.equal(opened.session.demoState.currentScreen, 'sample-1001'); assert.equal(calls, 1);
+  assert.equal(opened.chat!.turns[0]!.customerText, 'Open the first record.');
+  assert.equal(opened.chat!.turns[0]!.status, 'completed');
+  assert.equal((await send({ text: 'Show QA.', expectedRevision: 0 })).status, 409);
+  output = { invalid: true };
+  const malformed = SessionViewSchema.parse(await (await send({ text: 'Show QA.', expectedRevision: 1 })).json());
+  assert.deepEqual(malformed.session, opened.session); assert.equal(malformed.chat!.turns.at(-1)!.errorCode, 'MODEL_OUTPUT_INVALID');
+  const captured = SessionViewSchema.parse(await (await send({ text: 'Does it integrate with SAP?', expectedRevision: 1 })).json());
+  assert.equal(calls, 2); assert.equal(captured.session.conversationState.outstandingQuestions[0]!.text, 'Does it integrate with SAP?');
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(path, { headers })).json()), captured);
+  const snapshot = SnapshotSchema.parse(await (await fetch(path + '/snapshot', { headers })).json());
+  assert.deepEqual(snapshot.session, captured.session); assert.ok(!('turns' in snapshot)); assert.ok(!('events' in snapshot));
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json()).session, b.session);
+  const ended = SessionViewSchema.parse(await (await send({ text: 'End the demo', expectedRevision: captured.session.revision })).json());
+  assert.equal(ended.session.status, 'ended');
+  assert.equal((await send({ text: 'Show QA.', expectedRevision: ended.session.revision })).status, 409);
+});
+
+test('unconfigured chat has no fake provider; manual controls still work', async t => {
+  const { url, fetch } = await fixture(t);
+  const created = CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  const path = url + '/api/sessions/' + created.session.sessionId, headers = { ...auth(created.accessToken), 'Content-Type': 'application/json' };
+  assert.equal(created.chat!.available, false);
+  const failed = SessionViewSchema.parse(await (await fetch(path + '/turns', { method: 'POST', headers, body: JSON.stringify({ text: 'Show the first record.', expectedRevision: 0 }) })).json());
+  assert.deepEqual(failed.session, created.session); assert.equal(failed.chat!.turns[0]!.errorCode, 'PROVIDER_UNAVAILABLE');
+  assert.equal((await fetch(path + '/commands', { method: 'POST', headers, body: JSON.stringify({ type: 'NAVIGATE', expectedRevision: 0, args: { screenId: 'sample-list', recordId: null } }) })).status, 200);
 });

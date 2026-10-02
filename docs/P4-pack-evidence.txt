@@ -1,0 +1,46 @@
+
+> gde-p0@0.0.1 validate:pack
+> npm run build:server && node scripts/validate-pack.mjs
+
+
+> gde-p0@0.0.1 build:server
+> tsc -p tsconfig.server.json && node scripts/copy-packs.mjs
+
+npm notice
+npm notice New major version of npm available! 10.9.2 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+{
+  "status": "PASS",
+  "packId": "acme-quality-cloud",
+  "version": "0.3.0",
+  "lanes": [
+    "Sample Management",
+    "Lab Execution",
+    "Exception/OOS",
+    "QA Review"
+  ],
+  "roles": [
+    "Analyst",
+    "QA",
+    "Lab Manager"
+  ],
+  "entityTypes": 6,
+  "records": 4,
+  "actions": 11,
+  "transitions": 10,
+  "parameters": {
+    "site_count": 1,
+    "external_partner_count": 0,
+    "sample_count": 2,
+    "sample_source": "internal",
+    "result_profile": "mixed"
+  },
+  "execution": "deterministic"
+}
+npm notice
+npm notice New major version of npm available! 10.9.2 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

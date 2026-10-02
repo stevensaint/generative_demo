@@ -22,6 +22,7 @@ export const api = {
   read: (id: string, token: string) => request(`/api/sessions/${id}`, SessionViewSchema, 'GET', token),
   end: (id: string, token: string) => request(`/api/sessions/${id}/end`, SessionViewSchema, 'POST', token),
   command: (id: string, token: string, command: Command) => request(`/api/sessions/${id}/commands`, SessionViewSchema, 'POST', token, command),
+  turn: (id: string, token: string, text: string, expectedRevision: number) => request(`/api/sessions/${id}/turns`, SessionViewSchema, 'POST', token, { text, expectedRevision }),
   snapshot: (id: string, token: string) => request(`/api/sessions/${id}/snapshot`, SnapshotSchema, 'GET', token),
   navigate: (id: string, token: string, target: NavigationTarget) => request(`/api/sessions/${id}/navigation`, SessionViewSchema, 'POST', token, target),
 };

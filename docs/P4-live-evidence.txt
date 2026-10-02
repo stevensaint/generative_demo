@@ -1,0 +1,35 @@
+Real Claude HTTP acceptance, user ordinary Terminal.
+2026-10-02T22:20:21.760Z
+1. completed: Show me the first sample.
+2. completed: Show me QA.
+3. completed: Go back.
+4. completed: Show me the exception.
+5. completed: Skip this.
+6. completed: What happens next?
+7. completed: Can you switch roles?
+8. completed: Switch to QA.
+9. completed: I care more about external labs.
+10. completed: We don’t work that way.
+11. completed: Actually, internal labs are my focus.
+12. completed: Show the sample list.
+13. completed: Filter the list to 1002.
+14. completed: Reset the demo.
+15. completed: Show the first sample.
+16. completed: Start this sample’s test.
+17. completed: Enter a measurement of 6.4 pH.
+18. completed: Submit the test.
+19. completed: Show the results.
+20. completed: Assess the recorded measurement against the specification.
+21. completed: Submit this sample for QA review.
+22. completed: Switch to QA.
+23. completed: Show QA review.
+24. rejected: Approve the review with rationale "Synthetic evidence reviewed".
+25. completed: Show the exception.
+26. completed: Resolve this exception with disposition "Synthetic exception evidence reviewed".
+27. completed: Show QA review.
+28. completed: Approve the review with rationale "Synthetic evidence and disposition reviewed".
+29. completed: Does Acme integrate with SAP?
+30. completed: Stop.
+31. completed: End the demo.
+PASS: 31 turns, 28 real Claude proposals; complete schema/workflow assertions passed.
+See P4-live-evidence.json for full structured results and provenance.

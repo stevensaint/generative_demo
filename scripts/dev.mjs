@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 
-// One command, two local processes. No provider credentials or infrastructure.
+// One command, two local processes. The parent loads optional server credentials.
 const children = [
   spawn(process.execPath, ['dist/apps/server/src/main.js'], { stdio: 'inherit' }),
   spawn(process.execPath, ['node_modules/vite/bin/vite.js', '--config', 'apps/web/vite.config.ts'], { stdio: 'inherit' }),

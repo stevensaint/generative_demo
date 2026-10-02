@@ -141,4 +141,17 @@ export const acmeRuntime: PackRuntime = {
     }
   },
   present: presentAcme, controls: acmeControls,
+  narrative: (_pack, session) => {
+    const sample = session.productState.records.find(record => record.id === session.demoState.selectedRecordId);
+    const kind = session.demoState.currentScreen.split('-')[0];
+    if (session.demoState.currentScreen === 'sample-list') return 'Here are the fictional samples in this session. You can filter the list or open a sample to follow its workflow.';
+    if (kind === 'sample') return 'Here is the fictional sample and its current testing evidence. We can follow it into testing or look at the specification.';
+    if (kind === 'execution') return 'This is the fictional test workspace. You can enter an observed pH, complete the test, then compare its result with the specification.';
+    if (kind === 'results') return 'These are the measurements recorded in this demo session. Assessment compares the entered pH with the fictional specification.';
+    if (kind === 'exception') return 'Here is the exception evidence for this sample. A failing assessment needs an explicit synthetic disposition before QA approval.';
+    if (kind === 'review') return sample?.state === 'approved' ? 'The fictional review and sample are approved. The completed evidence and disposition are visible here.' : 'Here is QA review. Approval depends on completed testing, assessed results and resolved exception evidence.';
+    if (kind === 'audit') return 'Here is the live history of actions requested and validated during this demo session.';
+    if (kind === 'specification') return 'This is the fictional specification used to assess the recorded pH. The bounds are inclusive.';
+    return 'Here are the fictional samples in this session. Which part of the workflow would you like to explore?';
+  },
 };

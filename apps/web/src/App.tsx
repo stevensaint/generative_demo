@@ -7,6 +7,7 @@ import { DemoGuide } from './twin/guide.js';
 import { ActionPanel, ContextControls, ParameterControls } from './twin/actions.js';
 import { readPointer, savePointer, clearPointer } from './recovery.js';
 import { api } from './api.js';
+import { TextChat } from './twin/chat.js';
 import { Navigation, ScreenView } from './twin/primitives.js';
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
   const [view, setView] = useState<SessionView | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [chatBusy, setChatBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
@@ -42,7 +44,7 @@ export function App() {
     try {
       if (action === 'start') {
         const created = await api.start();
-        setToken(created.accessToken); setView({ session: created.session, events: created.events, workspace: created.workspace });
+        setToken(created.accessToken); setView({ session: created.session, events: created.events, workspace: created.workspace, chat: created.chat });
         savePointer(sessionStorage, { sessionId: created.session.sessionId, accessToken: created.accessToken });
       } else if (view && token) {
         setView(typeof action === 'object'
@@ -54,8 +56,21 @@ export function App() {
       if (view && token) { try { setView(await api.read(view.session.sessionId, token)); } catch { /* Keep the last acknowledged view; do not invent state. */ } }
     } finally { setBusy(false); }
   }
+  async function talk(text: string) {
+    if (!view || !token) return;
+    const regular = !['Stop', 'End the demo'].includes(text);
+    if (regular) setChatBusy(true);
+    setError(null);
+    try {
+      const next = await api.turn(view.session.sessionId, token, text, view.session.revision);
+      setView(previous => !previous || next.session.revision >= previous.session.revision ? next : previous);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'The text turn could not be completed.');
+      try { const next = await api.read(view.session.sessionId, token); setView(previous => !previous || next.session.revision >= previous.session.revision ? next : previous); } catch { /* Preserve acknowledged state. */ }
+    } finally { if (regular) setChatBusy(false); }
+  }
   const active = view?.session.status === 'active';
-  const disabled = !active || busy;
+  const disabled = !active || busy || chatBusy;
   const send = (type: Command['type'], args: Command['args']) => void operate({ type, args });
   const navigate = (target: NavigationTarget) => send('NAVIGATE', target);
   return <div className="app">
@@ -74,6 +89,7 @@ export function App() {
           <ActionPanel key={`${screen.id}:${view.session.revision}`} controls={view.workspace?.controls ?? []} disabled={disabled} send={send} />
         </> : <p role="alert">This workspace screen is unavailable.</p>}
       </>}
+      {view && <TextChat view={view} busy={chatBusy} send={text => void talk(text)} />}
       {pack && <DemoGuide pack={pack} onNavigate={navigate} disabled={disabled} onLane={laneId => send('SET_LANE', { laneId })} currentRole={state?.currentRole ?? null} />}
       {pack && view && <ParameterControls key={view.session.revision} pack={pack} session={view.session} disabled={disabled} send={send} />}
       <details className="session-activity"><summary>Session activity · {view?.events.length ?? 0} events</summary><p>Live lifecycle, command and state events from this session.</p>{view && <><p className="session-id">Session <code>{view.session.sessionId}</code></p><ol>{view.events.map(event => <li key={event.eventId}><strong>{event.type}</strong><span>{event.commandType}</span><time dateTime={event.timestamp}>{new Date(event.timestamp).toLocaleTimeString()}</time>{event.errorCode && <code>{event.errorCode}</code>}</li>)}</ol><button className="secondary" disabled={busy} onClick={() => void operate('refresh')}>Refresh state</button></>}</details>

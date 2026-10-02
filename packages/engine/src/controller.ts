@@ -8,6 +8,7 @@ import { SessionViewSchema, type SessionView, type Session } from '../../contrac
 import { RuleViolation, type PackRuntime } from '../../contracts/src/runtime.js';
 import { SessionStore, SessionError } from './sessions.js';
 import { StateEngine } from './state-engine.js';
+import { CustomerModelSchema, ConversationStateSchema, type RequestedAction, type CustomerModel, type ConversationState } from '../../contracts/src/turns.js';
 
 export class DemoController {
   constructor(readonly pack: ProductPack, readonly store: SessionStore, private readonly runtime?: PackRuntime) { this.initial(parsePackParameters(this.pack, {})); }
@@ -28,6 +29,44 @@ export class DemoController {
     const view = this.store.get(id);
     const presentation = this.runtime?.present(this.pack, view.session, view.events) ?? this.pack.presentation;
     return SessionViewSchema.parse({ ...view, workspace: { presentation, controls: this.runtime?.controls(this.pack, view.session) ?? [], siteIds: this.runtime?.sites(this.pack, view.session) ?? this.pack.sites.map(site => site.id) } });
+  }
+  narrative(id: string, session = this.store.get(id).session) {
+    if (this.runtime?.narrative) return this.runtime.narrative(this.pack, session);
+    const presentation = this.runtime?.present(this.pack, session, []) ?? this.pack.presentation;
+    const screen = presentation.screens.find(item => item.id === session.demoState.currentScreen)!;
+    return `Here is ${screen.title}. What would you like to explore?`;
+  }
+  executeTurn(id: string, expectedRevision: number, requests: RequestedAction[], memory: { customerModel: CustomerModel; conversationState: ConversationState; narrate?: boolean }, turnId: string, ended = false): SessionView {
+    const current = this.store.get(id).session;
+    const metadata = requests.map(request => ({ commandId: randomUUID(), commandType: request.type, turnId,
+      revision: current.revision, recordId: null }));
+    for (const item of metadata) this.store.commandEvent(id, 'COMMAND_REQUESTED', item);
+    try {
+      if (current.status !== 'active') throw new SessionError('SESSION_ENDED');
+      if (current.revision !== expectedRevision) throw new SessionError('REVISION_CONFLICT');
+      const candidate = structuredClone(current);
+      for (const request of requests) {
+        const command = CommandSchema.safeParse({ type: request.type, args: Object.fromEntries(request.args.map(arg => [arg.name, arg.value])), expectedRevision });
+        if (!command.success) throw new SessionError('CAPABILITY_NOT_AVAILABLE');
+        this.apply(candidate, command.data);
+      }
+      candidate.customerModel = CustomerModelSchema.parse(memory.customerModel);
+      candidate.conversationState = ConversationStateSchema.parse(memory.conversationState);
+      if (memory.narrate) candidate.conversationState.recent.at(-1)!.response = this.narrative(id, candidate);
+      candidate.revision = current.revision + 1;
+      SessionViewSchema.parse({ session: candidate, events: [], workspace: {
+        presentation: this.runtime?.present(this.pack, candidate, this.store.get(id).events) ?? this.pack.presentation,
+        controls: this.runtime?.controls(this.pack, candidate) ?? [],
+      } });
+      this.store.commitTurn(id, expectedRevision, candidate, ended);
+      for (const item of metadata) this.store.commandEvent(id, 'COMMAND_APPROVED', { ...item, revision: current.revision + 1 });
+      this.store.turnEvent(id, 'STATE_CHANGED', turnId);
+      return this.view(id);
+    } catch (error) {
+      const code = error instanceof SessionError ? error.code : error instanceof z.ZodError ? 'INVALID_REQUEST' : error instanceof RuleViolation ? 'ACTION_REJECTED' : 'INTERNAL_ERROR';
+      for (const item of metadata) this.store.commandEvent(id, 'COMMAND_REJECTED', item, code);
+      throw new SessionError(code);
+    }
   }
   execute(id: string, raw: unknown): SessionView {
     const command = CommandSchema.parse(raw);

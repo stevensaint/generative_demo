@@ -34,7 +34,7 @@ try {
     try { health = await (await fetch(base + '/api/health')).json(); break; }
     catch { await new Promise(resolve => setTimeout(resolve, 50)); }
   }
-  assert.equal(health?.phase, 'P3', diagnostics);
+  assert.equal(health?.phase, 'P4', diagnostics);
   const metadata = await (await fetch(base + '/api/product-pack')).json();
   assert.equal(metadata.name, 'Configured Fictional Demo');
   const manifest = await (await fetch(base + '/api/product-pack/manifest')).json();
