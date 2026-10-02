@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-02T19:38:24.621Z",
+  "health": {
+    "status": "ok",
+    "phase": "P0"
+  },
+  "invalidStatus": 400,
+  "error": {
+    "error": {
+      "code": "INVALID_REQUEST",
+      "message": "This request is not supported by the P0 foundation.",
+      "eventId": "8025d895-7cfc-4abe-a2cc-b25e86281ac3"
+    }
+  },
+  "session": {
+    "sessionId": "51f1ebe5-d9de-4fc1-b022-cb8eaf7d7d8e",
+    "status": "ended",
+    "startedAt": "2026-10-02T19:38:24.615Z",
+    "endedAt": "2026-10-02T19:38:24.619Z",
+    "productPackId": "acme-quality-cloud",
+    "demoState": {
+      "currentLane": null,
+      "currentRole": null,
+      "currentSite": null,
+      "currentScreen": "shell"
+    }
+  },
+  "events": [
+    {
+      "eventId": "2506768a-926c-4345-bd56-8d3e79eaba4a",
+      "sessionId": "51f1ebe5-d9de-4fc1-b022-cb8eaf7d7d8e",
+      "type": "SESSION_STARTED",
+      "sequence": 1,
+      "timestamp": "2026-10-02T19:38:24.616Z"
+    },
+    {
+      "eventId": "8025d895-7cfc-4abe-a2cc-b25e86281ac3",
+      "sessionId": "51f1ebe5-d9de-4fc1-b022-cb8eaf7d7d8e",
+      "type": "ERROR_OCCURRED",
+      "sequence": 2,
+      "timestamp": "2026-10-02T19:38:24.618Z",
+      "errorCode": "INVALID_REQUEST"
+    },
+    {
+      "eventId": "71af222d-e2ad-4b8c-a525-f60b27341517",
+      "sessionId": "51f1ebe5-d9de-4fc1-b022-cb8eaf7d7d8e",
+      "type": "SESSION_ENDED",
+      "sequence": 3,
+      "timestamp": "2026-10-02T19:38:24.619Z"
+    }
+  ],
+  "idempotentEnd": true
+}
