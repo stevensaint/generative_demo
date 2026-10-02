@@ -5,15 +5,18 @@ import { resolve, extname, sep } from 'node:path';
 import { z } from 'zod';
 import { SessionStore, SessionError } from '../../../packages/engine/src/sessions.js';
 import { acmePresentation } from '../../../packages/product-packs/acme/index.js';
+import { acmeDemoPresentation } from '../../../packages/product-packs/acme/fixtures.js';
+import { NavigationTargetSchema } from '../../../packages/contracts/src/presentation.js';
 import type { ErrorCode } from '../../../packages/contracts/src/index.js';
 
 const messages: Record<ErrorCode, string> = {
-  INVALID_REQUEST: 'This request is not supported by the P0 foundation.',
+  INVALID_REQUEST: 'This request is not supported by the demo.',
+  SESSION_ENDED: 'This session has ended. Start a new session to navigate.',
   SESSION_NOT_FOUND: 'Session not found.', UNAUTHORIZED: 'Session access denied.',
   NOT_FOUND: 'Endpoint not found.', INTERNAL_ERROR: 'The request could not be completed.',
 };
 const statuses: Record<ErrorCode, number> = {
-  INVALID_REQUEST: 400, SESSION_NOT_FOUND: 404, UNAUTHORIZED: 403, NOT_FOUND: 404, INTERNAL_ERROR: 500,
+  INVALID_REQUEST: 400, SESSION_NOT_FOUND: 404, SESSION_ENDED: 409, UNAUTHORIZED: 403, NOT_FOUND: 404, INTERNAL_ERROR: 500,
 };
 const mime: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -33,6 +36,19 @@ async function emptyBody(req: IncomingMessage) {
   if (bytes > 0) throw new SessionError('INVALID_REQUEST');
 }
 
+async function navigationBody(req: IncomingMessage) {
+  if (req.headers['content-type']?.split(';')[0]?.trim() !== 'application/json') throw new SessionError('INVALID_REQUEST');
+  const chunks: Buffer[] = [];
+  let bytes = 0;
+  for await (const chunk of req) {
+    bytes += Buffer.byteLength(chunk);
+    if (bytes <= 4096) chunks.push(Buffer.from(chunk));
+  }
+  if (bytes > 4096) throw new SessionError('INVALID_REQUEST');
+  try { return NavigationTargetSchema.parse(JSON.parse(Buffer.concat(chunks).toString('utf8'))); }
+  catch { throw new SessionError('INVALID_REQUEST'); }
+}
+
 export function createApp(options: { store?: SessionStore; staticDir?: string } = {}) {
   const store = options.store ?? new SessionStore();
   const accessTokens = new Map<string, string>();
@@ -40,16 +56,18 @@ export function createApp(options: { store?: SessionStore; staticDir?: string } 
     let sessionId: string | null = null;
     try {
       const path = new URL(req.url ?? '/', 'http://localhost').pathname;
-      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P0' });
+      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P1' });
       if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, acmePresentation);
+      if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, acmeDemoPresentation);
       if (path === '/api/sessions' && req.method === 'POST') {
         await emptyBody(req);
         const view = store.create(acmePresentation.packId);
         const accessToken = randomUUID();
         accessTokens.set(view.session.sessionId, accessToken);
-        return json(res, 201, { ...view, accessToken });
+        const initial = store.navigate(view.session.sessionId, acmeDemoPresentation.homeScreenId, null);
+        return json(res, 201, { ...initial, accessToken });
       }
-      const match = /^\/api\/sessions\/([^/]+)(\/end)?$/.exec(path);
+      const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation))?$/.exec(path);
       if (match) {
         const id = z.string().uuid().parse(match[1]);
         const token = accessTokens.get(id);
@@ -61,7 +79,13 @@ export function createApp(options: { store?: SessionStore; staticDir?: string } 
         }
         sessionId = id;
         if (!match[2] && req.method === 'GET') return json(res, 200, store.get(id));
-        if (match[2] && req.method === 'POST') {
+        if (match[2] === '/navigation' && req.method === 'POST') {
+          const target = await navigationBody(req);
+          const screen = acmeDemoPresentation.screens.find(s => s.id === target.screenId);
+          if (!screen || screen.recordId !== target.recordId) throw new SessionError('INVALID_REQUEST');
+          return json(res, 200, store.navigate(id, target.screenId, target.recordId));
+        }
+        if (match[2] === '/end' && req.method === 'POST') {
           await emptyBody(req);
           return json(res, 200, store.end(id));
         }

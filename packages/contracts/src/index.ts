@@ -3,7 +3,7 @@ import { z } from 'zod';
 // P0 operational contracts. These do not define product objects or behavior.
 export const EventTypeSchema = z.enum(['SESSION_STARTED', 'SESSION_ENDED', 'ERROR_OCCURRED']);
 export const ErrorCodeSchema = z.enum([
-  'INVALID_REQUEST', 'SESSION_NOT_FOUND', 'UNAUTHORIZED', 'NOT_FOUND', 'INTERNAL_ERROR',
+  'INVALID_REQUEST', 'SESSION_NOT_FOUND', 'SESSION_ENDED', 'UNAUTHORIZED', 'NOT_FOUND', 'INTERNAL_ERROR',
 ]);
 export const EventSchema = z.object({
   eventId: z.string().uuid(), sessionId: z.string().uuid().nullable(),
@@ -12,7 +12,8 @@ export const EventSchema = z.object({
 }).strict();
 export const DemoStateSchema = z.object({
   currentLane: z.string().nullable(), currentRole: z.string().nullable(),
-  currentSite: z.string().nullable(), currentScreen: z.literal('shell'),
+  currentSite: z.string().nullable(), currentScreen: z.string().min(1),
+  selectedRecordId: z.string().nullable(),
 }).strict();
 export const SessionSchema = z.object({
   sessionId: z.string().uuid(), status: z.enum(['active', 'ended']),
@@ -24,7 +25,7 @@ export const CreatedSessionSchema = SessionViewSchema.extend({ accessToken: z.st
 export const ProductPresentationSchema = z.object({
   packId: z.string(), name: z.string(), description: z.string(), fictional: z.literal(true),
 }).strict();
-export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.literal('P0') }).strict();
+export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.enum(['P0', 'P1']) }).strict();
 export const ApiErrorSchema = z.object({
   error: z.object({ code: ErrorCodeSchema, message: z.string(), eventId: z.string().uuid() }).strict(),
 }).strict();

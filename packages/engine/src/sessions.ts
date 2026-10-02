@@ -15,7 +15,7 @@ export class SessionStore {
     const session = SessionSchema.parse({
       sessionId: randomUUID(), status: 'active', startedAt: new Date().toISOString(), endedAt: null,
       productPackId,
-      demoState: { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell' },
+      demoState: { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null },
     });
     this.sessions.set(session.sessionId, session);
     this.events.set(session.sessionId, []);
@@ -38,6 +38,15 @@ export class SessionStore {
       session.endedAt = new Date().toISOString();
       this.append(sessionId, 'SESSION_ENDED');
     }
+    return this.get(sessionId);
+  }
+
+  navigate(sessionId: string, screenId: string, recordId: string | null): SessionView {
+    const session = this.sessions.get(sessionId);
+    if (!session) throw new SessionError('SESSION_NOT_FOUND');
+    if (session.status !== 'active') throw new SessionError('SESSION_ENDED');
+    session.demoState.currentScreen = screenId;
+    session.demoState.selectedRecordId = recordId;
     return this.get(sessionId);
   }
 

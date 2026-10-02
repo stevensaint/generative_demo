@@ -23,7 +23,7 @@ test('frontend does not import canonical session engine or hard-code Acme presen
   for (const file of await sourceFiles('apps/web/src')) {
     const source = await readFile(file, 'utf8');
     assert.doesNotMatch(source, /from\s+['"][^'"]*(engine|product-packs|server)/, file);
-    assert.doesNotMatch(source, /Acme Quality Cloud/, file);
+    assert.doesNotMatch(source, /Acme Quality Cloud|SMP-100|TST-100|EXC-100|Clearwater Buffer/, file);
   }
 });
 
@@ -35,7 +35,7 @@ test('environment secrets are ignored, with only the safe example permitted', ()
   assert.deepEqual(result.stdout.trim().split('\n'), ['.env', '.env.local', '.env.production']);
 });
 
-test('P0 dependencies contain no provider, speech, database, or agent SDKs', async () => {
+test('Dependencies contain no provider, speech, database, or agent SDKs', async () => {
   const manifest = JSON.parse(await readFile('package.json', 'utf8'));
   assert.deepEqual(Object.keys(manifest.dependencies).sort(), ['react', 'react-dom', 'zod']);
 });

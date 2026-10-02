@@ -106,3 +106,46 @@ test('production HTTP server serves built-style assets and rejects traversal', a
   assert.equal((await fetch(url + '/%2e%2e%2fpackage.json')).status, 404);
   assert.equal((await fetch(url + '/missing.js')).status, 404);
 });
+
+test('manual navigation follows the fixed walkthrough and isolates session selection', async t => {
+  const { url, fetch } = await fixture(t);
+  const { DemoPresentationSchema } = await import('../packages/contracts/src/presentation.js');
+  const demo = DemoPresentationSchema.parse(await (await fetch(url + '/api/demo-presentation')).json());
+  const start = async () => CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  const a = await start(); const b = await start();
+  const path = url + '/api/sessions/' + a.session.sessionId;
+  assert.equal(a.session.demoState.currentScreen, demo.homeScreenId);
+  for (const target of [...demo.walkthrough.map(link => link.target), ...demo.navigation.map(link => link.target), ...demo.screens.flatMap(screen => screen.links.map(link => link.target)), { screenId: 'sample-1002', recordId: 'SMP-1002' }]) {
+    const response = await fetch(path + '/navigation', { method: 'POST', headers: { ...auth(a.accessToken), 'Content-Type': 'application/json' }, body: JSON.stringify(target) });
+    assert.equal(response.status, 200);
+    const view = SessionViewSchema.parse(await response.json());
+    assert.equal(view.session.demoState.currentScreen, target.screenId);
+    assert.equal(view.session.demoState.selectedRecordId, target.recordId);
+    assert.deepEqual(view.events.map(event => event.type), ['SESSION_STARTED']);
+  }
+  const other = SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json());
+  assert.deepEqual(other, { session: b.session, events: b.events });
+  assert.deepEqual(await (await fetch(url + '/api/demo-presentation')).json(), demo);
+});
+
+test('navigation rejects unauthorized, malformed, mismatched and ended requests without changing state', async t => {
+  const { url, fetch } = await fixture(t);
+  const a = CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  const path = url + '/api/sessions/' + a.session.sessionId;
+  const target = { screenId: 'sample-1001', recordId: 'SMP-1001' };
+  const navigate = (body: string, headers = { ...auth(a.accessToken), 'Content-Type': 'application/json' }) => fetch(path + '/navigation', { method: 'POST', headers, body });
+  assert.equal((await navigate(JSON.stringify(target), { Authorization: 'Bearer wrong', 'Content-Type': 'application/json' })).status, 403);
+  for (const body of ['{', JSON.stringify({ ...target, screenId: 'unknown' }), JSON.stringify({ ...target, recordId: 'SMP-1002' }), JSON.stringify({ ...target, extra: true }), ' '.repeat(4097)]) {
+    assert.equal((await navigate(body)).status, 400);
+  }
+  assert.equal((await navigate(JSON.stringify(target), { ...auth(a.accessToken), 'Content-Type': 'text/plain' })).status, 400);
+  const before = SessionViewSchema.parse(await (await fetch(path, { headers: auth(a.accessToken) })).json());
+  assert.deepEqual(before.session.demoState, a.session.demoState);
+  assert.equal(before.events.filter(event => event.type === 'ERROR_OCCURRED').length, 6);
+  await fetch(path + '/end', { method: 'POST', headers: auth(a.accessToken) });
+  const ended = await navigate(JSON.stringify(target));
+  assert.equal(ended.status, 409);
+  assert.equal(ApiErrorSchema.parse(await ended.json()).error.code, 'SESSION_ENDED');
+  const after = SessionViewSchema.parse(await (await fetch(path, { headers: auth(a.accessToken) })).json());
+  assert.deepEqual(after.session.demoState, a.session.demoState);
+});
