@@ -1,16 +1,14 @@
-# GDE — P2 Fictional Product Pack
+# GDE — P3 Deterministic Demo Engine
 
-A runnable TypeScript application with a React frontend and Node backend. The
-fictional **Acme Quality Cloud** demo supports a manually navigable,
-read-only synthetic story: **Sample → Test → Result → Exception → QA Review**.
-Work queue, sample list/detail, specification, and illustrative audit history
-provide context. All records, names, measurements, and assessments are fixed
-fixtures authored for this demo.
+For transfer or a new coding-assistant session, begin with
+[HANDOFF.md](HANDOFF.md). [CLAUDE.md](CLAUDE.md) provides Claude's entry
+instructions; [documentation index](docs/README.md) maps all phase records.
 
-The versioned Acme JSON Product Pack now defines four demo lanes, three roles,
-bounded parameters, six product object types, action/transition/guard declarations,
-and evidence-linked fictional Product Truth. P2 loads configuration dynamically;
-execution remains reserved for P3.
+A runnable TypeScript/React and Node application for fictional **Acme Quality
+Cloud**. Execute an isolated synthetic workflow:
+**Sample → Test → failing Result → Exception → QA Review → Approval**.
+The Product Pack owns every Acme action, rule and screen projection. The generic
+controller owns validation, atomic commands and canonical session state.
 
 ## Run
 
@@ -21,23 +19,39 @@ npm ci
 npm run dev
 ```
 
-Open <http://127.0.0.1:5173>, click **Explore demo**, then **Begin sample
-walkthrough**. Follow each screen’s primary link into QA review. Sidebar and
-numbered walkthrough buttons allow direct navigation. Samples also supports
-local text filtering and inspecting the second fictional record. Open **Explore
-demo paths** to inspect the four authored paths and supported scope.
-
-To run the built application:
+Open <http://127.0.0.1:5173>. For the built application:
 
 ```sh
 npm run build
 npm start
 ```
 
-Open <http://127.0.0.1:3001>. Optional: copy `.env.example` to `.env` to change
-`PORT` or `WEB_PORT`. No credentials or external services are needed. Frontend
-edits reload through Vite; restart dev after backend edits. Ctrl+C stops the
-processes. Listeners bind to loopback.
+Open <http://127.0.0.1:3001>. Optional `.env` settings are listed in
+`.env.example`. Listeners bind to loopback. No external service credentials are
+required. Restart dev after backend edits; Ctrl+C stops the processes.
+
+## Execute the golden workflow
+
+1. Click **Explore demo**, then **Begin sample workflow** and **Start test**.
+2. Open **View test execution**, enter **6.4 pH**, and **Submit test**.
+3. Open **View results** and **Assess measurement against specification**.
+   The inclusive 6.8–7.2 range produces a below-range result and linked exception.
+4. **Submit sample for QA review**, switch **Demo role** to **QA**, and open QA
+   review. Approval with an unresolved exception is rejected.
+5. **Inspect exception evidence**, document a synthetic disposition, return to QA,
+   enter a decision rationale, and **Approve synthetic review**.
+
+Both the review and sample become approved atomically. An in-range measurement
+creates no exception. This P3 slice executes pH only; conductivity fields remain
+inactive Pack definitions. Root cause is never inferred. All records, people,
+roles and decisions are fictional, with no real laboratory or release operation.
+
+**Explore demo paths** selects role-compatible lanes. **Synthetic run settings**
+applies bounded Pack parameters and starts the workflow again within the same
+session. Add an external partner before selecting external/mixed sources.
+`result_profile` supplies deterministic suggested measurements; explicit input
+and specification bounds determine the actual outcome. **Reset demo** restores
+default records/context while retaining session events.
 
 ## Validate
 
@@ -45,86 +59,85 @@ processes. Listeners bind to loopback.
 npm run check
 npm run test:http
 npm run validate:pack
+node scripts/test-pack-runtime.mjs
 ```
 
-`check` runs strict TypeScript, 26 tests, boundary checks, and both builds.
-`test:http` runs eight API tests over real loopback TCP, including navigation,
-invalid payloads, ended sessions, access tokens, and session isolation.
-See [P2 validation](docs/P2-validation.md) for the configuration/model PASS
-matrix and runtime evidence; its fresh browser check is marked NOT RUN.
-[P1 validation](docs/P1-validation.md) and [P0 validation](docs/P0-validation.md)
-are historical phase records.
+`check` runs strict TypeScript, 38 tests (including architectural boundaries),
+and frontend/backend builds. `test:http` runs nine API tests over actual loopback
+TCP. [P3 validation](docs/P3-validation.md) records the recovered PASS criteria,
+HTTP evidence and browser rehearsal. P0/P1/P2 records remain historical; the P2
+browser handoff was verified before the P3 checkpoint.
 
-## Structure and frozen boundaries
+## Frozen boundaries
 
 | Location | Responsibility |
 | --- | --- |
-| `packages/contracts` | Validated session/event/API, generic presentation and Product Pack shapes |
-| `packages/engine` | Generic session lifecycle, canonical navigation state, isolated events |
-| `packages/product-packs/acme` | Versioned fictional JSON: presentation, model, rules, lanes, roles, bounds and truth |
-| `packages/product-packs/loader.ts` | Generic trusted JSON loader with schema validation |
-| `apps/server` | Composition root, authentication, Pack target validation, HTTP/static adapter |
-| `apps/web/src/twin` | Reusable navigation, lists, details, queue, execution, grid, workflow, review, history |
-| `apps/web` | Generic renderer and session controls; renders server snapshots |
+| `packages/contracts` | Generic validated state, commands, events, snapshots, Pack/runtime and presentation shapes |
+| `packages/engine` | Controller, isolated canonical store, generic schema/reference/transition/guard validation |
+| `packages/product-packs/acme` | Fictional JSON configuration, deterministic handlers, cross-object rules and state projections |
+| `packages/product-packs/runtimes.ts` | Explicit trusted runtime registry, composed by the backend entry point |
+| `apps/server` | Token authorization, HTTP/static adapter and dependency composition |
+| `apps/web` | Generic server-driven renderer, commands and tab refresh pointer |
 
-**DemoState is authoritative** for current screen and selected record, plus
-lane/role/site. The latter remain unset in P2: the fixture’s lab/site labels
-are presentation context. React does not maintain a second screen/selection
-store. Navigation updates only the requesting session after token and target
-validation. A new session begins at the Pack’s configured home screen with no selection.
-The engine contains no product object semantics.
+**ProductState** owns synthetic records and workflow state. **DemoState** owns
+screen, selection, lane, role, site, navigation history, filters, highlights and
+bounded parameters. React renders the server's acknowledged workspace and does
+not mutate domain state. Commands run on a detached candidate; guards, model
+validation and projection validation pass before a revision-checked commit.
+Failures retain the prior canonical state and revision.
 
-P2 contains a declared Product Pack model alongside the fixed presentation
-snapshots. It does not implement a mutable domain state engine.
-Viewing a test does not execute it; results and range assessments are prefilled;
-QA remains pending. Fixed audit entries are visibly distinguished from live
-session events. No domain edits, approval, release, transition engine, invariant
-framework, planner, Fast Router, AI, speech, scenario generation, database, or
-proprietary/vendor materials are introduced. P3 has not started.
+The engine/contracts/frontend contain no Acme semantics or Pack imports.
+CustomerModel and ConversationState are reserved empty/sequence-zero snapshot
+fields in this phase. No planner, Fast Router, AI, voice, provider SDK, database,
+proprietary/vendor materials or P4 behavior is introduced.
 
 ## API
 
 | Method | Path | Result |
 | --- | --- | --- |
-| GET | `/api/health` | Backend health and P2 marker |
-| GET | `/api/product-pack` | Fictional product metadata |
-| GET | `/api/product-pack/manifest` | Validated versioned fictional Pack |
-| GET | `/api/demo-presentation` | Validated fixed presentation blueprint |
-| POST | `/api/sessions` | New session, initial event, access token |
-| GET | `/api/sessions/:id` | Authorized session snapshot and events |
-| POST | `/api/sessions/:id/navigation` | Authorized canonical screen/selection update |
-| POST | `/api/sessions/:id/end` | Ended session and lifecycle events |
+| GET | `/api/health` | Health and P3 marker |
+| GET | `/api/product-pack` | Fictional metadata |
+| GET | `/api/product-pack/manifest` | Validated versioned Pack |
+| GET | `/api/demo-presentation` | Authored initial blueprint; live views use workspace projection |
+| POST | `/api/sessions` | New isolated session, workspace, event and access token |
+| GET | `/api/sessions/:id` | Canonical session, events and projected workspace |
+| POST | `/api/sessions/:id/commands` | Atomic validated revision-checked command |
+| GET | `/api/sessions/:id/snapshot` | Detached current state and last event sequence, without event history |
+| POST | `/api/sessions/:id/navigation` | Compatibility navigation through the same controller |
+| POST | `/api/sessions/:id/end` | Idempotent lifecycle end |
 
-Creation and end requests take no body. Navigation requires
-`Content-Type: application/json` with exactly `{ "screenId": "sample-1001",
-"recordId": "SMP-1001" }` (maximum 4096 bytes); targets must match the Pack.
-Session reads/navigation/end require `Authorization: Bearer <accessToken>`.
-Ended sessions reject navigation with 409. There is no session-list endpoint.
-Tokens stay in React memory and never enter event logs. Ending is idempotent.
-Responses are detached snapshots. Navigation adds no new event vocabulary:
-`SESSION_STARTED`, `SESSION_ENDED`, and `ERROR_OCCURRED` remain the live events.
+Session endpoints require `Authorization: Bearer <accessToken>`. Creation/end
+have no body. Commands require `Content-Type: application/json`, maximum 4096
+bytes, for example:
 
-Errors use sanitized codes/messages and event IDs. Authorized failures enter
-the session log; other failures enter a private process-local system log.
-Request bodies, credentials, and stack traces are not recorded.
+```json
+{"type":"START_TEST","expectedRevision":1,"args":{"recordId":"TST-1001"}}
+```
 
-State is in memory for the Node process lifetime. Reload loses the tab’s token;
-its prior session remains until restart. There is no persistence, reconnection,
-expiry/cleanup, identity, or browser-close auto-ending. Use **End session**.
+There is no state-upload or arbitrary action endpoint. Context/navigation aliases
+and domain command mappings are documented in [P3 engine](docs/P3-engine.md).
+Stale revisions, illegal actions and ended sessions return sanitized errors.
+Valid parsed commands emit `COMMAND_REQUESTED` then `COMMAND_APPROVED` and
+`STATE_CHANGED`, or `COMMAND_REJECTED`. HTTP failures also emit `ERROR_OCCURRED`;
+lifecycle events remain. Logs never contain input values, tokens or stack traces.
 
-P0 PASS/FROZEN is pushed to `main` at
-`a66512bf3492dc97d6c5f560d23f5337655f85f3`. P1 PASS is committed and pushed as
-`2029f29` on `p1-demo-twin`. P2 PASS for the
-recovered criteria is recorded on local branch `p2-acme-product-pack`,
-commit-ready. No P3 work has started.
+The tab stores only its validated session ID/token pointer in `sessionStorage`;
+refresh fetches canonical state from the server. A new independent tab starts
+its own session. State and tokens remain process-local: server restart invalidates
+old sessions; the frontend discards an unavailable pointer. Snapshots do not
+provide disk persistence or a caller-controlled restoration bypass. There is no
+identity provider, expiry/cleanup or browser-close auto-ending. Use **End session**.
 
-## Pack configuration
+## Pack configuration and checkpoints
 
-The default Pack is `packages/product-packs/acme/pack.json`. Builds copy it into
-`dist`. Set `GDE_PRODUCT_PACK_PATH` to a trusted absolute JSON path and restart
-to select an alternate Pack. Invalid configuration prevents startup. HTTP
-callers cannot supply a Pack path. The generic engine has no Acme imports.
+The default Pack is `packages/product-packs/acme/pack.json`, version **0.3.0**;
+builds copy it into `dist`. `GDE_PRODUCT_PACK_PATH` selects a trusted absolute
+JSON path at startup. Invalid Pack/model data prevents listening. Only explicitly
+registered runtimes execute; JSON cannot load executable code. Alternate
+metadata and configured queue titles still work without generic core edits.
+See [P2 authoring guide](docs/P2-product-pack.md) for the original schema and
+[P3 engine](docs/P3-engine.md) for execution semantics.
 
-See [Product Pack authoring guide](docs/P2-product-pack.md) for the schema,
-lanes, bounds, model and current/proposed guard semantics. The parameter validator
-does not generate scenarios; action handler declarations do not execute.
+P0 is pushed to `main` at `a66512b`. P1 is pushed on `p1-demo-twin` at `2029f29`.
+P2 was checkpointed locally at `df24449` before P3. P3 is on
+`p3-deterministic-demo-engine`, commit-ready. **P3 PASS; P4 not started.**

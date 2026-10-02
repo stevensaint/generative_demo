@@ -575,3 +575,19 @@ dl>div {
 .guide-answer h3 { font-size: 13px; margin-bottom: 6px; }
 .guide-answer { margin-top: 22px; }
 .guide-escalation { border-left: 3px solid #78988b; padding-left: 15px; }
+.context-controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; border-bottom: 1px solid #dce3dc; padding-bottom: 20px; margin-bottom: 24px; }
+.context-controls label, .action-forms label, .parameter-controls label { display: grid; gap: 7px; font-size: 12px; color: #52675e; }
+select { font: inherit; color: #203444; background: white; padding: 9px 12px; border: 1px solid #bdcfc3; border-radius: 5px; }
+select:focus-visible { outline: 3px solid #23a995; outline-offset: 3px; }
+.context-controls > span { font-size: 11px; padding-bottom: 10px; color: #6d7f72; margin-left: auto; }
+.action-forms { display: flex; flex-wrap: wrap; gap: 24px; align-items: end; }
+.action-forms form { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; max-width: 100%; }
+.action-forms input { max-width: 260px; }
+.action-forms p { font-size: 11px; color: #6d7f72; flex-basis: 100%; margin: 0; }
+.parameter-controls summary { font-size: 13px; cursor: pointer; font-weight: 600; }
+.parameter-controls > p { font-size: 12px; color: #6d7f72; line-height: 1.6; }
+.parameter-controls > div { display: flex; flex-wrap: wrap; gap: 22px; }
+.parameter-controls form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; }
+.parameter-controls input { max-width: 100px; }
+.highlighted { background: #fff0ca; padding-left: 10px; border-left: 3px solid #ba8426; }
+@media (max-width:680px) { .context-controls label { flex: 1; }.action-forms input { width: 100%; }.action-forms form, .action-forms label { width: 100%; }.context-controls > span { margin-left: 0; } }

@@ -18,13 +18,16 @@ test('presentation rejects broken links, duplicate screen IDs and missing table 
   assert.equal(DemoPresentationSchema.safeParse(cells).success, false);
 });
 
-test('generic navigation changes canonical selection without modifying fixtures or another session', () => {
-  const store = new SessionStore(); const a = store.create('abstract'); const b = store.create('abstract');
-  const view = store.navigate(a.session.sessionId, 'opaque-screen', 'opaque-record');
-  assert.equal(view.session.demoState.currentScreen, 'opaque-screen');
+test('controller navigation isolates canonical selection and returns detached snapshots', async () => {
+  const { DemoController } = await import('../packages/engine/src/controller.js');
+  const pack = await loadProductPack('packages/product-packs/acme/pack.json');
+  const store = new SessionStore(); const controller = new DemoController(pack, store);
+  const a = controller.create(), b = controller.create();
+  const view = controller.execute(a.session.sessionId, { type: 'NAVIGATE', expectedRevision: 0, args: { screenId: 'sample-1001', recordId: 'SMP-1001' } });
+  assert.equal(view.session.demoState.currentScreen, 'sample-1001');
   view.session.demoState.selectedRecordId = 'external-mutation';
-  assert.equal(store.get(a.session.sessionId).session.demoState.selectedRecordId, 'opaque-record');
-  assert.equal(store.get(b.session.sessionId).session.demoState.currentScreen, 'shell');
+  assert.equal(store.get(a.session.sessionId).session.demoState.selectedRecordId, 'SMP-1001');
+  assert.equal(store.get(b.session.sessionId).session.demoState.currentScreen, pack.presentation.homeScreenId);
   store.end(a.session.sessionId);
-  assert.throws(() => store.navigate(a.session.sessionId, 'another', null), /SESSION_ENDED/);
+  assert.throws(() => controller.execute(a.session.sessionId, { type: 'RETURN', expectedRevision: 1, args: {} }), /SESSION_ENDED/);
 });

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "health": {
+    "status": "ok",
+    "phase": "P3"
+  },
+  "externalWorkingDirectory": true,
+  "configuredMetadata": "Configured Fictional Demo",
+  "configuredQueue": "Configured runtime queue",
+  "laneCount": 4,
+  "sessionScreen": "work-queue",
+  "eventTypes": [
+    "SESSION_STARTED"
+  ],
+  "builtAssetsServed": true
+}
+{"invalidPackStartup":"REJECTED","exitCode":1}

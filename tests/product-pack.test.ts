@@ -17,7 +17,7 @@ test('Acme defines four reachable lanes, role-scoped actions and linked fictiona
   for (const guard of ['tests-exist', 'tests-complete', 'exceptions-resolved', 'reviews-exist', 'reviews-approved']) assert.ok(approval.guardIds.includes(guard));
   const review = pack.productModel.actions.find(action => action.id === 'approve-review')!;
   assert.deepEqual(review.guardBindings.find(binding => binding.guardId === 'review-rationale'), { guardId: 'review-rationale', phase: 'proposed' });
-  assert.equal(pack.policy.execution, 'definitions-only');
+  assert.equal(pack.policy.execution, 'deterministic');
   assert.equal(pack.truth.scope, 'fictional-demo-only');
 });
 
@@ -67,17 +67,12 @@ test('Pack rejects malformed version, identity, bounds, model, rule, lane and tr
   }
 });
 
-test('typed seed records agree with the visible synthetic walkthrough', () => {
-  const record = (id: string) => pack.productModel.records.find(record => record.id === id)!;
-  const result = pack.presentation.screens.find(screen => screen.kind === 'results')!.table!.rows.find(row => row.id === 'RES-1001')!;
-  assert.equal(result.cells.value, String(record('RES-1001').values.value));
-  const range = record('SPEC-CB-01').values;
-  assert.equal(result.cells.range, `${range.phMinimum}–${range.phMaximum}`);
-  assert.equal(record('EXC-1001').values.resultId, 'RES-1001');
-  assert.equal(record('REV-1001').values.sampleId, 'SMP-1001');
-  assert.equal(record('REV-1001').state, 'pending');
-  assert.equal(record('EXC-1001').state, 'in-review');
-  assert.equal(record('EXC-1001').values.disposition, null);
+test('initial Pack templates contain no invented measurements, exceptions or decisions', () => {
+  assert.ok(pack.productModel.records.filter(record => record.entityType === 'Sample').every(record => record.state === 'received'));
+  assert.ok(pack.productModel.records.filter(record => record.entityType === 'Test').every(record => record.state === 'ready'));
+  assert.ok(!pack.productModel.records.some(record => ['Result', 'Exception', 'Review'].includes(record.entityType)));
+  const table = pack.presentation.screens.find(screen => screen.id === 'results-1001')!.table!;
+  assert.equal(table.rows.length, 0);
 });
 
 test('dynamic loader is data-only and rejects invalid/missing files', async t => {

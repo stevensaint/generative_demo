@@ -48,7 +48,7 @@ export const ProductPackSchema = z.object({
     edges: z.array(z.object({ from: Id, to: Id, label: Text }).strict()),
   }).strict()).min(1),
   policy: z.object({
-    mode: z.literal('fictional-demo-only'), execution: z.literal('definitions-only'),
+    mode: z.literal('fictional-demo-only'), execution: z.enum(['definitions-only', 'deterministic']),
     unsupportedQuestion: z.literal('escalate'), blockedCapabilities: z.array(Text).min(1),
   }).strict(),
   truth: z.object({

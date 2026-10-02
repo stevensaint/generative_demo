@@ -6,16 +6,20 @@ import { z } from 'zod';
 import { SessionStore, SessionError } from '../../../packages/engine/src/sessions.js';
 import { ProductPackSchema, type ProductPack } from '../../../packages/contracts/src/product-pack.js';
 import { NavigationTargetSchema } from '../../../packages/contracts/src/presentation.js';
+import { DemoController } from '../../../packages/engine/src/controller.js';
+import type { PackRuntime } from '../../../packages/contracts/src/runtime.js';
 import type { ErrorCode } from '../../../packages/contracts/src/index.js';
 
 const messages: Record<ErrorCode, string> = {
+  ACTION_REJECTED: 'Complete the required role, site, workflow state, and evidence before this action.',
+  REVISION_CONFLICT: 'This session changed. Refresh its state and try again.',
   INVALID_REQUEST: 'This request is not supported by the demo.',
   SESSION_ENDED: 'This session has ended. Start a new session to navigate.',
   SESSION_NOT_FOUND: 'Session not found.', UNAUTHORIZED: 'Session access denied.',
   NOT_FOUND: 'Endpoint not found.', INTERNAL_ERROR: 'The request could not be completed.',
 };
 const statuses: Record<ErrorCode, number> = {
-  INVALID_REQUEST: 400, SESSION_NOT_FOUND: 404, SESSION_ENDED: 409, UNAUTHORIZED: 403, NOT_FOUND: 404, INTERNAL_ERROR: 500,
+  ACTION_REJECTED: 409, REVISION_CONFLICT: 409, INVALID_REQUEST: 400, SESSION_NOT_FOUND: 404, SESSION_ENDED: 409, UNAUTHORIZED: 403, NOT_FOUND: 404, INTERNAL_ERROR: 500,
 };
 const mime: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
@@ -35,7 +39,7 @@ async function emptyBody(req: IncomingMessage) {
   if (bytes > 0) throw new SessionError('INVALID_REQUEST');
 }
 
-async function navigationBody(req: IncomingMessage) {
+async function jsonBody(req: IncomingMessage) {
   if (req.headers['content-type']?.split(';')[0]?.trim() !== 'application/json') throw new SessionError('INVALID_REQUEST');
   const chunks: Buffer[] = [];
   let bytes = 0;
@@ -44,32 +48,32 @@ async function navigationBody(req: IncomingMessage) {
     if (bytes <= 4096) chunks.push(Buffer.from(chunk));
   }
   if (bytes > 4096) throw new SessionError('INVALID_REQUEST');
-  try { return NavigationTargetSchema.parse(JSON.parse(Buffer.concat(chunks).toString('utf8'))); }
+  try { return JSON.parse(Buffer.concat(chunks).toString('utf8')) as unknown; }
   catch { throw new SessionError('INVALID_REQUEST'); }
 }
 
-export function createApp(options: { pack: ProductPack; store?: SessionStore; staticDir?: string }) {
+export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; store?: SessionStore; staticDir?: string }) {
   const store = options.store ?? new SessionStore();
   const pack = ProductPackSchema.parse(options.pack);
   const { metadata: presentation, presentation: demoPresentation } = pack;
+  const controller = new DemoController(pack, store, options.runtime);
   const accessTokens = new Map<string, string>();
   const server = createServer(async (req, res) => {
     let sessionId: string | null = null;
     try {
       const path = new URL(req.url ?? '/', 'http://localhost').pathname;
-      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P2' });
+      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P3' });
       if (path === '/api/product-pack/manifest' && req.method === 'GET') return json(res, 200, pack);
       if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, presentation);
       if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, demoPresentation);
       if (path === '/api/sessions' && req.method === 'POST') {
         await emptyBody(req);
-        const view = store.create(presentation.packId);
+        const view = controller.create();
         const accessToken = randomUUID();
         accessTokens.set(view.session.sessionId, accessToken);
-        const initial = store.navigate(view.session.sessionId, demoPresentation.homeScreenId, null);
-        return json(res, 201, { ...initial, accessToken });
+        return json(res, 201, { ...view, accessToken });
       }
-      const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation))?$/.exec(path);
+      const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation|commands|snapshot))?$/.exec(path);
       if (match) {
         const id = z.string().uuid().parse(match[1]);
         const token = accessTokens.get(id);
@@ -80,16 +84,17 @@ export function createApp(options: { pack: ProductPack; store?: SessionStore; st
           throw new SessionError('UNAUTHORIZED');
         }
         sessionId = id;
-        if (!match[2] && req.method === 'GET') return json(res, 200, store.get(id));
+        if (!match[2] && req.method === 'GET') return json(res, 200, controller.view(id));
         if (match[2] === '/navigation' && req.method === 'POST') {
-          const target = await navigationBody(req);
-          const screen = demoPresentation.screens.find(s => s.id === target.screenId);
-          if (!screen || screen.recordId !== target.recordId) throw new SessionError('INVALID_REQUEST');
-          return json(res, 200, store.navigate(id, target.screenId, target.recordId));
+          const target = NavigationTargetSchema.parse(await jsonBody(req));
+          return json(res, 200, controller.execute(id, { type: 'NAVIGATE', expectedRevision: store.get(id).session.revision, args: target }));
         }
+        if (match[2] === '/commands' && req.method === 'POST') return json(res, 200, controller.execute(id, await jsonBody(req)));
+        if (match[2] === '/snapshot' && req.method === 'GET') return json(res, 200, store.snapshot(id));
         if (match[2] === '/end' && req.method === 'POST') {
           await emptyBody(req);
-          return json(res, 200, store.end(id));
+          store.end(id);
+          return json(res, 200, controller.view(id));
         }
         throw new SessionError('INVALID_REQUEST');
       }
@@ -115,5 +120,5 @@ export function createApp(options: { pack: ProductPack; store?: SessionStore; st
       json(res, statuses[code], { error: { code, message: messages[code], eventId: event.eventId } });
     }
   });
-  return { server, store };
+  return { server, store, controller };
 }

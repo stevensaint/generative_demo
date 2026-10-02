@@ -11,7 +11,7 @@ test('generic React guide renders Pack lanes, bounds and approved answers withou
   for (const lane of pack.lanes) assert.ok(html.includes(`Explore ${lane.label}`));
   assert.match(html, /1–12/);
   assert.match(html, /default: mixed/);
-  assert.match(html, /enforcement|definitions only|definitions-only/);
+  assert.match(html, /deterministic synthetic configuration/);
   assert.doesNotMatch(html, /<button[^>]*>Approve|<button[^>]*>Record measurement|<button[^>]*>Generate/);
   const disabled = renderToStaticMarkup(<DemoGuide pack={pack} onNavigate={() => {}} disabled />);
   assert.equal((disabled.match(/disabled=""/g) ?? []).length, 4);
@@ -27,5 +27,5 @@ test('Pack configuration changes rendered content and remains escaped React data
   screen.sections[0]!.fields[0]!.value = 'Configured site context';
   const view = renderToStaticMarkup(<ScreenView screen={screen} onNavigate={() => {}} disabled={false} />);
   assert.match(view, /Configured site context/);
-  assert.match(view, /Open sample SMP-1001/);
+  assert.match(view, /Open SMP-1001/);
 });

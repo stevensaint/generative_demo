@@ -8,7 +8,7 @@ test('session creation produces unique IDs and isolated canonical state and logs
   const a = store.create('fictional-pack');
   const b = store.create('fictional-pack');
   assert.notEqual(a.session.sessionId, b.session.sessionId);
-  assert.deepEqual(store.get(a.session.sessionId).session.demoState, { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null });
+  assert.deepEqual(store.get(a.session.sessionId).session.demoState, { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null, history: [], filters: {}, highlights: [], parameters: {} });
   a.session.demoState.currentSite = 'mutated';
   a.events.length = 0;
   assert.equal(store.get(a.session.sessionId).session.demoState.currentSite, null);

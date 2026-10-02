@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Screen, DemoPresentation, NavigationTarget } from '../../../../packages/contracts/src/presentation.js';
 
 export type Navigate = (target: NavigationTarget) => void;
-type ViewProps = { screen: Screen; onNavigate: Navigate; disabled: boolean };
+type ViewProps = { screen: Screen; onNavigate: Navigate; disabled: boolean; filter?: string; onFilter?: (query: string) => void; highlights?: string[] };
 
 export function Navigation({ items, currentScreen, onNavigate, disabled }: {
   items: DemoPresentation['navigation']; currentScreen?: string; onNavigate: Navigate; disabled: boolean;
@@ -13,9 +13,9 @@ export function Navigation({ items, currentScreen, onNavigate, disabled }: {
   )}</nav>;
 }
 
-function Fields({ screen }: { screen: Screen }) {
+function Fields({ screen, highlights = [] }: { screen: Screen; highlights?: string[] }) {
   return <div className="field-sections">{screen.sections.map(section => <section className="panel" key={section.title}>
-    <h2>{section.title}</h2><dl>{section.fields.map(field => <div key={field.label}><dt>{field.label}</dt><dd>{field.value}</dd></div>)}</dl>
+    <h2>{section.title}</h2><dl>{section.fields.map(field => <div className={highlights.includes(field.label) ? 'highlighted' : undefined} key={field.label}><dt>{field.label}</dt><dd>{field.value}</dd></div>)}</dl>
   </section>)}</div>;
 }
 
@@ -41,16 +41,17 @@ function Steps({ screen }: { screen: Screen }) {
   )}</ol></section>;
 }
 
-export function WorkQueue(props: ViewProps) { return <><Fields screen={props.screen} /><DataTable {...props} /></>; }
+export function WorkQueue(props: ViewProps) { return <><Fields screen={props.screen} highlights={props.highlights} /><DataTable {...props} /></>; }
 export function RecordList(props: ViewProps) {
-  const [query, setQuery] = useState('');
-  return <><label className="list-filter">Filter records<input type="search" placeholder="Search this list" value={query} disabled={props.disabled} onChange={event => setQuery(event.target.value)} /></label><DataTable {...props} query={query} /></>;
+  const [draft, setDraft] = useState(props.filter ?? '');
+  useEffect(() => setDraft(props.filter ?? ''), [props.filter]);
+  return <><form className="list-filter" onSubmit={event => { event.preventDefault(); props.onFilter?.(draft); }}><label>Filter records<input type="search" placeholder="Search this list" value={draft} maxLength={100} disabled={props.disabled} onChange={event => setDraft(event.target.value)} /></label><button className="secondary" disabled={props.disabled}>Apply filter</button></form><DataTable {...props} query={props.filter ?? ''} /></>;
 }
-export function RecordDetail(props: ViewProps) { return <><Fields screen={props.screen} /><DataTable {...props} /></>; }
-export function ExecutionPanel(props: ViewProps) { return <><Fields screen={props.screen} /><Steps screen={props.screen} /></>; }
+export function RecordDetail(props: ViewProps) { return <><Fields screen={props.screen} highlights={props.highlights} /><DataTable {...props} /></>; }
+export function ExecutionPanel(props: ViewProps) { return <><Fields screen={props.screen} highlights={props.highlights} /><Steps screen={props.screen} /></>; }
 export function ResultsGrid(props: ViewProps) { return <DataTable {...props} />; }
-export function WorkflowPanel(props: ViewProps) { return <><Fields screen={props.screen} /><Steps screen={props.screen} /></>; }
-export function ReviewPanel(props: ViewProps) { return <Fields screen={props.screen} />; }
+export function WorkflowPanel(props: ViewProps) { return <><Fields screen={props.screen} highlights={props.highlights} /><Steps screen={props.screen} /></>; }
+export function ReviewPanel(props: ViewProps) { return <Fields screen={props.screen} highlights={props.highlights} />; }
 export function AuditHistory(props: ViewProps) { return <DataTable {...props} />; }
 
 export function ScreenView(props: ViewProps) {

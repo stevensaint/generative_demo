@@ -1,3 +1,4 @@
+import { runtimeFor } from '../packages/product-packs/runtimes.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
@@ -6,13 +7,14 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createApp } from '../apps/server/src/app.js';
 import { SessionStore } from '../packages/engine/src/sessions.js';
-import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema } from '../packages/contracts/src/index.js';
+import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema, SnapshotSchema } from '../packages/contracts/src/index.js';
+import type { Command } from '../packages/contracts/src/state.js';
 import { loadProductPack } from '../packages/product-packs/loader.js';
 import { memoryFetch } from './transport.js';
 
 async function fixture(t: test.TestContext, options: Partial<Parameters<typeof createApp>[0]> = {}) {
   const pack = await loadProductPack('packages/product-packs/acme/pack.json');
-  const app = createApp({ pack, ...options });
+  const app = createApp({ pack, runtime: runtimeFor(options.pack ?? pack), ...options });
   if (process.env.GDE_TEST_TRANSPORT !== 'tcp') {
     return { ...app, url: 'http://in-process.invalid', fetch: memoryFetch(app.server) };
   }
@@ -123,10 +125,11 @@ test('manual navigation follows the fixed walkthrough and isolates session selec
     const view = SessionViewSchema.parse(await response.json());
     assert.equal(view.session.demoState.currentScreen, target.screenId);
     assert.equal(view.session.demoState.selectedRecordId, target.recordId);
-    assert.deepEqual(view.events.map(event => event.type), ['SESSION_STARTED']);
+    assert.equal(view.events[0]?.type, 'SESSION_STARTED');
+    assert.deepEqual(view.events.slice(-3).map(event => event.type), ['COMMAND_REQUESTED', 'COMMAND_APPROVED', 'STATE_CHANGED']);
   }
   const other = SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json());
-  assert.deepEqual(other, { session: b.session, events: b.events });
+  assert.deepEqual(other, { session: b.session, events: b.events, workspace: b.workspace });
   assert.deepEqual(await (await fetch(url + '/api/demo-presentation')).json(), demo);
 });
 
@@ -177,6 +180,53 @@ test('a dynamically loaded alternative Pack changes API presentation without cor
   const blueprint = await (await fetch(url + '/api/demo-presentation')).json();
   assert.equal(blueprint.screens.find((screen: { id: string }) => screen.id === 'sample-list').title, 'Configured sample register');
   assert.deepEqual(await loadProductPack('packages/product-packs/acme/pack.json'), original);
-  // P2 does not expose action execution or scenario parameter mutation.
+  // Unregistered routes cannot bypass the controller.
   assert.equal((await fetch(url + '/api/sessions/' + created.session.sessionId + '/actions', { method: 'POST', headers: auth(created.accessToken) })).status, 404);
+});
+
+test('HTTP commands execute the golden path, reject stale/invalid requests and restore canonical snapshots', async t => {
+  const { url, fetch } = await fixture(t);
+  const start = async () => CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  const a = await start(), b = await start();
+  const path = url + '/api/sessions/' + a.session.sessionId;
+  const headers = { ...auth(a.accessToken), 'Content-Type': 'application/json' };
+  let view = SessionViewSchema.parse({ session: a.session, events: a.events, workspace: a.workspace });
+  const request = (body: unknown) => fetch(path + '/commands', { method: 'POST', headers, body: JSON.stringify(body) });
+  const send = async (type: Command['type'], args: Command['args'] = {}) => {
+    const response = await request({ type, args, expectedRevision: view.session.revision });
+    assert.equal(response.status, 200); view = SessionViewSchema.parse(await response.json());
+  };
+  assert.equal((await fetch(path + '/commands', { method: 'POST', headers: auth(b.accessToken), body: '{}' })).status, 403);
+  for (const body of [{ type: 'BYPASS', args: {}, expectedRevision: 0 }, { type: 'RESET', args: {}, expectedRevision: 0, productState: {} }]) {
+    assert.equal((await request(body)).status, 400);
+  }
+  await send('START_TEST', { recordId: 'TST-1001' });
+  const before = structuredClone(view.session);
+  const stale = await request({ type: 'RESET', args: {}, expectedRevision: 0 });
+  assert.equal(stale.status, 409); assert.equal(ApiErrorSchema.parse(await stale.json()).error.code, 'REVISION_CONFLICT');
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(path, { headers })).json()).session, before);
+  await send('ENTER_RESULT', { recordId: 'TST-1001', value: 6.4, unit: 'pH' });
+  await send('SUBMIT_TEST', { recordId: 'TST-1001' });
+  await send('TRIGGER_EXCEPTION', { recordId: 'RES-1001' });
+  await send('SUBMIT_FOR_REVIEW', { recordId: 'SMP-1001' });
+  await send('SWITCH_ROLE', { roleId: 'qa' });
+  const pending = structuredClone(view.session);
+  const blocked = await request({ type: 'APPROVE', args: { recordId: 'REV-1001', rationale: 'Unresolved evidence' }, expectedRevision: view.session.revision });
+  assert.equal(blocked.status, 409);
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(path, { headers })).json()).session, pending);
+  await send('RESOLVE_EXCEPTION', { recordId: 'EXC-1001', disposition: 'Synthetic evidence disposition.' });
+  await send('APPROVE', { recordId: 'REV-1001', rationale: 'Synthetic disposition reviewed.' });
+  await send('NAVIGATE', { screenId: 'review-1001', recordId: 'SMP-1001' });
+  const restored = SessionViewSchema.parse(await (await fetch(path, { headers })).json());
+  assert.deepEqual(restored, view);
+  const snapshot = SnapshotSchema.parse(await (await fetch(path + '/snapshot', { headers })).json());
+  assert.deepEqual(snapshot.session, view.session); assert.ok(!('events' in snapshot));
+  assert.equal(snapshot.lastEventSequence, view.events.length);
+  assert.equal(view.session.productState.records.find(record => record.id === 'SMP-1001')?.state, 'approved');
+  assert.equal(view.workspace!.presentation.screens.find(screen => screen.id === 'review-1001')!.badge.label, 'approved');
+  assert.ok(!JSON.stringify(view.events).includes('Unresolved evidence'));
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json()).session, b.session);
+  await fetch(path + '/end', { method: 'POST', headers: auth(a.accessToken) });
+  assert.equal((await request({ type: 'RESET', args: {}, expectedRevision: view.session.revision })).status, 409);
+  assert.equal((await fetch(path + '/snapshot', { headers: auth(b.accessToken) })).status, 403);
 });

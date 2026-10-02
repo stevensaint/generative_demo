@@ -1,0 +1,88 @@
+Final built application, 2026-10-02.
+Golden workflow and rejection observed.
+Approved view identical after refresh: true
+
+- banner:
+  - generic: GDE / Demo Twin
+  - generic: Fictional product · P3
+- complementary:
+  - paragraph: SYNTHETIC WORKSPACE
+  - heading "Acme Quality Cloud" [level=2]
+  - paragraph: Quality lab · Harbor site
+  - navigation "Workspace navigation":
+    - button "Work queue":
+      - text: Work queue
+      - generic: ›
+    - button "Samples":
+      - text: Samples
+      - generic: ›
+    - button "QA review":
+      - text: QA review
+      - generic: ›
+    - button "Audit history":
+      - text: Audit history
+      - generic: ›
+- main:
+  - status: Session active
+  - button "Start new session" [disabled]
+  - button "End session"
+  - text: Demo role
+  - combobox "Demo role":
+    - option "Analyst"
+    - option "QA" [selected]
+    - option "Lab Manager"
+  - text: Demo site
+  - combobox "Demo site":
+    - option "Harbor" [selected]
+  - button "Return"
+  - button "Reset demo"
+  - generic: Revision 14
+  - navigation "Guided walkthrough":
+    - button "1 Sample":
+      - generic: "1"
+      - text: Sample
+    - button "2 Test":
+      - generic: "2"
+      - text: Test
+    - button "3 Result":
+      - generic: "3"
+      - text: Result
+    - button "4 Exception":
+      - generic: "4"
+      - text: Exception
+    - button "5 QA review":
+      - generic: "5"
+      - text: QA review
+  - paragraph: Quality lab · Harbor site
+  - heading "QA review" [active] [level=1]
+  - paragraph: REV-1001 · SMP-1001
+  - generic: approved
+  - complementary:
+    - strong: Synthetic workflow complete
+    - paragraph: The review and sample are approved in this fictional session. No real product, laboratory, or regulatory action occurred.
+  - heading "Review summary" [level=2]
+  - term: Reviewer
+  - definition: Jordan Lee
+  - term: Sample status
+  - definition: approved
+  - term: Test status
+  - definition: completed
+  - term: Result assessment
+  - definition: below-range
+  - term: Exception status
+  - definition: resolved
+  - term: Decision rationale
+  - definition: Synthetic QA evidence and documented exception disposition reviewed.
+  - button "Inspect exception evidence": Inspect exception evidence →
+  - button "View live audit history"
+  - button "Return to work queue"
+  - generic "Explore demo paths"
+  - generic "Synthetic run settings"
+  - option "internal" [selected]
+  - option "external"
+  - option "mixed"
+  - option "in-range"
+  - option "out-of-range"
+  - option "mixed" [selected]
+  - generic "Session activity · 46 events"
+  - generic: All actions affect fictional session records only. No real laboratory, vendor or regulatory operation occurs.

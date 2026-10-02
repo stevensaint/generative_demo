@@ -1,21 +1,22 @@
 import { randomUUID } from 'node:crypto';
-import { EventSchema, SessionSchema, type Event, type ErrorCode, type Session, type SessionView } from '../../contracts/src/index.js';
+import { EventSchema, SessionSchema, type Event, type ErrorCode, type Session, type SessionView, SnapshotSchema } from '../../contracts/src/index.js';
 
 export class SessionError extends Error {
   constructor(public readonly code: ErrorCode) { super(code); }
 }
 
-// Process-local P0 lifecycle store. Product semantics belong to Product Packs.
+// Process-local canonical state and event store. Product semantics belong to Packs.
 export class SessionStore {
   private readonly sessions = new Map<string, Session>();
   private readonly events = new Map<string, Event[]>();
   private readonly systemEvents: Event[] = [];
 
-  create(productPackId: string): SessionView {
+  create(productPackId: string, initial?: Pick<Session, 'productState' | 'demoState' | 'productPackVersion'>): SessionView {
     const session = SessionSchema.parse({
       sessionId: randomUUID(), status: 'active', startedAt: new Date().toISOString(), endedAt: null,
-      productPackId,
-      demoState: { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null },
+      productPackId, productPackVersion: initial?.productPackVersion ?? '0.0.0', revision: 0,
+      productState: initial?.productState ?? { records: [] }, customerModel: {}, conversationState: { sequence: 0 },
+      demoState: initial?.demoState ?? { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null, history: [], filters: {}, highlights: [], parameters: {} },
     });
     this.sessions.set(session.sessionId, session);
     this.events.set(session.sessionId, []);
@@ -41,13 +42,25 @@ export class SessionStore {
     return this.get(sessionId);
   }
 
-  navigate(sessionId: string, screenId: string, recordId: string | null): SessionView {
-    const session = this.sessions.get(sessionId);
-    if (!session) throw new SessionError('SESSION_NOT_FOUND');
-    if (session.status !== 'active') throw new SessionError('SESSION_ENDED');
-    session.demoState.currentScreen = screenId;
-    session.demoState.selectedRecordId = recordId;
+  commit(sessionId: string, expectedRevision: number, proposed: Session): SessionView {
+    const current = this.get(sessionId).session;
+    if (current.status !== 'active') throw new SessionError('SESSION_ENDED');
+    if (current.revision !== expectedRevision) throw new SessionError('REVISION_CONFLICT');
+    // Operational identity/lifecycle cannot be supplied by a command or Pack handler.
+    const next = SessionSchema.parse({ ...current, productState: proposed.productState,
+      demoState: proposed.demoState, revision: current.revision + 1 });
+    this.sessions.set(sessionId, next);
     return this.get(sessionId);
+  }
+
+  commandEvent(sessionId: string, type: Event['type'], metadata: Pick<Event, 'commandId' | 'commandType' | 'recordId' | 'revision'>, errorCode?: ErrorCode): Event {
+    return this.append(sessionId, type, errorCode, metadata);
+  }
+
+  snapshot(sessionId: string) {
+    const view = this.get(sessionId);
+    return SnapshotSchema.parse({ formatVersion: '1.0', session: view.session,
+      lastEventSequence: view.events.length, capturedAt: view.events.at(-1)!.timestamp });
   }
 
   recordError(sessionId: string | null, code: ErrorCode): Event {
@@ -57,10 +70,10 @@ export class SessionStore {
 
   getSystemEvents(): Event[] { return structuredClone(this.systemEvents); }
 
-  private append(sessionId: string | null, type: Event['type'], errorCode?: ErrorCode): Event {
+  private append(sessionId: string | null, type: Event['type'], errorCode?: ErrorCode, metadata: Partial<Event> = {}): Event {
     const log = sessionId === null ? this.systemEvents : this.events.get(sessionId)!;
     const event = EventSchema.parse({
-      eventId: randomUUID(), sessionId, type, sequence: log.length + 1,
+      ...metadata, eventId: randomUUID(), sessionId, type, sequence: log.length + 1,
       timestamp: new Date().toISOString(), ...(errorCode ? { errorCode } : {}),
     });
     log.push(event);

@@ -1,6 +1,7 @@
+import type { Command } from '../../../packages/contracts/src/state.js';
 import { z } from 'zod';
 import { ProductPackSchema } from '../../../packages/contracts/src/product-pack.js';
-import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema } from '../../../packages/contracts/src/index.js';
+import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema, SnapshotSchema } from '../../../packages/contracts/src/index.js';
 import { DemoPresentationSchema, type NavigationTarget } from '../../../packages/contracts/src/presentation.js';
 
 async function request<T>(path: string, schema: z.ZodType<T>, method = 'GET', accessToken?: string, body?: unknown): Promise<T> {
@@ -20,5 +21,7 @@ export const api = {
   start: () => request('/api/sessions', CreatedSessionSchema, 'POST'),
   read: (id: string, token: string) => request(`/api/sessions/${id}`, SessionViewSchema, 'GET', token),
   end: (id: string, token: string) => request(`/api/sessions/${id}/end`, SessionViewSchema, 'POST', token),
+  command: (id: string, token: string, command: Command) => request(`/api/sessions/${id}/commands`, SessionViewSchema, 'POST', token, command),
+  snapshot: (id: string, token: string) => request(`/api/sessions/${id}/snapshot`, SnapshotSchema, 'GET', token),
   navigate: (id: string, token: string, target: NavigationTarget) => request(`/api/sessions/${id}/navigation`, SessionViewSchema, 'POST', token, target),
 };
