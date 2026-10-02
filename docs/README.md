@@ -1,7 +1,8 @@
 # Documentation index
 
 Start at [repository handoff](../HANDOFF.md) and [application README](../README.md).
-Current implementation: P3 PASS against recovered criteria; P4 not started.
+Current implementation: P3 PASS against recovered criteria, pushed at `7ff7ef6`.
+[P4 scope status](P4-scope-status.md): authorized, awaiting frozen specification.
 
 | Phase | Primary record | Supporting documentation/evidence |
 | --- | --- | --- |

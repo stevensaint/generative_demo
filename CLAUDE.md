@@ -2,7 +2,8 @@
 
 Start with [HANDOFF.md](HANDOFF.md), [README.md](README.md), and
 [docs/P3-validation.md](docs/P3-validation.md). Inspect the branch and working
-tree before editing; the P3 baseline may still be staged and uncommitted.
+tree before editing. The validated P3 baseline is pushed at `7ff7ef6`; check
+HANDOFF.md and docs/P4-scope-status.md for the next phase status.
 Preserve existing changes and do not assume GitHub main is the latest phase.
 
 Follow the frozen boundaries documented in HANDOFF.md. Generic engine,

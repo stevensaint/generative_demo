@@ -12,18 +12,23 @@ Current local repository:
 GitHub remote: <https://github.com/stevensaint/generative_demo>.
 Current branch: `p3-deterministic-demo-engine`.
 
-**P3 is staged but not committed or pushed.** The branch HEAD is still the P2
-checkpoint `df24449`. A GitHub clone alone will not contain the current P3 work.
-This status is a handoff-time observation; check `git status` and `git log` when
-resuming, as a later commit can supersede it.
+**P3 is committed and pushed.** Validated implementation checkpoint:
+`7ff7ef67c895add821f5b15542b73e3d409f0f56`, on
+`origin/p3-deterministic-demo-engine`. A fresh remote branch check matched this
+SHA on 2026-10-02. A documentation-only follow-up updates this handoff; check
+`git log` for the latest tip.
 
-To transfer now, copy the whole local `gde` directory, including source files,
-`docs`, lockfile and Git metadata. Preserve the working tree: exporting only
-HEAD would omit staged P3. Generated `node_modules`, `dist` and `.test-dist`
-directories can be omitted and regenerated. No external-service credentials
-are required. Do not include personal environment files in a shared source
-bundle. Alternatively, commit and push the P3 branch when authorized, then
-clone that branch on the destination computer.
+To transfer, clone the P3 branch (main still holds P0):
+
+```sh
+git clone --branch p3-deterministic-demo-engine https://github.com/stevensaint/generative_demo.git
+```
+
+Alternatively copy the whole local `gde` directory, including source files,
+`docs`, lockfile and Git metadata. Preserve any later working-tree changes.
+Generated `node_modules`, `dist` and `.test-dist` directories can be omitted
+and regenerated. No external-service credentials are required. Do not include
+personal environment files in a shared source bundle.
 
 All documentation and validation evidence are regular local files within this
 repository and are included in the staged changes or prior commits. There are
@@ -46,11 +51,12 @@ evidence was copied into `docs`.
 | P0 foundation | PASS, committed; previously pushed to main | `a66512b` |
 | P1 manually navigable synthetic twin | PASS, committed; previously pushed to p1-demo-twin | `2029f29` |
 | P2 fictional Acme Product Pack | PASS, local commit | `df24449` |
-| P3 deterministic engine | PASS against recovered criteria; staged, uncommitted | Working tree on p3-deterministic-demo-engine |
-| P4 and later | Not started; no authorization carried forward | No implementation |
+| P3 deterministic engine | PASS against recovered criteria; committed and pushed | `7ff7ef6` on p3-deterministic-demo-engine |
+| P4 | User authorized execution after P3 push; frozen scope/PASS criteria unavailable | Awaiting specification; no implementation |
+| P5 and later | Not started or authorized | No implementation |
 
-Remote push history above is from the preceding work, not a fresh remote query.
-Local branch state was inspected for this handoff.
+P3 remote SHA was freshly verified. P0/P1 push history above is from prior
+work. P2 is included in P3 ancestry; its separate branch was not pushed.
 
 ## Architecture constraints to preserve
 
@@ -136,8 +142,10 @@ restores the tab via a validated sessionStorage pointer and authorized server
 read; server restart invalidates it. Snapshots contain current state and a tail
 sequence, not event history, persistence or an upload/restore bypass.
 
-Do not start P4 just because this handoff exists. First establish the user's
-next authorized phase and its frozen acceptance criteria. Preserve P3 tests
+The user authorized P4 after pushing P3 on 2026-10-02. Implementation is pending
+its frozen scope and acceptance criteria, which could not be recovered from
+local files or saved-context searches. See [P4 scope status](docs/P4-scope-status.md).
+Obtain that missing specification before dependent implementation. Preserve P3 tests
 and update the README, phase validation and this handoff after any later work.
 
 Suggested first instruction for Claude:

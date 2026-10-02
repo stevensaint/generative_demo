@@ -140,4 +140,6 @@ See [P2 authoring guide](docs/P2-product-pack.md) for the original schema and
 
 P0 is pushed to `main` at `a66512b`. P1 is pushed on `p1-demo-twin` at `2029f29`.
 P2 was checkpointed locally at `df24449` before P3. P3 is on
-`p3-deterministic-demo-engine`, commit-ready. **P3 PASS; P4 not started.**
+`p3-deterministic-demo-engine`, committed and pushed at `7ff7ef6`.
+**P3 PASS.** P4 is authorized but awaits its frozen specification; see
+[P4 scope status](docs/P4-scope-status.md).
