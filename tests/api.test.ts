@@ -7,10 +7,12 @@ import { join } from 'node:path';
 import { createApp } from '../apps/server/src/app.js';
 import { SessionStore } from '../packages/engine/src/sessions.js';
 import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema } from '../packages/contracts/src/index.js';
+import { loadProductPack } from '../packages/product-packs/loader.js';
 import { memoryFetch } from './transport.js';
 
-async function fixture(t: test.TestContext, options: Parameters<typeof createApp>[0] = {}) {
-  const app = createApp(options);
+async function fixture(t: test.TestContext, options: Partial<Parameters<typeof createApp>[0]> = {}) {
+  const pack = await loadProductPack('packages/product-packs/acme/pack.json');
+  const app = createApp({ pack, ...options });
   if (process.env.GDE_TEST_TRANSPORT !== 'tcp') {
     return { ...app, url: 'http://in-process.invalid', fetch: memoryFetch(app.server) };
   }
@@ -148,4 +150,33 @@ test('navigation rejects unauthorized, malformed, mismatched and ended requests 
   assert.equal(ApiErrorSchema.parse(await ended.json()).error.code, 'SESSION_ENDED');
   const after = SessionViewSchema.parse(await (await fetch(path, { headers: auth(a.accessToken) })).json());
   assert.deepEqual(after.session.demoState, a.session.demoState);
+});
+
+test('a dynamically loaded alternative Pack changes API presentation without core edits', async t => {
+  const dir = await mkdtemp(join(tmpdir(), 'gde-http-pack-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const original = await loadProductPack('packages/product-packs/acme/pack.json');
+  const changed = structuredClone(original);
+  changed.metadata.packId = changed.presentation.packId = 'acme-alternate';
+  changed.metadata.name = 'Acme Configured Demo';
+  changed.presentation.homeScreenId = 'sample-list';
+  changed.presentation.screens.find(screen => screen.id === 'sample-list')!.title = 'Configured sample register';
+  changed.lanes[0]!.description = 'Configured lane narrative';
+  const path = join(dir, 'configured.json'); await writeFile(path, JSON.stringify(changed));
+  const loaded = await loadProductPack(path);
+  const { url, fetch } = await fixture(t, { pack: loaded });
+  // Composition takes a validated copy; external config mutation cannot alter a running app.
+  loaded.metadata.name = 'External mutation';
+  const { ProductPackSchema } = await import('../packages/contracts/src/product-pack.js');
+  const manifest = ProductPackSchema.parse(await (await fetch(url + '/api/product-pack/manifest')).json());
+  assert.equal(manifest.metadata.name, 'Acme Configured Demo');
+  assert.equal(manifest.lanes[0]?.description, 'Configured lane narrative');
+  const created = CreatedSessionSchema.parse(await (await fetch(url + '/api/sessions', { method: 'POST' })).json());
+  assert.equal(created.session.productPackId, 'acme-alternate');
+  assert.equal(created.session.demoState.currentScreen, 'sample-list');
+  const blueprint = await (await fetch(url + '/api/demo-presentation')).json();
+  assert.equal(blueprint.screens.find((screen: { id: string }) => screen.id === 'sample-list').title, 'Configured sample register');
+  assert.deepEqual(await loadProductPack('packages/product-packs/acme/pack.json'), original);
+  // P2 does not expose action execution or scenario parameter mutation.
+  assert.equal((await fetch(url + '/api/sessions/' + created.session.sessionId + '/actions', { method: 'POST', headers: auth(created.accessToken) })).status, 404);
 });

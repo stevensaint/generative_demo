@@ -39,3 +39,9 @@ test('Dependencies contain no provider, speech, database, or agent SDKs', async 
   const manifest = JSON.parse(await readFile('package.json', 'utf8'));
   assert.deepEqual(Object.keys(manifest.dependencies).sort(), ['react', 'react-dom', 'zod']);
 });
+
+
+test('HTTP composition receives Pack configuration without direct Acme imports', async () => {
+  const source = await readFile('apps/server/src/app.ts', 'utf8');
+  assert.doesNotMatch(source, /product-packs\/acme|acme-quality-cloud|Sample|Clearwater/);
+});

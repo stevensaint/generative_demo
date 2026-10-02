@@ -25,7 +25,7 @@ export const CreatedSessionSchema = SessionViewSchema.extend({ accessToken: z.st
 export const ProductPresentationSchema = z.object({
   packId: z.string(), name: z.string(), description: z.string(), fictional: z.literal(true),
 }).strict();
-export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.enum(['P0', 'P1']) }).strict();
+export const HealthSchema = z.object({ status: z.literal('ok'), phase: z.enum(['P0', 'P1', 'P2']) }).strict();
 export const ApiErrorSchema = z.object({
   error: z.object({ code: ErrorCodeSchema, message: z.string(), eventId: z.string().uuid() }).strict(),
 }).strict();

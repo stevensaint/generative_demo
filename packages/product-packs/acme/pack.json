@@ -1,0 +1,2520 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.2.0",
+  "metadata": {
+    "packId": "acme-quality-cloud",
+    "name": "Acme Quality Cloud",
+    "description": "A fictional Synthetic Product Twin for quality lab discovery.",
+    "fictional": true
+  },
+  "presentation": {
+    "packId": "acme-quality-cloud",
+    "homeScreenId": "work-queue",
+    "fixtureLabel": "Quality lab · Harbor site",
+    "fixtureDescription": "Follow one fictional sample from lab receipt to QA review. All records, people, values, and history are fixed synthetic fixtures.",
+    "navigation": [
+      {
+        "label": "Work queue",
+        "target": {
+          "screenId": "work-queue",
+          "recordId": null
+        }
+      },
+      {
+        "label": "Samples",
+        "target": {
+          "screenId": "sample-list",
+          "recordId": null
+        }
+      },
+      {
+        "label": "QA review",
+        "target": {
+          "screenId": "review-1001",
+          "recordId": "SMP-1001"
+        }
+      },
+      {
+        "label": "Audit history",
+        "target": {
+          "screenId": "audit-1001",
+          "recordId": "SMP-1001"
+        }
+      }
+    ],
+    "walkthrough": [
+      {
+        "label": "Sample",
+        "target": {
+          "screenId": "sample-1001",
+          "recordId": "SMP-1001"
+        }
+      },
+      {
+        "label": "Test",
+        "target": {
+          "screenId": "execution-1001",
+          "recordId": "SMP-1001"
+        }
+      },
+      {
+        "label": "Result",
+        "target": {
+          "screenId": "results-1001",
+          "recordId": "SMP-1001"
+        }
+      },
+      {
+        "label": "Exception",
+        "target": {
+          "screenId": "exception-1001",
+          "recordId": "SMP-1001"
+        }
+      },
+      {
+        "label": "QA review",
+        "target": {
+          "screenId": "review-1001",
+          "recordId": "SMP-1001"
+        }
+      }
+    ],
+    "screens": [
+      {
+        "id": "work-queue",
+        "kind": "work-queue",
+        "recordId": null,
+        "title": "Your quality work queue",
+        "subtitle": "A clear view of the lab’s next steps.",
+        "badge": {
+          "label": "3 fixture items",
+          "tone": "neutral"
+        },
+        "sections": [
+          {
+            "title": "At a glance",
+            "fields": [
+              {
+                "label": "Lab",
+                "value": "Harbor Quality Lab"
+              },
+              {
+                "label": "Focus",
+                "value": "One sample, one exception, one review"
+              },
+              {
+                "label": "Demo path",
+                "value": "SMP-1001 · Clearwater Buffer"
+              }
+            ]
+          }
+        ],
+        "table": {
+          "caption": "Assigned work — synthetic fixture",
+          "columns": [
+            {
+              "key": "work",
+              "label": "Work item"
+            },
+            {
+              "key": "record",
+              "label": "Sample"
+            },
+            {
+              "key": "owner",
+              "label": "Assigned to"
+            },
+            {
+              "key": "status",
+              "label": "Status"
+            }
+          ],
+          "rows": [
+            {
+              "id": "queue-1",
+              "cells": {
+                "work": "Inspect sample and completed testing",
+                "record": "SMP-1001",
+                "owner": "Maya Chen · Analyst",
+                "status": "Awaiting QA"
+              },
+              "tone": "neutral",
+              "link": {
+                "label": "Open sample SMP-1001",
+                "target": {
+                  "screenId": "sample-1001",
+                  "recordId": "SMP-1001"
+                }
+              }
+            },
+            {
+              "id": "queue-2",
+              "cells": {
+                "work": "Assess pH exception",
+                "record": "SMP-1001",
+                "owner": "Jordan Lee · QA reviewer",
+                "status": "Needs review"
+              },
+              "tone": "attention",
+              "link": {
+                "label": "Open exception EXC-1001",
+                "target": {
+                  "screenId": "exception-1001",
+                  "recordId": "SMP-1001"
+                }
+              }
+            },
+            {
+              "id": "queue-3",
+              "cells": {
+                "work": "Inspect newly received sample",
+                "record": "SMP-1002",
+                "owner": "Maya Chen · Analyst",
+                "status": "Received"
+              },
+              "tone": "neutral",
+              "link": {
+                "label": "Open sample SMP-1002",
+                "target": {
+                  "screenId": "sample-1002",
+                  "recordId": "SMP-1002"
+                }
+              }
+            }
+          ]
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Begin sample walkthrough",
+            "target": {
+              "screenId": "sample-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Browse samples",
+            "target": {
+              "screenId": "sample-list",
+              "recordId": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "sample-list",
+        "kind": "record-list",
+        "recordId": null,
+        "title": "Samples",
+        "subtitle": "Two fictional lab records. Open either to inspect its details.",
+        "badge": {
+          "label": "Fixed fixture",
+          "tone": "neutral"
+        },
+        "sections": [],
+        "table": {
+          "caption": "Sample register — synthetic fixture",
+          "columns": [
+            {
+              "key": "id",
+              "label": "Sample ID"
+            },
+            {
+              "key": "product",
+              "label": "Material"
+            },
+            {
+              "key": "batch",
+              "label": "Batch"
+            },
+            {
+              "key": "site",
+              "label": "Site"
+            },
+            {
+              "key": "status",
+              "label": "Status"
+            }
+          ],
+          "rows": [
+            {
+              "id": "SMP-1001",
+              "cells": {
+                "id": "SMP-1001",
+                "product": "Clearwater Buffer",
+                "batch": "CB-260928-A",
+                "site": "Harbor",
+                "status": "Awaiting QA"
+              },
+              "tone": "attention",
+              "link": {
+                "label": "Open sample SMP-1001",
+                "target": {
+                  "screenId": "sample-1001",
+                  "recordId": "SMP-1001"
+                }
+              }
+            },
+            {
+              "id": "SMP-1002",
+              "cells": {
+                "id": "SMP-1002",
+                "product": "Clearwater Buffer",
+                "batch": "CB-260928-B",
+                "site": "Harbor",
+                "status": "Received"
+              },
+              "tone": "neutral",
+              "link": {
+                "label": "Open sample SMP-1002",
+                "target": {
+                  "screenId": "sample-1002",
+                  "recordId": "SMP-1002"
+                }
+              }
+            }
+          ]
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Return to work queue",
+            "target": {
+              "screenId": "work-queue",
+              "recordId": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "sample-1001",
+        "kind": "record-detail",
+        "recordId": "SMP-1001",
+        "title": "SMP-1001",
+        "subtitle": "Clearwater Buffer · CB-260928-A",
+        "badge": {
+          "label": "Awaiting QA",
+          "tone": "attention"
+        },
+        "sections": [
+          {
+            "title": "Sample information",
+            "fields": [
+              {
+                "label": "Material",
+                "value": "Clearwater Buffer"
+              },
+              {
+                "label": "Batch",
+                "value": "CB-260928-A"
+              },
+              {
+                "label": "Site",
+                "value": "Harbor"
+              },
+              {
+                "label": "Lab",
+                "value": "Harbor Quality Lab"
+              },
+              {
+                "label": "Received",
+                "value": "28 Sep 2026, 08:40 UTC"
+              },
+              {
+                "label": "Received by",
+                "value": "Maya Chen"
+              }
+            ]
+          },
+          {
+            "title": "Testing summary",
+            "fields": [
+              {
+                "label": "Test",
+                "value": "TST-1001 · pH measurement"
+              },
+              {
+                "label": "Specification",
+                "value": "SPEC-CB-01 · v1.0"
+              },
+              {
+                "label": "Observed pH",
+                "value": "6.4"
+              },
+              {
+                "label": "Exception",
+                "value": "EXC-1001 · Below the fixture range"
+              },
+              {
+                "label": "Review",
+                "value": "REV-1001 · Pending QA assessment"
+              }
+            ]
+          }
+        ],
+        "notice": {
+          "title": "An exception needs review",
+          "body": "The prefilled pH result falls below the fictional specification. Follow the linked views to see the evidence and review context.",
+          "tone": "attention"
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "View test execution",
+            "target": {
+              "screenId": "execution-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "View specification",
+            "target": {
+              "screenId": "specification-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "View fixture history",
+            "target": {
+              "screenId": "audit-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to samples",
+            "target": {
+              "screenId": "sample-list",
+              "recordId": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "sample-1002",
+        "kind": "record-detail",
+        "recordId": "SMP-1002",
+        "title": "SMP-1002",
+        "subtitle": "Clearwater Buffer · CB-260928-B",
+        "badge": {
+          "label": "Received",
+          "tone": "neutral"
+        },
+        "sections": [
+          {
+            "title": "Sample information",
+            "fields": [
+              {
+                "label": "Material",
+                "value": "Clearwater Buffer"
+              },
+              {
+                "label": "Batch",
+                "value": "CB-260928-B"
+              },
+              {
+                "label": "Site",
+                "value": "Harbor"
+              },
+              {
+                "label": "Lab",
+                "value": "Harbor Quality Lab"
+              },
+              {
+                "label": "Received",
+                "value": "28 Sep 2026, 10:15 UTC"
+              },
+              {
+                "label": "Received by",
+                "value": "Maya Chen"
+              },
+              {
+                "label": "Testing",
+                "value": "Not started in this fixture"
+              }
+            ]
+          }
+        ],
+        "notice": {
+          "title": "A second record for comparison",
+          "body": "This fixed record illustrates the received state. The full walkthrough is available on SMP-1001.",
+          "tone": "neutral"
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Back to samples",
+            "target": {
+              "screenId": "sample-list",
+              "recordId": null
+            }
+          },
+          {
+            "label": "Explore SMP-1001 walkthrough",
+            "target": {
+              "screenId": "sample-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      },
+      {
+        "id": "execution-1001",
+        "kind": "execution",
+        "recordId": "SMP-1001",
+        "title": "Test execution",
+        "subtitle": "TST-1001 · pH measurement · SMP-1001",
+        "badge": {
+          "label": "Prefilled execution",
+          "tone": "success"
+        },
+        "sections": [
+          {
+            "title": "Execution context",
+            "fields": [
+              {
+                "label": "Method",
+                "value": "ACME-PH-01 · v1.0"
+              },
+              {
+                "label": "Analyst",
+                "value": "Maya Chen"
+              },
+              {
+                "label": "Instrument",
+                "value": "BENCH-PH-03"
+              },
+              {
+                "label": "Sample",
+                "value": "SMP-1001"
+              },
+              {
+                "label": "Completed",
+                "value": "28 Sep 2026, 09:20 UTC"
+              }
+            ]
+          },
+          {
+            "title": "Recorded measurement",
+            "fields": [
+              {
+                "label": "Observed pH",
+                "value": "6.4"
+              },
+              {
+                "label": "Fixture range",
+                "value": "6.8–7.2"
+              },
+              {
+                "label": "Assessment",
+                "value": "Below range — prefilled fixture"
+              }
+            ]
+          }
+        ],
+        "notice": {
+          "title": "Read-only execution snapshot",
+          "body": "The measurement is prefilled. Viewing this screen does not run a test or enter a result.",
+          "tone": "neutral"
+        },
+        "steps": [
+          {
+            "label": "Prepare measurement",
+            "detail": "Sample and bench instrument identified.",
+            "state": "complete"
+          },
+          {
+            "label": "Record measurement",
+            "detail": "Observed pH 6.4 is already populated.",
+            "state": "complete"
+          },
+          {
+            "label": "Inspect result",
+            "detail": "View the fixed assessment and linked exception.",
+            "state": "current"
+          }
+        ],
+        "links": [
+          {
+            "label": "Continue to results",
+            "target": {
+              "screenId": "results-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to sample",
+            "target": {
+              "screenId": "sample-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      },
+      {
+        "id": "results-1001",
+        "kind": "results",
+        "recordId": "SMP-1001",
+        "title": "Results",
+        "subtitle": "SMP-1001 · Completed synthetic measurements",
+        "badge": {
+          "label": "1 exception",
+          "tone": "attention"
+        },
+        "sections": [],
+        "table": {
+          "caption": "Results against SPEC-CB-01 · v1.0 — prefilled assessments",
+          "columns": [
+            {
+              "key": "test",
+              "label": "Measurement"
+            },
+            {
+              "key": "value",
+              "label": "Result"
+            },
+            {
+              "key": "unit",
+              "label": "Unit"
+            },
+            {
+              "key": "range",
+              "label": "Fixture range"
+            },
+            {
+              "key": "assessment",
+              "label": "Assessment"
+            }
+          ],
+          "rows": [
+            {
+              "id": "RES-1001",
+              "cells": {
+                "test": "pH · TST-1001",
+                "value": "6.4",
+                "unit": "pH",
+                "range": "6.8–7.2",
+                "assessment": "Below range"
+              },
+              "tone": "attention",
+              "link": {
+                "label": "View pH exception",
+                "target": {
+                  "screenId": "exception-1001",
+                  "recordId": "SMP-1001"
+                }
+              }
+            },
+            {
+              "id": "RES-1002",
+              "cells": {
+                "test": "Conductivity · TST-1002",
+                "value": "14.2",
+                "unit": "mS/cm",
+                "range": "12.0–18.0",
+                "assessment": "Within range"
+              },
+              "tone": "success"
+            }
+          ]
+        },
+        "notice": {
+          "title": "One result requires attention",
+          "body": "The pH row links to EXC-1001. These assessments are fixed fixtures; no specification engine has run.",
+          "tone": "attention"
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Continue to exception",
+            "target": {
+              "screenId": "exception-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "View specification",
+            "target": {
+              "screenId": "specification-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to test",
+            "target": {
+              "screenId": "execution-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      },
+      {
+        "id": "specification-1001",
+        "kind": "record-detail",
+        "recordId": "SMP-1001",
+        "title": "Specification",
+        "subtitle": "SPEC-CB-01 · Clearwater Buffer · v1.0",
+        "badge": {
+          "label": "Fixed fixture",
+          "tone": "neutral"
+        },
+        "sections": [
+          {
+            "title": "Specification context",
+            "fields": [
+              {
+                "label": "Version",
+                "value": "1.0 · Synthetic example"
+              },
+              {
+                "label": "Material",
+                "value": "Clearwater Buffer"
+              },
+              {
+                "label": "Scope",
+                "value": "Fictional teaching fixture only"
+              }
+            ]
+          }
+        ],
+        "table": {
+          "caption": "Fixed specification values — not product or regulatory claims",
+          "columns": [
+            {
+              "key": "measure",
+              "label": "Measurement"
+            },
+            {
+              "key": "range",
+              "label": "Fixture range"
+            },
+            {
+              "key": "method",
+              "label": "Method"
+            }
+          ],
+          "rows": [
+            {
+              "id": "spec-ph",
+              "cells": {
+                "measure": "pH",
+                "range": "6.8–7.2",
+                "method": "ACME-PH-01"
+              },
+              "tone": "neutral"
+            },
+            {
+              "id": "spec-conductivity",
+              "cells": {
+                "measure": "Conductivity",
+                "range": "12.0–18.0 mS/cm",
+                "method": "ACME-COND-01"
+              },
+              "tone": "neutral"
+            }
+          ]
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "View results",
+            "target": {
+              "screenId": "results-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to sample",
+            "target": {
+              "screenId": "sample-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      },
+      {
+        "id": "exception-1001",
+        "kind": "workflow",
+        "recordId": "SMP-1001",
+        "title": "Exception",
+        "subtitle": "EXC-1001 · pH below fixture range · SMP-1001",
+        "badge": {
+          "label": "Needs QA review",
+          "tone": "attention"
+        },
+        "sections": [
+          {
+            "title": "Exception evidence",
+            "fields": [
+              {
+                "label": "Source result",
+                "value": "RES-1001 · pH 6.4"
+              },
+              {
+                "label": "Specification",
+                "value": "SPEC-CB-01 · v1.0 · 6.8–7.2"
+              },
+              {
+                "label": "Related test",
+                "value": "TST-1001"
+              },
+              {
+                "label": "Owner",
+                "value": "Jordan Lee · QA reviewer"
+              },
+              {
+                "label": "Root cause",
+                "value": "Not determined in this fixture"
+              },
+              {
+                "label": "Disposition",
+                "value": "Pending QA assessment"
+              }
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "label": "Result identified",
+            "detail": "The fixture contains a below-range measurement.",
+            "state": "complete"
+          },
+          {
+            "label": "Exception linked",
+            "detail": "EXC-1001 references the sample, test, and result.",
+            "state": "complete"
+          },
+          {
+            "label": "QA assessment",
+            "detail": "Review is pending in the synthetic snapshot.",
+            "state": "current"
+          },
+          {
+            "label": "Disposition",
+            "detail": "No approval or release decision has been made.",
+            "state": "pending"
+          }
+        ],
+        "links": [
+          {
+            "label": "Continue to QA review",
+            "target": {
+              "screenId": "review-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to results",
+            "target": {
+              "screenId": "results-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "View fixture history",
+            "target": {
+              "screenId": "audit-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-1001",
+        "kind": "review",
+        "recordId": "SMP-1001",
+        "title": "QA review",
+        "subtitle": "REV-1001 · SMP-1001 · Clearwater Buffer",
+        "badge": {
+          "label": "Pending assessment",
+          "tone": "attention"
+        },
+        "sections": [
+          {
+            "title": "Review summary",
+            "fields": [
+              {
+                "label": "Reviewer",
+                "value": "Jordan Lee"
+              },
+              {
+                "label": "Sample",
+                "value": "SMP-1001"
+              },
+              {
+                "label": "Batch",
+                "value": "CB-260928-A"
+              },
+              {
+                "label": "Exception",
+                "value": "EXC-1001"
+              },
+              {
+                "label": "Disposition",
+                "value": "Pending · no approval recorded"
+              }
+            ]
+          },
+          {
+            "title": "Evidence checklist",
+            "fields": [
+              {
+                "label": "Sample identity",
+                "value": "SMP-1001 and batch CB-260928-A"
+              },
+              {
+                "label": "Test context",
+                "value": "TST-1001 · ACME-PH-01 · BENCH-PH-03"
+              },
+              {
+                "label": "Result",
+                "value": "RES-1001 · pH 6.4"
+              },
+              {
+                "label": "Specification",
+                "value": "SPEC-CB-01 · v1.0 · 6.8–7.2"
+              },
+              {
+                "label": "Investigation",
+                "value": "Root cause is not determined"
+              }
+            ]
+          }
+        ],
+        "notice": {
+          "title": "Walkthrough complete",
+          "body": "You have followed the sample, test, result, and exception into QA review. This view illustrates review context; approval and release are not performed.",
+          "tone": "success"
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Inspect exception evidence",
+            "target": {
+              "screenId": "exception-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "View fixture history",
+            "target": {
+              "screenId": "audit-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Return to work queue",
+            "target": {
+              "screenId": "work-queue",
+              "recordId": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "audit-1001",
+        "kind": "audit",
+        "recordId": "SMP-1001",
+        "title": "Audit history",
+        "subtitle": "SMP-1001 · Illustrative fixture history",
+        "badge": {
+          "label": "Fixed fixture",
+          "tone": "neutral"
+        },
+        "sections": [],
+        "table": {
+          "caption": "Fixed synthetic history · 28 Sep 2026 · UTC",
+          "columns": [
+            {
+              "key": "time",
+              "label": "Time (UTC)"
+            },
+            {
+              "key": "actor",
+              "label": "Actor"
+            },
+            {
+              "key": "entry",
+              "label": "Fixture entry"
+            },
+            {
+              "key": "ref",
+              "label": "Reference"
+            }
+          ],
+          "rows": [
+            {
+              "id": "history-1",
+              "cells": {
+                "time": "08:40",
+                "actor": "Maya Chen",
+                "entry": "Sample received",
+                "ref": "SMP-1001"
+              },
+              "tone": "neutral"
+            },
+            {
+              "id": "history-2",
+              "cells": {
+                "time": "09:20",
+                "actor": "Maya Chen",
+                "entry": "Measurement recorded · pH 6.4",
+                "ref": "RES-1001"
+              },
+              "tone": "neutral"
+            },
+            {
+              "id": "history-3",
+              "cells": {
+                "time": "09:21",
+                "actor": "Synthetic fixture",
+                "entry": "Below-range exception linked",
+                "ref": "EXC-1001"
+              },
+              "tone": "attention"
+            },
+            {
+              "id": "history-4",
+              "cells": {
+                "time": "09:25",
+                "actor": "Jordan Lee",
+                "entry": "QA review assigned · still pending",
+                "ref": "REV-1001"
+              },
+              "tone": "neutral"
+            }
+          ]
+        },
+        "notice": {
+          "title": "Synthetic record history",
+          "body": "These dated entries are fixed presentation fixtures. They are separate from this session’s actual lifecycle event log.",
+          "tone": "neutral"
+        },
+        "steps": [],
+        "links": [
+          {
+            "label": "Back to QA review",
+            "target": {
+              "screenId": "review-1001",
+              "recordId": "SMP-1001"
+            }
+          },
+          {
+            "label": "Back to sample",
+            "target": {
+              "screenId": "sample-1001",
+              "recordId": "SMP-1001"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "roles": [
+    {
+      "id": "analyst",
+      "label": "Analyst",
+      "description": "Receives samples and performs synthetic testing."
+    },
+    {
+      "id": "qa",
+      "label": "QA",
+      "description": "Reviews evidence and makes synthetic disposition decisions."
+    },
+    {
+      "id": "lab-manager",
+      "label": "Lab Manager",
+      "description": "Oversees sample and testing context."
+    }
+  ],
+  "sites": [
+    {
+      "id": "harbor",
+      "label": "Harbor"
+    },
+    {
+      "id": "ridge",
+      "label": "Ridge"
+    },
+    {
+      "id": "delta",
+      "label": "Delta"
+    }
+  ],
+  "parameters": [
+    {
+      "id": "site_count",
+      "label": "Sites",
+      "kind": "integer",
+      "min": 1,
+      "max": 3,
+      "default": 1
+    },
+    {
+      "id": "external_partner_count",
+      "label": "External partners",
+      "kind": "integer",
+      "min": 0,
+      "max": 3,
+      "default": 0
+    },
+    {
+      "id": "sample_count",
+      "label": "Samples",
+      "kind": "integer",
+      "min": 1,
+      "max": 12,
+      "default": 2
+    },
+    {
+      "id": "sample_source",
+      "label": "Sample source",
+      "kind": "choice",
+      "values": [
+        "internal",
+        "external",
+        "mixed"
+      ],
+      "default": "internal"
+    },
+    {
+      "id": "result_profile",
+      "label": "Result profile",
+      "kind": "choice",
+      "values": [
+        "in-range",
+        "out-of-range",
+        "mixed"
+      ],
+      "default": "mixed"
+    }
+  ],
+  "productModel": {
+    "entityTypes": [
+      {
+        "id": "Sample",
+        "label": "Sample",
+        "states": [
+          "received",
+          "in-testing",
+          "awaiting-qa",
+          "approved"
+        ],
+        "fields": [
+          {
+            "id": "material",
+            "label": "Material",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "batch",
+            "label": "Batch",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "site",
+            "label": "Site",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "source",
+            "label": "Source",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "receivedBy",
+            "label": "Received by",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "Test",
+        "label": "Test",
+        "states": [
+          "ready",
+          "in-progress",
+          "completed"
+        ],
+        "fields": [
+          {
+            "id": "sampleId",
+            "label": "sampleId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Sample"
+          },
+          {
+            "id": "specificationId",
+            "label": "specificationId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Specification"
+          },
+          {
+            "id": "measurement",
+            "label": "Measurement",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "method",
+            "label": "Method",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "instrument",
+            "label": "Instrument",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "analyst",
+            "label": "Analyst",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "Result",
+        "label": "Result",
+        "states": [
+          "recorded",
+          "assessed"
+        ],
+        "fields": [
+          {
+            "id": "testId",
+            "label": "testId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Test"
+          },
+          {
+            "id": "sampleId",
+            "label": "sampleId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Sample"
+          },
+          {
+            "id": "value",
+            "label": "Value",
+            "type": "number",
+            "required": true
+          },
+          {
+            "id": "unit",
+            "label": "Unit",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "assessment",
+            "label": "Assessment",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "Specification",
+        "label": "Specification",
+        "states": [
+          "published"
+        ],
+        "fields": [
+          {
+            "id": "version",
+            "label": "Version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "material",
+            "label": "Material",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "phMinimum",
+            "label": "pH minimum",
+            "type": "number",
+            "required": true
+          },
+          {
+            "id": "phMaximum",
+            "label": "pH maximum",
+            "type": "number",
+            "required": true
+          },
+          {
+            "id": "conductivityMinimum",
+            "label": "Conductivity minimum",
+            "type": "number",
+            "required": true
+          },
+          {
+            "id": "conductivityMaximum",
+            "label": "Conductivity maximum",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "Exception",
+        "label": "Exception",
+        "states": [
+          "open",
+          "in-review",
+          "resolved"
+        ],
+        "fields": [
+          {
+            "id": "sampleId",
+            "label": "sampleId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Sample"
+          },
+          {
+            "id": "resultId",
+            "label": "resultId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Result"
+          },
+          {
+            "id": "owner",
+            "label": "Owner",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "rootCause",
+            "label": "Root cause",
+            "type": "string",
+            "required": false
+          },
+          {
+            "id": "disposition",
+            "label": "Disposition",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      {
+        "id": "Review",
+        "label": "Review",
+        "states": [
+          "pending",
+          "approved",
+          "returned"
+        ],
+        "fields": [
+          {
+            "id": "sampleId",
+            "label": "sampleId",
+            "type": "reference",
+            "required": true,
+            "referenceType": "Sample"
+          },
+          {
+            "id": "reviewer",
+            "label": "Reviewer",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "rationale",
+            "label": "Rationale",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    ],
+    "records": [
+      {
+        "id": "SMP-1001",
+        "entityType": "Sample",
+        "state": "awaiting-qa",
+        "values": {
+          "material": "Clearwater Buffer",
+          "batch": "CB-260928-A",
+          "site": "harbor",
+          "source": "internal",
+          "receivedBy": "Maya Chen"
+        }
+      },
+      {
+        "id": "SMP-1002",
+        "entityType": "Sample",
+        "state": "received",
+        "values": {
+          "material": "Clearwater Buffer",
+          "batch": "CB-260928-B",
+          "site": "harbor",
+          "source": "internal",
+          "receivedBy": "Maya Chen"
+        }
+      },
+      {
+        "id": "SPEC-CB-01",
+        "entityType": "Specification",
+        "state": "published",
+        "values": {
+          "version": "1.0",
+          "material": "Clearwater Buffer",
+          "phMinimum": 6.8,
+          "phMaximum": 7.2,
+          "conductivityMinimum": 12,
+          "conductivityMaximum": 18
+        }
+      },
+      {
+        "id": "TST-1001",
+        "entityType": "Test",
+        "state": "completed",
+        "values": {
+          "sampleId": "SMP-1001",
+          "specificationId": "SPEC-CB-01",
+          "measurement": "pH",
+          "method": "ACME-PH-01",
+          "instrument": "BENCH-PH-03",
+          "analyst": "Maya Chen"
+        }
+      },
+      {
+        "id": "TST-1002",
+        "entityType": "Test",
+        "state": "completed",
+        "values": {
+          "sampleId": "SMP-1001",
+          "specificationId": "SPEC-CB-01",
+          "measurement": "Conductivity",
+          "method": "ACME-COND-01",
+          "instrument": "BENCH-COND-02",
+          "analyst": "Maya Chen"
+        }
+      },
+      {
+        "id": "RES-1001",
+        "entityType": "Result",
+        "state": "assessed",
+        "values": {
+          "testId": "TST-1001",
+          "sampleId": "SMP-1001",
+          "value": 6.4,
+          "unit": "pH",
+          "assessment": "below-range"
+        }
+      },
+      {
+        "id": "RES-1002",
+        "entityType": "Result",
+        "state": "assessed",
+        "values": {
+          "testId": "TST-1002",
+          "sampleId": "SMP-1001",
+          "value": 14.2,
+          "unit": "mS/cm",
+          "assessment": "within-range"
+        }
+      },
+      {
+        "id": "EXC-1001",
+        "entityType": "Exception",
+        "state": "in-review",
+        "values": {
+          "sampleId": "SMP-1001",
+          "resultId": "RES-1001",
+          "owner": "Jordan Lee",
+          "rootCause": null,
+          "disposition": null
+        }
+      },
+      {
+        "id": "REV-1001",
+        "entityType": "Review",
+        "state": "pending",
+        "values": {
+          "sampleId": "SMP-1001",
+          "reviewer": "Jordan Lee",
+          "rationale": null
+        }
+      }
+    ],
+    "invariants": [
+      {
+        "id": "sample-received",
+        "description": "Testing begins only for a received sample.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "equals",
+          "value": "received"
+        }
+      },
+      {
+        "id": "sample-testing",
+        "description": "Review submission requires testing state.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "equals",
+          "value": "in-testing"
+        }
+      },
+      {
+        "id": "test-ready",
+        "description": "A test begins only when ready.",
+        "predicate": {
+          "entityType": "Test",
+          "field": "state",
+          "operator": "equals",
+          "value": "ready"
+        }
+      },
+      {
+        "id": "test-running",
+        "description": "Result recording requires an in-progress test.",
+        "predicate": {
+          "entityType": "Test",
+          "field": "state",
+          "operator": "equals",
+          "value": "in-progress"
+        }
+      },
+      {
+        "id": "test-complete",
+        "description": "Assess only a completed test.",
+        "predicate": {
+          "entityType": "Test",
+          "field": "state",
+          "operator": "equals",
+          "value": "completed"
+        }
+      },
+      {
+        "id": "tests-exist",
+        "description": "A sample must have related testing evidence.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "related-exists",
+          "relatedType": "Test",
+          "relatedField": "sampleId"
+        }
+      },
+      {
+        "id": "tests-complete",
+        "description": "All tests for a sample must be completed before review.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "all-related-equal",
+          "relatedType": "Test",
+          "relatedField": "sampleId",
+          "relatedValueField": "state",
+          "value": "completed"
+        }
+      },
+      {
+        "id": "exceptions-resolved",
+        "description": "Every linked exception must be resolved before sample approval.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "all-related-equal",
+          "relatedType": "Exception",
+          "relatedField": "sampleId",
+          "relatedValueField": "state",
+          "value": "resolved"
+        }
+      },
+      {
+        "id": "exception-rationale",
+        "description": "Resolution requires a documented disposition.",
+        "predicate": {
+          "entityType": "Exception",
+          "field": "disposition",
+          "operator": "present"
+        }
+      },
+      {
+        "id": "review-pending",
+        "description": "A review decision requires a pending review.",
+        "predicate": {
+          "entityType": "Review",
+          "field": "state",
+          "operator": "equals",
+          "value": "pending"
+        }
+      },
+      {
+        "id": "review-rationale",
+        "description": "A review decision requires rationale.",
+        "predicate": {
+          "entityType": "Review",
+          "field": "rationale",
+          "operator": "present"
+        }
+      },
+      {
+        "id": "sample-awaiting-qa",
+        "description": "Sample approval requires awaiting-QA state.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "equals",
+          "value": "awaiting-qa"
+        }
+      },
+      {
+        "id": "reviews-exist",
+        "description": "Sample approval requires a linked review.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "related-exists",
+          "relatedType": "Review",
+          "relatedField": "sampleId"
+        }
+      },
+      {
+        "id": "reviews-approved",
+        "description": "All linked reviews must be approved before sample approval.",
+        "predicate": {
+          "entityType": "Sample",
+          "field": "state",
+          "operator": "all-related-equal",
+          "relatedType": "Review",
+          "relatedField": "sampleId",
+          "relatedValueField": "state",
+          "value": "approved"
+        }
+      },
+      {
+        "id": "assessment-failed",
+        "description": "Create an exception only for a below-range or above-range assessment.",
+        "predicate": {
+          "entityType": "Result",
+          "field": "assessment",
+          "operator": "one-of",
+          "values": [
+            "below-range",
+            "above-range"
+          ]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "id": "begin-testing",
+        "label": "Begin testing",
+        "entityType": "Sample",
+        "roles": [
+          "analyst",
+          "lab-manager"
+        ],
+        "guardIds": [
+          "sample-received"
+        ],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Sample",
+              "operation": "request-transition",
+              "targetState": "in-testing"
+            }
+          ],
+          "description": "Request the received-to-in-testing transition for the subject sample."
+        },
+        "guardBindings": [
+          {
+            "guardId": "sample-received",
+            "phase": "current"
+          }
+        ]
+      },
+      {
+        "id": "start-test",
+        "label": "Start test",
+        "entityType": "Test",
+        "roles": [
+          "analyst"
+        ],
+        "guardIds": [
+          "test-ready"
+        ],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Test",
+              "operation": "request-transition",
+              "targetState": "in-progress"
+            }
+          ],
+          "description": "Request the ready-to-in-progress transition for the subject test."
+        },
+        "guardBindings": [
+          {
+            "guardId": "test-ready",
+            "phase": "current"
+          }
+        ]
+      },
+      {
+        "id": "record-result",
+        "label": "Record measurement",
+        "entityType": "Test",
+        "roles": [
+          "analyst"
+        ],
+        "guardIds": [
+          "test-running"
+        ],
+        "inputs": [
+          {
+            "id": "value",
+            "label": "Observed measurement",
+            "type": "number",
+            "required": true
+          },
+          {
+            "id": "unit",
+            "label": "Unit",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Result",
+              "operation": "create-related"
+            },
+            {
+              "entityType": "Test",
+              "operation": "request-transition",
+              "targetState": "completed"
+            }
+          ],
+          "description": "Create a related recorded result from value/unit input and subject test/sample references, then complete the subject test. Atomic execution is reserved for P3."
+        },
+        "guardBindings": [
+          {
+            "guardId": "test-running",
+            "phase": "current"
+          }
+        ]
+      },
+      {
+        "id": "assess-result",
+        "label": "Assess measurement against specification",
+        "entityType": "Result",
+        "roles": [
+          "analyst",
+          "lab-manager"
+        ],
+        "guardIds": [
+          "test-complete"
+        ],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Result",
+              "operation": "request-transition",
+              "targetState": "assessed"
+            },
+            {
+              "entityType": "Exception",
+              "operation": "create-related",
+              "whenGuardId": "assessment-failed"
+            }
+          ],
+          "description": "Compare the subject result to the related test specification using its measurement. The fictional pH range is phMinimum/phMaximum; conductivity uses conductivityMinimum/conductivityMaximum. Populate assessment as below-range, within-range or above-range, assess the result, and create an open exception only for a failing assessment. P3 will implement the Pack-owned handler."
+        },
+        "guardBindings": [
+          {
+            "guardId": "test-complete",
+            "phase": "current",
+            "subjectField": "testId"
+          }
+        ]
+      },
+      {
+        "id": "submit-review",
+        "label": "Submit sample for QA review",
+        "entityType": "Sample",
+        "roles": [
+          "analyst",
+          "lab-manager"
+        ],
+        "guardIds": [
+          "sample-testing",
+          "tests-exist",
+          "tests-complete"
+        ],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Review",
+              "operation": "create-related"
+            },
+            {
+              "entityType": "Sample",
+              "operation": "request-transition",
+              "targetState": "awaiting-qa"
+            }
+          ],
+          "description": "Create a pending review linked to the subject sample, then request awaiting-QA state."
+        },
+        "guardBindings": [
+          {
+            "guardId": "sample-testing",
+            "phase": "current"
+          },
+          {
+            "guardId": "tests-exist",
+            "phase": "current"
+          },
+          {
+            "guardId": "tests-complete",
+            "phase": "current"
+          }
+        ]
+      },
+      {
+        "id": "review-exception",
+        "label": "Review exception evidence",
+        "entityType": "Exception",
+        "roles": [
+          "qa"
+        ],
+        "guardIds": [],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Exception",
+              "operation": "request-transition",
+              "targetState": "in-review"
+            }
+          ],
+          "description": "Request in-review state for the subject exception."
+        },
+        "guardBindings": []
+      },
+      {
+        "id": "resolve-exception",
+        "label": "Document exception disposition",
+        "entityType": "Exception",
+        "roles": [
+          "qa"
+        ],
+        "guardIds": [
+          "exception-rationale"
+        ],
+        "inputs": [
+          {
+            "id": "disposition",
+            "label": "Disposition",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Exception",
+              "operation": "set-field",
+              "field": "disposition",
+              "input": "disposition"
+            },
+            {
+              "entityType": "Exception",
+              "operation": "request-transition",
+              "targetState": "resolved"
+            }
+          ],
+          "description": "Stage the supplied disposition, require it to be nonempty in proposed state, then request resolved state."
+        },
+        "guardBindings": [
+          {
+            "guardId": "exception-rationale",
+            "phase": "proposed"
+          }
+        ]
+      },
+      {
+        "id": "approve-review",
+        "label": "Approve synthetic review",
+        "entityType": "Review",
+        "roles": [
+          "qa"
+        ],
+        "guardIds": [
+          "review-pending",
+          "review-rationale",
+          "tests-exist",
+          "tests-complete",
+          "exceptions-resolved"
+        ],
+        "inputs": [
+          {
+            "id": "rationale",
+            "label": "Decision rationale",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Review",
+              "operation": "set-field",
+              "field": "rationale",
+              "input": "rationale"
+            },
+            {
+              "entityType": "Review",
+              "operation": "request-transition",
+              "targetState": "approved"
+            }
+          ],
+          "description": "Stage the supplied rationale, validate proposed rationale and current related sample evidence, then request approved review state."
+        },
+        "guardBindings": [
+          {
+            "guardId": "review-pending",
+            "phase": "current"
+          },
+          {
+            "guardId": "review-rationale",
+            "phase": "proposed"
+          },
+          {
+            "guardId": "tests-exist",
+            "phase": "current",
+            "subjectField": "sampleId"
+          },
+          {
+            "guardId": "tests-complete",
+            "phase": "current",
+            "subjectField": "sampleId"
+          },
+          {
+            "guardId": "exceptions-resolved",
+            "phase": "current",
+            "subjectField": "sampleId"
+          }
+        ]
+      },
+      {
+        "id": "return-review",
+        "label": "Return review for investigation",
+        "entityType": "Review",
+        "roles": [
+          "qa"
+        ],
+        "guardIds": [
+          "review-pending",
+          "review-rationale"
+        ],
+        "inputs": [
+          {
+            "id": "rationale",
+            "label": "Return rationale",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Review",
+              "operation": "set-field",
+              "field": "rationale",
+              "input": "rationale"
+            },
+            {
+              "entityType": "Review",
+              "operation": "request-transition",
+              "targetState": "returned"
+            }
+          ],
+          "description": "Stage the supplied rationale, require nonempty rationale in proposed state, then request returned review state."
+        },
+        "guardBindings": [
+          {
+            "guardId": "review-pending",
+            "phase": "current"
+          },
+          {
+            "guardId": "review-rationale",
+            "phase": "proposed"
+          }
+        ]
+      },
+      {
+        "id": "approve-sample",
+        "label": "Mark synthetic sample approved",
+        "entityType": "Sample",
+        "roles": [
+          "qa"
+        ],
+        "guardIds": [
+          "sample-awaiting-qa",
+          "tests-exist",
+          "tests-complete",
+          "exceptions-resolved",
+          "reviews-exist",
+          "reviews-approved"
+        ],
+        "inputs": [],
+        "handler": {
+          "kind": "declarative",
+          "effects": [
+            {
+              "entityType": "Sample",
+              "operation": "request-transition",
+              "targetState": "approved"
+            }
+          ],
+          "description": "Require completed tests, resolved exceptions and approved linked reviews, then request approved sample state."
+        },
+        "guardBindings": [
+          {
+            "guardId": "sample-awaiting-qa",
+            "phase": "current"
+          },
+          {
+            "guardId": "tests-exist",
+            "phase": "current"
+          },
+          {
+            "guardId": "tests-complete",
+            "phase": "current"
+          },
+          {
+            "guardId": "exceptions-resolved",
+            "phase": "current"
+          },
+          {
+            "guardId": "reviews-exist",
+            "phase": "current"
+          },
+          {
+            "guardId": "reviews-approved",
+            "phase": "current"
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "sample-to-testing",
+        "entityType": "Sample",
+        "from": "received",
+        "to": "in-testing",
+        "actionId": "begin-testing",
+        "guardIds": [
+          "sample-received"
+        ]
+      },
+      {
+        "id": "test-to-running",
+        "entityType": "Test",
+        "from": "ready",
+        "to": "in-progress",
+        "actionId": "start-test",
+        "guardIds": [
+          "test-ready"
+        ]
+      },
+      {
+        "id": "test-to-completed",
+        "entityType": "Test",
+        "from": "in-progress",
+        "to": "completed",
+        "actionId": "record-result",
+        "guardIds": [
+          "test-running"
+        ]
+      },
+      {
+        "id": "result-to-assessed",
+        "entityType": "Result",
+        "from": "recorded",
+        "to": "assessed",
+        "actionId": "assess-result",
+        "guardIds": [
+          "test-complete"
+        ]
+      },
+      {
+        "id": "sample-to-review",
+        "entityType": "Sample",
+        "from": "in-testing",
+        "to": "awaiting-qa",
+        "actionId": "submit-review",
+        "guardIds": [
+          "sample-testing",
+          "tests-exist",
+          "tests-complete"
+        ]
+      },
+      {
+        "id": "exception-to-review",
+        "entityType": "Exception",
+        "from": "open",
+        "to": "in-review",
+        "actionId": "review-exception",
+        "guardIds": []
+      },
+      {
+        "id": "exception-to-resolved",
+        "entityType": "Exception",
+        "from": "in-review",
+        "to": "resolved",
+        "actionId": "resolve-exception",
+        "guardIds": [
+          "exception-rationale"
+        ]
+      },
+      {
+        "id": "review-to-approved",
+        "entityType": "Review",
+        "from": "pending",
+        "to": "approved",
+        "actionId": "approve-review",
+        "guardIds": [
+          "review-pending",
+          "review-rationale",
+          "tests-exist",
+          "tests-complete",
+          "exceptions-resolved"
+        ]
+      },
+      {
+        "id": "review-to-returned",
+        "entityType": "Review",
+        "from": "pending",
+        "to": "returned",
+        "actionId": "return-review",
+        "guardIds": [
+          "review-pending",
+          "review-rationale"
+        ]
+      },
+      {
+        "id": "sample-to-approved",
+        "entityType": "Sample",
+        "from": "awaiting-qa",
+        "to": "approved",
+        "actionId": "approve-sample",
+        "guardIds": [
+          "sample-awaiting-qa",
+          "tests-exist",
+          "tests-complete",
+          "exceptions-resolved",
+          "reviews-exist",
+          "reviews-approved"
+        ]
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "sample-management",
+      "label": "Sample Management",
+      "description": "Trace sample identity, receipt, and related testing.",
+      "roles": [
+        "analyst",
+        "lab-manager"
+      ],
+      "parameterIds": [
+        "site_count",
+        "external_partner_count",
+        "sample_count",
+        "sample_source"
+      ],
+      "entryNodeId": "register",
+      "nodes": [
+        {
+          "id": "register",
+          "narrative": "Find the two synthetic samples.",
+          "target": {
+            "screenId": "sample-list",
+            "recordId": null
+          },
+          "actionIds": []
+        },
+        {
+          "id": "sample",
+          "narrative": "Inspect identity, batch, and testing context.",
+          "target": {
+            "screenId": "sample-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "begin-testing"
+          ]
+        },
+        {
+          "id": "second",
+          "narrative": "Compare the newly received sample.",
+          "target": {
+            "screenId": "sample-1002",
+            "recordId": "SMP-1002"
+          },
+          "actionIds": []
+        }
+      ],
+      "edges": [
+        {
+          "from": "register",
+          "to": "sample",
+          "label": "Open primary sample"
+        },
+        {
+          "from": "register",
+          "to": "second",
+          "label": "Compare received sample"
+        },
+        {
+          "from": "second",
+          "to": "sample",
+          "label": "Return to primary walkthrough"
+        }
+      ]
+    },
+    {
+      "id": "lab-execution",
+      "label": "Lab Execution",
+      "description": "Inspect the completed method and fixed measurement evidence.",
+      "roles": [
+        "analyst",
+        "lab-manager"
+      ],
+      "parameterIds": [
+        "site_count",
+        "sample_count",
+        "result_profile"
+      ],
+      "entryNodeId": "test",
+      "nodes": [
+        {
+          "id": "test",
+          "narrative": "Review method, instrument and analyst.",
+          "target": {
+            "screenId": "execution-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "start-test",
+            "record-result"
+          ]
+        },
+        {
+          "id": "results",
+          "narrative": "Compare pH and conductivity assessments.",
+          "target": {
+            "screenId": "results-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "assess-result"
+          ]
+        },
+        {
+          "id": "spec",
+          "narrative": "Inspect the fixed fictional specification.",
+          "target": {
+            "screenId": "specification-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": []
+        }
+      ],
+      "edges": [
+        {
+          "from": "test",
+          "to": "results",
+          "label": "Inspect results"
+        },
+        {
+          "from": "results",
+          "to": "spec",
+          "label": "Check range evidence"
+        },
+        {
+          "from": "spec",
+          "to": "results",
+          "label": "Return to results"
+        }
+      ]
+    },
+    {
+      "id": "exception-oos",
+      "label": "Exception/OOS",
+      "description": "Explain the below-range result and linked exception without asserting a root cause.",
+      "roles": [
+        "qa",
+        "lab-manager"
+      ],
+      "parameterIds": [
+        "result_profile"
+      ],
+      "entryNodeId": "results",
+      "nodes": [
+        {
+          "id": "results",
+          "narrative": "Identify the pH result that needs attention.",
+          "target": {
+            "screenId": "results-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": []
+        },
+        {
+          "id": "exception",
+          "narrative": "Inspect exception evidence and pending disposition.",
+          "target": {
+            "screenId": "exception-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "review-exception",
+            "resolve-exception"
+          ]
+        },
+        {
+          "id": "review",
+          "narrative": "Show QA assessment context.",
+          "target": {
+            "screenId": "review-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "submit-review"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "results",
+          "to": "exception",
+          "label": "Follow below-range result"
+        },
+        {
+          "from": "exception",
+          "to": "review",
+          "label": "Continue to QA"
+        },
+        {
+          "from": "review",
+          "to": "exception",
+          "label": "Return for investigation"
+        }
+      ]
+    },
+    {
+      "id": "qa-review",
+      "label": "QA Review",
+      "description": "Inspect review evidence and illustrative traceability.",
+      "roles": [
+        "qa"
+      ],
+      "parameterIds": [
+        "site_count",
+        "result_profile"
+      ],
+      "entryNodeId": "review",
+      "nodes": [
+        {
+          "id": "review",
+          "narrative": "Review the pending decision and evidence checklist.",
+          "target": {
+            "screenId": "review-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": [
+            "approve-review",
+            "return-review",
+            "approve-sample"
+          ]
+        },
+        {
+          "id": "history",
+          "narrative": "Inspect fixed illustrative history.",
+          "target": {
+            "screenId": "audit-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": []
+        },
+        {
+          "id": "exception",
+          "narrative": "Revisit unresolved exception evidence.",
+          "target": {
+            "screenId": "exception-1001",
+            "recordId": "SMP-1001"
+          },
+          "actionIds": []
+        }
+      ],
+      "edges": [
+        {
+          "from": "review",
+          "to": "history",
+          "label": "Inspect traceability"
+        },
+        {
+          "from": "review",
+          "to": "exception",
+          "label": "Investigate exception"
+        },
+        {
+          "from": "exception",
+          "to": "review",
+          "label": "Return to review"
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "mode": "fictional-demo-only",
+    "execution": "definitions-only",
+    "unsupportedQuestion": "escalate",
+    "blockedCapabilities": [
+      "real vendor claims",
+      "regulatory compliance claims",
+      "external integrations",
+      "production laboratory operation",
+      "AI or voice providers"
+    ]
+  },
+  "truth": {
+    "version": "0.2.0",
+    "scope": "fictional-demo-only",
+    "evidence": [
+      {
+        "id": "fixture-evidence",
+        "source": "pack:presentation",
+        "description": "The fixed synthetic walkthrough provided in this Pack."
+      },
+      {
+        "id": "model-evidence",
+        "source": "pack:productModel",
+        "description": "Declared fictional objects and rules; execution is not implemented."
+      },
+      {
+        "id": "scope-evidence",
+        "source": "pack:policy",
+        "description": "Fictional-only policy and current execution boundary."
+      }
+    ],
+    "facts": [
+      {
+        "id": "fixed-walkthrough",
+        "statement": "The demo provides a manually navigable sample-to-QA walkthrough with fixed synthetic data.",
+        "status": "available",
+        "evidenceIds": [
+          "fixture-evidence"
+        ]
+      },
+      {
+        "id": "measurement-example",
+        "statement": "SMP-1001 has a prefilled pH result of 6.4 against the fictional 6.8–7.2 range and EXC-1001 remains unresolved.",
+        "status": "available",
+        "evidenceIds": [
+          "fixture-evidence"
+        ]
+      },
+      {
+        "id": "role-definitions",
+        "statement": "Analyst, QA, and Lab Manager roles and action permissions are defined in the Pack; enforcement is reserved for the deterministic engine.",
+        "status": "defined-only",
+        "evidenceIds": [
+          "model-evidence"
+        ]
+      },
+      {
+        "id": "approval-definition",
+        "statement": "Synthetic approval rules require completed tests and resolved exceptions; P2 does not execute approval.",
+        "status": "defined-only",
+        "evidenceIds": [
+          "model-evidence",
+          "scope-evidence"
+        ]
+      },
+      {
+        "id": "fictional-scope",
+        "statement": "Acme is fictional. This Pack provides no evidence of a real vendor capability, regulatory compliance or enterprise readiness.",
+        "status": "available",
+        "evidenceIds": [
+          "scope-evidence"
+        ]
+      }
+    ],
+    "approvedQA": [
+      {
+        "id": "what-is-this",
+        "question": "What can I explore today?",
+        "answer": "Four fictional demo paths through a fixed sample-to-QA story. Navigation is available; execution and approval remain definitions only.",
+        "factIds": [
+          "fixed-walkthrough",
+          "approval-definition"
+        ]
+      },
+      {
+        "id": "why-exception",
+        "question": "Why does this sample have an exception?",
+        "answer": "Its prefilled pH value is 6.4, below the fictional 6.8–7.2 range. The fixture does not establish a root cause.",
+        "factIds": [
+          "measurement-example"
+        ]
+      },
+      {
+        "id": "real-product",
+        "question": "Does this represent a real vendor or establish compliance?",
+        "answer": "No. Acme is fictional, and this Pack makes no real vendor, compliance or enterprise-readiness claim.",
+        "factIds": [
+          "fictional-scope"
+        ]
+      }
+    ],
+    "escalation": {
+      "message": "This fictional Pack has insufficient approved evidence. Route the question to a human for an approved answer.",
+      "triggers": [
+        "No approved fact or Q&A covers the question.",
+        "A question concerns real vendor behavior, integration, validation, compliance, or deployment.",
+        "An answer would require an unsupported assumption."
+      ]
+    }
+  }
+}

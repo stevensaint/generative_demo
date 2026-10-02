@@ -4,8 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 import { z } from 'zod';
 import { SessionStore, SessionError } from '../../../packages/engine/src/sessions.js';
-import { acmePresentation } from '../../../packages/product-packs/acme/index.js';
-import { acmeDemoPresentation } from '../../../packages/product-packs/acme/fixtures.js';
+import { ProductPackSchema, type ProductPack } from '../../../packages/contracts/src/product-pack.js';
 import { NavigationTargetSchema } from '../../../packages/contracts/src/presentation.js';
 import type { ErrorCode } from '../../../packages/contracts/src/index.js';
 
@@ -49,22 +48,25 @@ async function navigationBody(req: IncomingMessage) {
   catch { throw new SessionError('INVALID_REQUEST'); }
 }
 
-export function createApp(options: { store?: SessionStore; staticDir?: string } = {}) {
+export function createApp(options: { pack: ProductPack; store?: SessionStore; staticDir?: string }) {
   const store = options.store ?? new SessionStore();
+  const pack = ProductPackSchema.parse(options.pack);
+  const { metadata: presentation, presentation: demoPresentation } = pack;
   const accessTokens = new Map<string, string>();
   const server = createServer(async (req, res) => {
     let sessionId: string | null = null;
     try {
       const path = new URL(req.url ?? '/', 'http://localhost').pathname;
-      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P1' });
-      if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, acmePresentation);
-      if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, acmeDemoPresentation);
+      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P2' });
+      if (path === '/api/product-pack/manifest' && req.method === 'GET') return json(res, 200, pack);
+      if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, presentation);
+      if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, demoPresentation);
       if (path === '/api/sessions' && req.method === 'POST') {
         await emptyBody(req);
-        const view = store.create(acmePresentation.packId);
+        const view = store.create(presentation.packId);
         const accessToken = randomUUID();
         accessTokens.set(view.session.sessionId, accessToken);
-        const initial = store.navigate(view.session.sessionId, acmeDemoPresentation.homeScreenId, null);
+        const initial = store.navigate(view.session.sessionId, demoPresentation.homeScreenId, null);
         return json(res, 201, { ...initial, accessToken });
       }
       const match = /^\/api\/sessions\/([^/]+)(\/(?:end|navigation))?$/.exec(path);
@@ -81,7 +83,7 @@ export function createApp(options: { store?: SessionStore; staticDir?: string } 
         if (!match[2] && req.method === 'GET') return json(res, 200, store.get(id));
         if (match[2] === '/navigation' && req.method === 'POST') {
           const target = await navigationBody(req);
-          const screen = acmeDemoPresentation.screens.find(s => s.id === target.screenId);
+          const screen = demoPresentation.screens.find(s => s.id === target.screenId);
           if (!screen || screen.recordId !== target.recordId) throw new SessionError('INVALID_REQUEST');
           return json(res, 200, store.navigate(id, target.screenId, target.recordId));
         }

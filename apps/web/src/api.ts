@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ProductPackSchema } from '../../../packages/contracts/src/product-pack.js';
 import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema } from '../../../packages/contracts/src/index.js';
 import { DemoPresentationSchema, type NavigationTarget } from '../../../packages/contracts/src/presentation.js';
 
@@ -14,6 +15,7 @@ async function request<T>(path: string, schema: z.ZodType<T>, method = 'GET', ac
 export const api = {
   health: () => request('/api/health', HealthSchema),
   presentation: () => request('/api/product-pack', ProductPresentationSchema),
+  pack: () => request('/api/product-pack/manifest', ProductPackSchema),
   demo: () => request('/api/demo-presentation', DemoPresentationSchema),
   start: () => request('/api/sessions', CreatedSessionSchema, 'POST'),
   read: (id: string, token: string) => request(`/api/sessions/${id}`, SessionViewSchema, 'GET', token),

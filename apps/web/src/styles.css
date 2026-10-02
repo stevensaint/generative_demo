@@ -563,3 +563,15 @@ dl>div {
 }
 
 }
+.demo-guide { margin-top: 30px; }
+.demo-guide summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+.guide-intro, .guide-scope { font-size: 13px; line-height: 1.7; color: #607368; }
+.guide-paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 22px; margin: 24px 0; }
+.guide-paths section { border-top: 2px solid #dce6dc; padding-top: 20px; }
+.guide-paths h2 { margin-bottom: 10px; }
+.guide-paths p { font-size: 12px; line-height: 1.7; color: #607368; }
+.guide-roles { min-height: 22px; }
+.guide-scope { border-top: 1px solid #dce6dc; padding-top: 18px; }
+.guide-answer h3 { font-size: 13px; margin-bottom: 6px; }
+.guide-answer { margin-top: 22px; }
+.guide-escalation { border-left: 3px solid #78988b; padding-left: 15px; }

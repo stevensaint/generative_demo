@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ProductPresentation, SessionView } from '../../../packages/contracts/src/index.js';
 import type { DemoPresentation, NavigationTarget } from '../../../packages/contracts/src/presentation.js';
+import type { ProductPack } from '../../../packages/contracts/src/product-pack.js';
+import { DemoGuide } from './twin/guide.js';
 import { api } from './api.js';
 import { Navigation, ScreenView } from './twin/primitives.js';
 
 export function App() {
   const [presentation, setPresentation] = useState<ProductPresentation | null>(null);
   const [demo, setDemo] = useState<DemoPresentation | null>(null);
+  const [pack, setPack] = useState<ProductPack | null>(null);
+  const [phase, setPhase] = useState('');
   const [view, setView] = useState<SessionView | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -14,8 +18,8 @@ export function App() {
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     let live = true;
-    Promise.all([api.health(), api.presentation(), api.demo()]).then(([, pack, blueprint]) => {
-      if (live) { setPresentation(pack); setDemo(blueprint); }
+    Promise.all([api.health(), api.pack()]).then(([health, loaded]) => {
+      if (live) { setPhase(health.phase); setPack(loaded); setPresentation(loaded.metadata); setDemo(loaded.presentation); }
     }).catch(() => { if (live) setError('Cannot connect to the demo server. Reload to retry.'); });
     return () => { live = false; };
   }, []);
@@ -42,7 +46,7 @@ export function App() {
   const disabled = !active || busy;
   const navigate = (target: NavigationTarget) => void operate(target);
   return <div className="app">
-    <header className="topbar"><span className="brand">GDE <span>/</span> Demo Twin</span><span className="badge">Fictional product · P1</span></header>
+    <header className="topbar"><span className="brand">GDE <span>/</span> Demo Twin</span><span className="badge">Fictional product · {phase || 'Connecting…'}</span></header>
     <div className="layout">
       <aside className="sidebar"><p className="eyebrow">SYNTHETIC WORKSPACE</p><h2>{presentation?.name ?? 'Connecting…'}</h2><p className="site-label">{demo?.fixtureLabel}</p>
         {demo && <Navigation items={demo.navigation} currentScreen={state?.currentScreen} onNavigate={navigate} disabled={disabled} />}
@@ -59,6 +63,7 @@ export function App() {
           {demo && <nav className="walkthrough" aria-label="Guided walkthrough">{demo.walkthrough.map((item, index) => <button key={item.label} aria-current={item.target.screenId === state?.currentScreen ? 'step' : undefined} disabled={disabled} onClick={() => navigate(item.target)}><span>{index + 1}</span>{item.label}</button>)}</nav>}
           {screen ? <><div className="screen-heading"><div><p className="eyebrow">{demo?.fixtureLabel}</p><h1 ref={heading} tabIndex={-1}>{screen.title}</h1><p>{screen.subtitle}</p></div><span className={`badge tone-${screen.badge.tone}`}>{screen.badge.label}</span></div><ScreenView key={screen.id} screen={screen} onNavigate={navigate} disabled={disabled} /></> : <p role="alert">This workspace screen is unavailable.</p>}
         </>}
+        {pack && <DemoGuide pack={pack} onNavigate={navigate} disabled={disabled} />}
         <details className="session-activity"><summary>Session activity · {view?.events.length ?? 0} events</summary><p>Live session events are separate from the fixture history.</p>{view && <><p className="session-id">Session <code>{view.session.sessionId}</code></p><ol>{view.events.map(event => <li key={event.eventId}><strong>{event.type}</strong><time dateTime={event.timestamp}>{new Date(event.timestamp).toLocaleTimeString()}</time>{event.errorCode && <code>{event.errorCode}</code>}</li>)}</ol><button className="secondary" disabled={busy} onClick={() => void operate('refresh')}>Refresh events</button></>}</details>
         <footer>Fictional data for demonstration. No approval, release, or laboratory operation is performed.</footer>
       </main>

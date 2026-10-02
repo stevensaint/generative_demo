@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { DemoPresentationSchema } from '../packages/contracts/src/presentation.js';
-import { acmeDemoPresentation } from '../packages/product-packs/acme/fixtures.js';
+import { loadProductPack } from '../packages/product-packs/loader.js';
+const { presentation: acmeDemoPresentation } = await loadProductPack('packages/product-packs/acme/pack.json');
 import { SessionStore } from '../packages/engine/src/sessions.js';
 
 test('presentation rejects broken links, duplicate screen IDs and missing table cells', () => {

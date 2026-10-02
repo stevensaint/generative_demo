@@ -1,0 +1,36 @@
+
+> gde-p0@0.0.1 validate:pack
+> npm run build:server && node scripts/validate-pack.mjs
+
+
+> gde-p0@0.0.1 build:server
+> tsc -p tsconfig.server.json && node scripts/copy-packs.mjs
+
+{
+  "status": "PASS",
+  "packId": "acme-quality-cloud",
+  "version": "0.2.0",
+  "lanes": [
+    "Sample Management",
+    "Lab Execution",
+    "Exception/OOS",
+    "QA Review"
+  ],
+  "roles": [
+    "Analyst",
+    "QA",
+    "Lab Manager"
+  ],
+  "entityTypes": 6,
+  "records": 9,
+  "actions": 10,
+  "transitions": 10,
+  "parameters": {
+    "site_count": 1,
+    "external_partner_count": 0,
+    "sample_count": 2,
+    "sample_source": "internal",
+    "result_profile": "mixed"
+  },
+  "execution": "definitions-only"
+}

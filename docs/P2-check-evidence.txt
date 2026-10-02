@@ -1,0 +1,198 @@
+
+> gde-p0@0.0.1 check
+> npm run typecheck && npm test && npm run build
+
+
+> gde-p0@0.0.1 typecheck
+> tsc --noEmit
+
+
+> gde-p0@0.0.1 test
+> tsc -p tsconfig.tests.json && node --test .test-dist/tests/*.test.js
+
+TAP version 13
+# Subtest: backend health and fictional presentation respond with valid contracts
+ok 1 - backend health and fictional presentation respond with valid contracts
+  ---
+  duration_ms: 13.511333
+  type: 'test'
+  ...
+# Subtest: concurrent sessions require distinct tokens and isolate read/end/error events
+ok 2 - concurrent sessions require distinct tokens and isolate read/end/error events
+  ---
+  duration_ms: 10.266416
+  type: 'test'
+  ...
+# Subtest: bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+ok 3 - bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+  ---
+  duration_ms: 4.574167
+  type: 'test'
+  ...
+# Subtest: unexpected backend errors produce sanitized ERROR_OCCURRED responses
+ok 4 - unexpected backend errors produce sanitized ERROR_OCCURRED responses
+  ---
+  duration_ms: 4.033125
+  type: 'test'
+  ...
+# Subtest: production HTTP server serves built-style assets and rejects traversal
+ok 5 - production HTTP server serves built-style assets and rejects traversal
+  ---
+  duration_ms: 7.367708
+  type: 'test'
+  ...
+# Subtest: manual navigation follows the fixed walkthrough and isolates session selection
+ok 6 - manual navigation follows the fixed walkthrough and isolates session selection
+  ---
+  duration_ms: 11.225542
+  type: 'test'
+  ...
+# Subtest: navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+ok 7 - navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+  ---
+  duration_ms: 3.787209
+  type: 'test'
+  ...
+# Subtest: a dynamically loaded alternative Pack changes API presentation without core edits
+ok 8 - a dynamically loaded alternative Pack changes API presentation without core edits
+  ---
+  duration_ms: 10.842083
+  type: 'test'
+  ...
+# Subtest: generic engine and contracts do not import Product Packs or product semantics
+ok 9 - generic engine and contracts do not import Product Packs or product semantics
+  ---
+  duration_ms: 5.678917
+  type: 'test'
+  ...
+# Subtest: frontend does not import canonical session engine or hard-code Acme presentation
+ok 10 - frontend does not import canonical session engine or hard-code Acme presentation
+  ---
+  duration_ms: 8.005917
+  type: 'test'
+  ...
+# Subtest: environment secrets are ignored, with only the safe example permitted
+ok 11 - environment secrets are ignored, with only the safe example permitted
+  ---
+  duration_ms: 20.447917
+  type: 'test'
+  ...
+# Subtest: Dependencies contain no provider, speech, database, or agent SDKs
+ok 12 - Dependencies contain no provider, speech, database, or agent SDKs
+  ---
+  duration_ms: 1.360083
+  type: 'test'
+  ...
+# Subtest: HTTP composition receives Pack configuration without direct Acme imports
+ok 13 - HTTP composition receives Pack configuration without direct Acme imports
+  ---
+  duration_ms: 1.126792
+  type: 'test'
+  ...
+# Subtest: generic React guide renders Pack lanes, bounds and approved answers without action controls
+ok 14 - generic React guide renders Pack lanes, bounds and approved answers without action controls
+  ---
+  duration_ms: 2.988875
+  type: 'test'
+  ...
+# Subtest: Pack configuration changes rendered content and remains escaped React data
+ok 15 - Pack configuration changes rendered content and remains escaped React data
+  ---
+  duration_ms: 2.305375
+  type: 'test'
+  ...
+# Subtest: presentation rejects broken links, duplicate screen IDs and missing table cells
+ok 16 - presentation rejects broken links, duplicate screen IDs and missing table cells
+  ---
+  duration_ms: 3.289458
+  type: 'test'
+  ...
+# Subtest: generic navigation changes canonical selection without modifying fixtures or another session
+ok 17 - generic navigation changes canonical selection without modifying fixtures or another session
+  ---
+  duration_ms: 2.687375
+  type: 'test'
+  ...
+# Subtest: Acme defines four reachable lanes, role-scoped actions and linked fictional product evidence
+ok 18 - Acme defines four reachable lanes, role-scoped actions and linked fictional product evidence
+  ---
+  duration_ms: 1.217292
+  type: 'test'
+  ...
+# Subtest: parameter validation uses Pack bounds/defaults and rejects unknown fields without coercion
+ok 19 - parameter validation uses Pack bounds/defaults and rejects unknown fields without coercion
+  ---
+  duration_ms: 2.508167
+  type: 'test'
+  ...
+# Subtest: Pack rejects malformed version, identity, bounds, model, rule, lane and truth references
+ok 20 - Pack rejects malformed version, identity, bounds, model, rule, lane and truth references
+  ---
+  duration_ms: 24.969042
+  type: 'test'
+  ...
+# Subtest: typed seed records agree with the visible synthetic walkthrough
+ok 21 - typed seed records agree with the visible synthetic walkthrough
+  ---
+  duration_ms: 0.101875
+  type: 'test'
+  ...
+# Subtest: dynamic loader is data-only and rejects invalid/missing files
+ok 22 - dynamic loader is data-only and rejects invalid/missing files
+  ---
+  duration_ms: 6.775583
+  type: 'test'
+  ...
+# Subtest: session creation produces unique IDs and isolated canonical state and logs
+ok 23 - session creation produces unique IDs and isolated canonical state and logs
+  ---
+  duration_ms: 6.436542
+  type: 'test'
+  ...
+# Subtest: ending is idempotent and does not end or append events in another session
+ok 24 - ending is idempotent and does not end or append events in another session
+  ---
+  duration_ms: 1.565084
+  type: 'test'
+  ...
+# Subtest: errors are session-scoped; unknown sessions remain unknown
+ok 25 - errors are session-scoped; unknown sessions remain unknown
+  ---
+  duration_ms: 0.43875
+  type: 'test'
+  ...
+# Subtest: separate application stores have no shared state
+ok 26 - separate application stores have no shared state
+  ---
+  duration_ms: 0.10025
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136.40575
+
+> gde-p0@0.0.1 build
+> npm run typecheck && vite build --config apps/web/vite.config.ts && npm run build:server
+
+
+> gde-p0@0.0.1 typecheck
+> tsc --noEmit
+
+vite v5.4.19 building for production...
+transforming...
+✓ 47 modules transformed.
+rendering chunks...
+computing gzip size...
+../../dist/web/index.html                   0.40 kB │ gzip:  0.29 kB
+../../dist/web/assets/index-4ewOarQ-.css    7.99 kB │ gzip:  2.45 kB
+../../dist/web/assets/index-Crj3bbiB.js   220.26 kB │ gzip: 65.27 kB
+✓ built in 360ms
+
+> gde-p0@0.0.1 build:server
+> tsc -p tsconfig.server.json && node scripts/copy-packs.mjs
