@@ -1,7 +1,7 @@
 # Documentation index
 
 Start at [repository handoff](../HANDOFF.md) and [application README](../README.md).
-Current implementation: P5 governed knowledge on local `p5-governed-knowledge`, uncommitted. **P5 PASS:** deterministic checks, fixture UI and 51-turn real-provider acceptance pass; finite approved phrasing remains explicit. **P4 PASS** is committed and pushed at `9314fae` on `p4-text-agent`. P3 is pushed at `7ff7ef6` (docs `356db83`).
+Current implementation: P5 governed knowledge committed and pushed at `0f44c11` on `p5-governed-knowledge`. **P5 PASS:** deterministic checks, fixture UI and 51-turn real-provider acceptance pass; finite approved phrasing remains explicit. **P4 PASS** is committed and pushed at `9314fae` on `p4-text-agent`. P3 is pushed at `7ff7ef6` (docs `356db83`).
 
 | Phase | Primary record | Supporting documentation/evidence |
 | --- | --- | --- |

@@ -160,4 +160,4 @@ See [P2 authoring guide](docs/P2-product-pack.md) for the original schema and
 P0 is pushed to `main` at `a66512b`. P1 is pushed on `p1-demo-twin` at `2029f29`.
 P2 was checkpointed locally at `df24449` before P3. P3 is on
 `p3-deterministic-demo-engine`, committed and pushed at `7ff7ef6`.
-**P3 PASS.** **P4 PASS** is pushed on `p4-text-agent` at `9314fae`: 31 live HTTP turns (28 real Claude calls) and live browser checks passed. P5 is local on `p5-governed-knowledge`, uncommitted; P5 PASS is recorded. Run `npm run validate:knowledge:live` in an environment with authorized provider access for the new P5 rehearsal. See [handoff](HANDOFF.md). Stop before P6.
+**P3 PASS.** **P4 PASS** is pushed on `p4-text-agent` at `9314fae`: 31 live HTTP turns (28 real Claude calls) and live browser checks passed. P5 is committed and pushed on `p5-governed-knowledge` at `0f44c11`; P5 PASS is recorded. Run `npm run validate:knowledge:live` in an environment with authorized provider access for the new P5 rehearsal. See [handoff](HANDOFF.md). Stop before P6.

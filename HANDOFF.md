@@ -6,7 +6,7 @@ Updated: 2026-10-03. Resume here without the originating chat.
 
 Local repo: `/Users/stevenst.germain/Documents/Codex/2026-10-02/new-chat/gde`.
 Remote: <https://github.com/stevensaint/generative_demo>.
-Current branch: **p5-governed-knowledge**. P5 is local and uncommitted; preserve all working changes. GitHub alone does not include P5 yet.
+Current branch: **p5-governed-knowledge**. P5 is committed and pushed at **0f44c11** on p5-governed-knowledge. GitHub includes the validated P5 implementation and evidence.
 
 P4 is committed and pushed at **9314fae** on p4-text-agent, with all 13 gates recorded PASS, real Claude HTTP evidence (31 turns/28 calls) and live browser rehearsal. P3 implementation is pushed at 7ff7ef6 with docs 356db83. P2 df24449 is in ancestry; P1 2029f29; P0 main a66512b.
 
@@ -74,3 +74,7 @@ Suggested future coding instruction:
 All 40 facts now have distinct reviewed full, brief and conversational variants. Claude can choose concise wording and fact order within the same approved semantic envelope; required qualifications are still appended by the Guard. This improves naturalization without permitting unrestricted prose or adding a second model. The structural limit remains explicit. The final corpus passed 68 tests, 12 real TCP tests, builds, Pack validation and startup checks.
 
 The sandbox retry remained blocked; the user’s local run then passed all 51 turns. P5 PASS is recorded. No provider restrictions were bypassed and no P6 work was started.
+
+## P6 source retrieval
+
+The user authorized retrieving and pinging the “Noodle – Generative Demo” conversation for frozen P6 and later phases. Thread-list connector calls failed twice, so no verified thread ID or content was obtained and no message was sent. Native ChatGPT/Codex app control was denied. Frozen P6 remains unavailable locally; do not infer its full scope from its title. Request the exact source or retry the authorized connector when it works. No P6 implementation began.

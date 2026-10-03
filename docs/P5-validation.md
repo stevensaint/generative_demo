@@ -1,6 +1,6 @@
 # P5 validation — PASS
 
-Date: 2026-10-03. Branch: p5-governed-knowledge. Frozen authority: [P5](architecture/P5-frozen.md). P4 baseline committed and pushed on p4-text-agent at **9314fae**. P5 is uncommitted and prepared for review/transfer.
+Date: 2026-10-03. Branch: p5-governed-knowledge. Frozen authority: [P5](architecture/P5-frozen.md). P4 baseline committed and pushed on p4-text-agent at **9314fae**. P5 is committed and pushed at **0f44c11**, ready for transfer.
 
 **P5 PASS recorded.** The user ran the checked-in live acceptance script locally. The saved [real-provider report](P5-live-evidence.json) is PASS: all 51 turns completed with 20 approved answers, one evidence synthesis, 22 safe escalations and eight clarifications. Twenty-one substantive questions used the real Claude path; denied/unclear questions used deterministic local policy. Independent inspection verified factual responses against approved phrase selections, references and qualifications. No unsupported claims occurred in this bank. See [live inspection](P5-live-evidence.txt).
 
@@ -47,4 +47,4 @@ The hard gate has **zero unsupported claims in the deterministic and real-provid
 
 All 20 P5 criteria are demonstrated using the saved source, automated tests, real TCP API checks, real-provider acceptance and explicitly separate fixture UI evidence. Keep the bank small and use observed failures as regressions; it is a safety proof, not an exhaustive ontology of customer questions. Later approved datasets can enrich Product Truth and phrasing without changing authority boundaries.
 
-Sessions and Questions remain process-local; approved phrasing is finite; local retrieval is conservative. No general factual answers, arbitrary paraphrase validation or arbitrary-corpus coverage are claimed. Real-provider screen rehearsal may be useful later but is not needed to duplicate these completed P5 checks. No P6 work was performed. P5 changes are staged and uncommitted on p5-governed-knowledge.
+Sessions and Questions remain process-local; approved phrasing is finite; local retrieval is conservative. No general factual answers, arbitrary paraphrase validation or arbitrary-corpus coverage are claimed. Real-provider screen rehearsal may be useful later but is not needed to duplicate these completed P5 checks. No P6 work was performed. P5 is committed and pushed at 0f44c11 on p5-governed-knowledge.

@@ -1,6 +1,6 @@
 # Claude repository instructions
 
-Read [HANDOFF.md](HANDOFF.md), [README](README.md), [frozen P5](docs/architecture/P5-frozen.md) and [P5 validation](docs/P5-validation.md) before editing. Inspect branch and working changes. P4 is pushed at 9314fae on p4-text-agent; P5 is local and uncommitted on p5-governed-knowledge. Preserve its changes. Main remains P0.
+Read [HANDOFF.md](HANDOFF.md), [README](README.md), [frozen P5](docs/architecture/P5-frozen.md) and [P5 validation](docs/P5-validation.md) before editing. Inspect branch and working changes. P4 is pushed at 9314fae on p4-text-agent; P5 is committed and pushed at 0f44c11 on p5-governed-knowledge. Preserve its validated baseline. Main remains P0.
 
 P4 and **P5 PASS** are recorded. P5 has 68 automated tests, 12 TCP tests, 50 deterministic Q&A cases plus a successful 51-turn real-provider rehearsal, and separate fixture browser evidence. The Guard supports model-selected approved phrase variants/order, not unrestricted paraphrases. Preserve that explicit limitation and do not start P6 without user authorization. Do not mistake local-policy turns or fixture inference for real provider calls.
 
