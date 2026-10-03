@@ -1,0 +1,10 @@
+P5 real-provider HTTP acceptance — 2026-10-03 UTC (2026-10-02 local)
+Run by the user on their local computer using the checked-in validate:knowledge:live script, existing private key and ClaudeProvider. Saved JSON inspected independently by Codex.
+Status: PASS. All 51 turns completed and all script assertions passed.
+20 APPROVED_QA, 1 EVIDENCE_SYNTHESIS, 22 ESCALATION, 8 clarification with null answer mode.
+21 approved/synthesis questions used the real provider path; rejected/unclear categories use deterministic local policy, not 51 claimed model calls.
+Independent inspection confirmed each factual answer matches its plan’s approved phrase selections, references and required qualification; Question and knowledge-trace IDs agree.
+Model selected 29 conversational claim phrases and 1 brief phrase across the substantive answers.
+Every turn retained initial ProductState and DemoState; pinned knowledge version 1.0.0.
+No unsupported claims in this evaluation bank. Real-provider acceptance is separate from fixture browser UI acceptance.
+Earlier sandbox failures preserved in P5-live-blocked-attempt.json and P5-live-attempt-evidence.txt; latest successful report P5-live-evidence.json.

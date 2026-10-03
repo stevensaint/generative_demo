@@ -1,4 +1,4 @@
-# GDE — P4 Text Demo Agent
+# GDE — P5 Governed Knowledge
 
 For transfer or a new coding-assistant session, begin with
 [HANDOFF.md](HANDOFF.md). [CLAUDE.md](CLAUDE.md) provides Claude's entry
@@ -14,6 +14,8 @@ P4 adds customer text control through a runtime-validated proposal, the Demo
 Controller and State Engine. **P4 PASS: automated checks, real Claude HTTP acceptance and
 live browser rehearsal are complete.** See [P4 validation](docs/P4-validation.md)
 and the user-supplied [frozen P4 scope](docs/architecture/P4-frozen.md).
+
+P5 adds 40 versioned fictional Product Facts, 24 question families, narrow local retrieval, a deterministic Claim Guard and first-class session Questions. **P5 PASS:** automated checks, fixture browser validation and the 51-turn real-provider acceptance pass. Approved phrasing selection is deliberately constrained. See [P5 validation](docs/P5-validation.md) and [P5 engine](docs/P5-engine.md). Stop before P6.
 
 ## Run
 
@@ -64,11 +66,12 @@ default records/context while retaining session events.
 npm run check
 npm run test:http
 npm run validate:pack
+npm run validate:knowledge
 node scripts/test-pack-runtime.mjs
 ```
 
-`check` runs strict TypeScript, 53 tests (including architectural boundaries),
-and frontend/backend builds. `test:http` runs 11 API tests over actual loopback
+`check` runs strict TypeScript, 68 tests (including architectural boundaries),
+and frontend/backend builds. `test:http` runs 12 API tests over actual loopback
 TCP. [P4 validation](docs/P4-validation.md) distinguishes passing deterministic
 checks and completed live provider/browser acceptance. Run `npm run validate:agent:live`
 in an ordinary local Terminal with the configured key to exercise real Claude;
@@ -82,6 +85,7 @@ browser handoff was verified before the P3 checkpoint.
 | --- | --- |
 | `packages/contracts` | Generic validated state, commands, events, snapshots, Pack/runtime and presentation shapes |
 | `packages/agent` | Bounded model context, structured Claude proposals and a single GDE Agent with no state/UI authority |
+| `packages/knowledge` | Narrow authored-truth retrieval and deterministic Claim Guard |
 | `packages/engine` | Controller, isolated canonical store, generic schema/reference/transition/guard validation |
 | `packages/product-packs/acme` | Fictional JSON configuration, deterministic handlers, cross-object rules and state projections |
 | `packages/product-packs/runtimes.ts` | Explicit trusted runtime registry, composed by the backend entry point |
@@ -100,16 +104,14 @@ CustomerModel stores grounded updates with provenance, confidence and correction
 history. ConversationState holds bounded recent context and outstanding questions.
 The model requests semantic actions; the Controller validates; the State Engine
 makes them true. Model output is never rendered as an unrestricted factual answer.
-Only bounded Pack narration is used; unsupported substantive questions receive
-the temporary capture response. P5 governed Q&A, voice, a separate planner, Fast
-Router, database and proprietary/vendor materials are outside this implementation.
+Approved Product Truth governs factual answers and narration; unsupported questions receive safe capture. Voice, a separate planner, Fast Router, database and proprietary/vendor materials remain outside this implementation.
 See [P4 engine](docs/P4-engine.md) for context, orchestration and chat contracts.
 
 ## API
 
 | Method | Path | Result |
 | --- | --- | --- |
-| GET | `/api/health` | Health and P4 marker |
+| GET | `/api/health` | Health and P5 marker |
 | GET | `/api/product-pack` | Fictional metadata |
 | GET | `/api/product-pack/manifest` | Validated versioned Pack |
 | GET | `/api/demo-presentation` | Authored initial blueprint; live views use workspace projection |
@@ -147,7 +149,7 @@ identity provider, expiry/cleanup or browser-close auto-ending. Use **End sessio
 
 ## Pack configuration and checkpoints
 
-The default Pack is `packages/product-packs/acme/pack.json`, version **0.3.0**;
+The default Pack is `packages/product-packs/acme/pack.json`, version **0.5.0** (knowledge and Policy versions **1.0.0**);
 builds copy it into `dist`. `GDE_PRODUCT_PACK_PATH` selects a trusted absolute
 JSON path at startup. Invalid Pack/model data prevents listening. Only explicitly
 registered runtimes execute; JSON cannot load executable code. Alternate
@@ -158,6 +160,4 @@ See [P2 authoring guide](docs/P2-product-pack.md) for the original schema and
 P0 is pushed to `main` at `a66512b`. P1 is pushed on `p1-demo-twin` at `2029f29`.
 P2 was checkpointed locally at `df24449` before P3. P3 is on
 `p3-deterministic-demo-engine`, committed and pushed at `7ff7ef6`.
-**P3 PASS.** **P4 PASS** is recorded locally on `p4-text-agent`: 31 live HTTP turns
-(28 real Claude calls) and live browser checks passed. P4 has not been committed or pushed.
-See [P4 scope status](docs/P4-scope-status.md). Stop before P5.
+**P3 PASS.** **P4 PASS** is pushed on `p4-text-agent` at `9314fae`: 31 live HTTP turns (28 real Claude calls) and live browser checks passed. P5 is local on `p5-governed-knowledge`, uncommitted; P5 PASS is recorded. Run `npm run validate:knowledge:live` in an environment with authorized provider access for the new P5 rehearsal. See [handoff](HANDOFF.md). Stop before P6.

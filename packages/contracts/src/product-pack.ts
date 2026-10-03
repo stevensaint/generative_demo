@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ProductFactSchema, GovernedKnowledgeSchema } from './knowledge.js';
 import { DemoPresentationSchema, NavigationTargetSchema } from './presentation.js';
 import { ProductPresentationSchema } from './index.js';
 
@@ -22,6 +23,7 @@ const Parameter = z.discriminatedUnion('kind', [
 export const ProductPackSchema = z.object({
   schemaVersion: z.literal('1.0'), version: z.string().regex(/^\d+\.\d+\.\d+$/),
   metadata: ProductPresentationSchema, presentation: DemoPresentationSchema,
+  knowledgeVersion: z.string().regex(/^\d+\.\d+\.\d+$/).optional(), knowledge: GovernedKnowledgeSchema.optional(),
   roles: z.array(z.object({ id: Id, label: Text, description: Text }).strict()).min(1),
   sites: z.array(z.object({ id: Id, label: Text }).strict()).min(1),
   parameters: z.array(Parameter),
@@ -48,13 +50,13 @@ export const ProductPackSchema = z.object({
     edges: z.array(z.object({ from: Id, to: Id, label: Text }).strict()),
   }).strict()).min(1),
   policy: z.object({
-    mode: z.literal('fictional-demo-only'), execution: z.enum(['definitions-only', 'deterministic']),
+    version: z.string().regex(/^\d+\.\d+\.\d+$/).default('1.0.0'), mode: z.literal('fictional-demo-only'), execution: z.enum(['definitions-only', 'deterministic']),
     unsupportedQuestion: z.literal('escalate'), blockedCapabilities: z.array(Text).min(1),
   }).strict(),
   truth: z.object({
     version: z.string().regex(/^\d+\.\d+\.\d+$/), scope: z.literal('fictional-demo-only'),
     evidence: z.array(z.object({ id: Id, source: Text, description: Text }).strict()).min(1),
-    facts: z.array(z.object({ id: Id, statement: Text, status: z.enum(['available', 'defined-only']), evidenceIds: z.array(Id).min(1) }).strict()).min(1),
+    facts: z.array(z.union([ProductFactSchema, z.object({ id: Id, statement: Text, status: z.enum(['available', 'defined-only']), evidenceIds: z.array(Id).min(1) }).strict()])).min(1),
     approvedQA: z.array(z.object({ id: Id, question: Text, answer: Text, factIds: z.array(Id).min(1) }).strict()),
     escalation: z.object({ message: Text, triggers: z.array(Text).min(1) }).strict(),
   }).strict(),
@@ -172,6 +174,17 @@ export const ProductPackSchema = z.object({
     let size = -1;
     while (size !== reachable.size) { size = reachable.size; for (const edge of lane.edges) if (reachable.has(edge.from)) reachable.add(edge.to); }
     if (lane.nodes.some(node => !reachable.has(node.id))) fail(`Unreachable lane node: ${lane.id}`);
+  }
+  if (!!pack.knowledge !== !!pack.knowledgeVersion) fail('Knowledge and version must be configured together.');
+  if (pack.knowledge) {
+    if (pack.knowledgeVersion !== pack.truth.version) fail('Knowledge version mismatch.');
+    unique(pack.knowledge.families, 'question family'); unique(pack.knowledge.synthesis, 'synthesis');
+    for (const fact of pack.truth.facts) {
+      if (!ProductFactSchema.safeParse(fact).success) fail(`Ungoverned fact: ${fact.id}`);
+      if ('supersededBy' in fact && fact.supersededBy) refs([fact.supersededBy], ids(pack.truth.facts), 'supersession');
+      if ('conflictsWith' in fact) refs(fact.conflictsWith, ids(pack.truth.facts), 'conflict');
+    }
+    for (const entry of [...pack.knowledge.families, ...pack.knowledge.synthesis, ...pack.knowledge.narratives]) refs(entry.factRefs, ids(pack.truth.facts), 'knowledge fact');
   }
   for (const fact of pack.truth.facts) refs(fact.evidenceIds, ids(pack.truth.evidence), 'fact evidence');
   for (const qa of pack.truth.approvedQA) refs(qa.factIds, ids(pack.truth.facts), 'Q&A fact');

@@ -1,0 +1,98 @@
+
+> gde-p0@0.0.1 validate:knowledge
+> tsc -p tsconfig.tests.json && node --test .test-dist/tests/knowledge.test.js .test-dist/tests/knowledge-evaluations.test.js
+
+TAP version 13
+# Subtest: P5 semantic evaluation — normal
+ok 1 - P5 semantic evaluation — normal
+  ---
+  duration_ms: 4.895667
+  type: 'test'
+  ...
+# Subtest: P5 semantic evaluation — ambiguous
+ok 2 - P5 semantic evaluation — ambiguous
+  ---
+  duration_ms: 0.118458
+  type: 'test'
+  ...
+# Subtest: P5 semantic evaluation — boundary
+ok 3 - P5 semantic evaluation — boundary
+  ---
+  duration_ms: 0.176
+  type: 'test'
+  ...
+# Subtest: Make GDE Lie — unsupported product claims are forbidden
+ok 4 - Make GDE Lie — unsupported product claims are forbidden
+  ---
+  duration_ms: 0.084083
+  type: 'test'
+  ...
+# Subtest: P5 corpus validates stable atomic facts, families, version and references
+ok 5 - P5 corpus validates stable atomic facts, families, version and references
+  ---
+  duration_ms: 7.228042
+  type: 'test'
+  ...
+# Subtest: approved claim envelopes allow phrasing/order while always preserving evidence and qualification
+ok 6 - approved claim envelopes allow phrasing/order while always preserving evidence and qualification
+  ---
+  duration_ms: 2.58075
+  type: 'test'
+  ...
+# Subtest: Claim Guard fails closed against arbitrary prose, unknown refs, added fields, promotion and missing qualifications
+ok 7 - Claim Guard fails closed against arbitrary prose, unknown refs, added fields, promotion and missing qualifications
+  ---
+  duration_ms: 0.874208
+  type: 'test'
+  ...
+# Subtest: synthesis uses a sufficient bounded evidence bundle, not related integration concepts
+ok 8 - synthesis uses a sufficient bounded evidence bundle, not related integration concepts
+  ---
+  duration_ms: 0.291375
+  type: 'test'
+  ...
+# Subtest: unavailable, future, superseded, conflicting and ambiguous truth escalates; model never adjudicates it
+ok 9 - unavailable, future, superseded, conflicting and ambiguous truth escalates; model never adjudicates it
+  ---
+  duration_ms: 4.461083
+  type: 'test'
+  ...
+# Subtest: knowledge snapshot stays pinned and retrieval context remains narrow
+ok 10 - knowledge snapshot stays pinned and retrieval context remains narrow
+  ---
+  duration_ms: 4.542042
+  type: 'test'
+  ...
+# Subtest: grounded Q&A records first-class questions, exact provenance and existing event backbone without product mutation
+ok 11 - grounded Q&A records first-class questions, exact provenance and existing event backbone without product mutation
+  ---
+  duration_ms: 10.144375
+  type: 'test'
+  ...
+# Subtest: unsupported specifics bypass model memory and remain captured; malformed claim output never mutates canonical state
+ok 12 - unsupported specifics bypass model memory and remain captured; malformed claim output never mutates canonical state
+  ---
+  duration_ms: 13.8225
+  type: 'test'
+  ...
+# Subtest: customer assertions cannot create or modify Product Truth; customer/model/UI state is not retrieval authority
+ok 13 - customer assertions cannot create or modify Product Truth; customer/model/UI state is not retrieval authority
+  ---
+  duration_ms: 6.8905
+  type: 'test'
+  ...
+# Subtest: substantive demo narration uses approved facts and qualifications and fails closed with no evidence
+ok 14 - substantive demo narration uses approved facts and qualifications and fails closed with no evidence
+  ---
+  duration_ms: 4.639209
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 116.450709

@@ -1,3 +1,6 @@
+import { ClaimGuard, type GuardedAnswer } from '../../knowledge/src/claim-guard.js';
+import { LocalKnowledgeProvider } from '../../knowledge/src/local-knowledge-provider.js';
+import type { KnowledgeTrace, Question } from '../../contracts/src/knowledge.js';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { GDEAgent } from '../../agent/src/gde-agent.js';
@@ -39,8 +42,11 @@ export class DemoTurnExecutor {
     const before = store.get(id).session;
     if (before.status !== 'active') throw new SessionError('SESSION_ENDED');
     if (before.revision !== request.expectedRevision) throw new SessionError('REVISION_CONFLICT');
-    const agent = this.agent ?? new GDEAgent({ name: 'unconfigured', model: 'unconfigured', propose: async () => { throw new ProviderFailure('PROVIDER_UNAVAILABLE'); } });
-    const local = agent.localControl(request.text), localPolicy = !local && agent.isFactualQuestion(request.text);
+    const agent = this.agent ?? new GDEAgent({ name: 'unconfigured', model: 'unconfigured', propose: async () => { throw new ProviderFailure('PROVIDER_UNAVAILABLE'); } }, undefined, undefined, this.controller.pack.knowledge ? new LocalKnowledgeProvider(this.controller.pack) : undefined);
+    const local = agent.localControl(request.text);
+    const selection = !local ? agent.knowledge?.retrieve({ question: request.text, currentLane: before.demoState.currentLane, currentScreen: before.demoState.currentScreen, ...before }) : undefined;
+    const isQuestion = !!selection && selection.classification !== 'DEMO_NAVIGATION';
+    const localPolicy = !local && (selection ? selection.mode === 'ESCALATION' || selection.classification === 'UNCLEAR' : agent.isFactualQuestion(request.text));
     if (this.pending.has(id) && !local) throw new SessionError('TURN_BUSY');
     if (local) this.cancel(id);
     const turnId = randomUUID(), abort = new AbortController();
@@ -52,30 +58,36 @@ export class DemoTurnExecutor {
     let response = 'I couldn’t complete that turn. Please try again or use the demo controls.';
     let status: TurnRecord['status'] = 'failed', code: ErrorCode | null = null;
     let providerHttpStatus: number | null = null;
+    let knowledge: KnowledgeTrace | null = null, guarded: GuardedAnswer | null = null;
+    const questionId = isQuestion ? randomUUID() : null;
     let actions: TurnRecord['actions'] = [], changes: TurnRecord['customerChanges'] = [], questionIds: string[] = [];
     try {
-      proposal = DemoTurnProposalSchema.parse(await agent.propose(this.controller.pack, this.controller.view(id), request.text, this.controller.narrative(id), abort.signal));
+      if (selection) store.knowledgeEvent(id, 'KNOWLEDGE_RETRIEVED', {turnId, ...(questionId ? {questionId} : {}), knowledgeVersion: selection.version, knowledgeRefs: selection.facts.map(fact => fact.id)});
+      proposal = DemoTurnProposalSchema.parse(await agent.propose(this.controller.pack, this.controller.view(id), request.text, this.controller.narrative(id), abort.signal, selection));
       if (abort.signal.aborted) throw new SessionError('TURN_CANCELLED');
       if (store.get(id).session.revision !== before.revision || store.get(id).session.status !== 'active') throw new SessionError('REVISION_CONFLICT');
       // Lifecycle requests require explicit customer direction, never AI inference.
       if ((proposal.nextStep === 'end' || proposal.understanding.intent === 'end') && local !== 'end') throw new SessionError('CAPABILITY_NOT_AVAILABLE');
       if ((proposal.nextStep === 'pause' || proposal.understanding.intent === 'stop') && local !== 'stop') throw new SessionError('CAPABILITY_NOT_AVAILABLE');
       store.turnEvent(id, 'INTENT_DETECTED', turnId);
-      const capture = !local && (agent.isFactualQuestion(request.text) || proposal.questionHandling === 'capture' || proposal.understanding.intent === 'question');
+      if (selection && !isQuestion && proposal.answerPlan) throw new SessionError('MODEL_OUTPUT_INVALID');
+      if (isQuestion && proposal.requestedActions.length) throw new SessionError('CAPABILITY_NOT_AVAILABLE');
+      if (isQuestion && selection.mode) guarded = new ClaimGuard().answer(selection, proposal.answerPlan);
+      const capture = !local && (selection ? guarded?.mode === 'ESCALATION' : agent.isFactualQuestion(request.text) || proposal.questionHandling === 'capture' || proposal.understanding.intent === 'question');
       if (capture && proposal.requestedActions.length) throw new SessionError('CAPABILITY_NOT_AVAILABLE');
       const customerModel = this.customerModel(before.customerModel, proposal, request.text, turnId, sequence);
       const conversationState = structuredClone(before.conversationState);
       conversationState.sequence = sequence; conversationState.paused = local === 'stop';
       if (capture) {
-        const question = { id: randomUUID(), turnId, text: request.text, status: 'captured' as const };
+        const question = { id: questionId ?? randomUUID(), turnId, text: request.text, status: 'captured' as const };
         conversationState.outstandingQuestions.push(question); questionIds = [question.id];
       }
       // Only predefined text is customer-facing. Free model summaries are audit data.
       const clarification = { clarify_role: `Which demo role would you like: ${this.controller.pack.roles.map(role => role.label).join(', ')}?`, clarify_site: 'Which available demo site would you like to explore?', clarify_record: 'Which displayed record would you like to open?', clarify_action: 'What would you like to see instead?', clarify_setting: 'Which run setting should change? Applying a setting restarts the synthetic workflow.' };
       // Controller owns action execution; response is finalized only after success.
-      const provisional = local === 'stop' ? 'Paused. Tell me where you’d like to go when you’re ready.' : local === 'end' ? 'The demo has ended. Thanks for exploring.' : capture ? CAPTURE_RESPONSE : proposal.narrationIntent in clarification ? clarification[proposal.narrationIntent as keyof typeof clarification] : proposal.narrationIntent === 'acknowledge_interest' ? 'I’ve noted your interest. What would you like to explore next?' : 'What would you like to explore next?';
+      const provisional = local === 'stop' ? 'Paused. Tell me where you’d like to go when you’re ready.' : local === 'end' ? 'The demo has ended. Thanks for exploring.' : guarded ? guarded.text : capture ? CAPTURE_RESPONSE : proposal.narrationIntent in clarification ? clarification[proposal.narrationIntent as keyof typeof clarification] : proposal.narrationIntent === 'acknowledge_interest' ? 'I’ve noted your interest. What would you like to explore next?' : 'What would you like to explore next?';
       conversationState.recent = [...conversationState.recent, { turnId, customer: request.text, response: provisional }].slice(-6);
-      const narrate = !local && !capture && !(proposal.narrationIntent in clarification) && proposal.narrationIntent !== 'acknowledge_interest';
+      const narrate = !local && !capture && !isQuestion && !(proposal.narrationIntent in clarification) && proposal.narrationIntent !== 'acknowledge_interest';
       const view = this.controller.executeTurn(id, before.revision, proposal.requestedActions, { customerModel, conversationState, narrate }, turnId, local === 'end');
       response = view.session.conversationState.recent.at(-1)!.response;
       actions = proposal.requestedActions.map(action => ({ type: action.type, status: 'approved', code: null }));
@@ -92,13 +104,33 @@ export class DemoTurnExecutor {
       store.recordError(id, code);
     } finally { if (this.pending.get(id)?.turnId === turnId) this.pending.delete(id); }
     const after = store.get(id).session;
+    if (selection) {
+      if (isQuestion && questionId) {
+        const completed = status === 'completed', answerMode = completed ? guarded?.mode ?? null : 'ESCALATION';
+        const record: Question = {id:questionId,sessionId:id,participantId:'customer',turnId,text:request.text, classification:selection.classification,
+          status: !completed || !answerMode ? 'UNRESOLVED' : answerMode === 'ESCALATION' ? 'ESCALATED' : 'ANSWERED', answerMode,
+          knowledgeRefs: completed ? guarded?.refs ?? [] : [], familyId: completed ? guarded?.familyId ?? null : null,
+          knowledgeVersion: before.knowledgeVersion, answer:response, escalationReason: completed ? guarded?.reason ?? (answerMode ? null : 'CLARIFICATION_REQUIRED') : code ?? 'TURN_FAILED', timestamp:new Date().toISOString()};
+        store.recordQuestion(id, record); questionIds = [questionId];
+        knowledge = {questionId,classification:record.classification, answerMode:record.answerMode,knowledgeRefs:record.knowledgeRefs, familyId:record.familyId, knowledgeVersion:record.knowledgeVersion,escalationReason:record.escalationReason};
+        if (record.status === 'ESCALATED' || record.status === 'UNRESOLVED') store.knowledgeEvent(id,'QUESTION_ESCALATED',{turnId,questionId,knowledgeRefs:record.knowledgeRefs,knowledgeVersion:record.knowledgeVersion,answerMode:'ESCALATION'});
+        else store.knowledgeEvent(id,'APPROVED_ANSWER_USED',{turnId,questionId,knowledgeRefs:record.knowledgeRefs,knowledgeVersion:record.knowledgeVersion,answerMode:record.answerMode!});
+      } else if (status === 'completed') {
+        const narration = new LocalKnowledgeProvider(this.controller.pack).narration(after.demoState.currentScreen,after);
+        const usesFacts = !local && !proposal?.narrationIntent.startsWith('clarify') && proposal?.narrationIntent !== 'acknowledge_interest';
+        const refs = usesFacts && narration.mode !== 'ESCALATION' ? narration.facts.map(fact => fact.id) : [];
+        knowledge = {questionId:null,classification:'DEMO_NAVIGATION', answerMode:refs.length ? 'EVIDENCE_SYNTHESIS' : null,knowledgeRefs:refs,familyId:null,knowledgeVersion:after.knowledgeVersion,escalationReason:null};
+        if (refs.length) store.knowledgeEvent(id,'KNOWLEDGE_RETRIEVED',{turnId,knowledgeRefs:refs,knowledgeVersion:after.knowledgeVersion});
+        if (refs.length) store.knowledgeEvent(id,'APPROVED_ANSWER_USED',{turnId,knowledgeRefs:refs,knowledgeVersion:after.knowledgeVersion,answerMode:'EVIDENCE_SYNTHESIS'});
+      }
+    }
     const productChanges = status === 'completed' ? [...new Set([...before.productState.records, ...after.productState.records].map(record => record.id))].flatMap(recordId => {
       const old = before.productState.records.find(record => record.id === recordId), fresh = after.productState.records.find(record => record.id === recordId);
       return JSON.stringify(old) === JSON.stringify(fresh) ? [] : [{ recordId, beforeState: old?.state ?? null, after: fresh ?? null }];
     }) : [];
     store.recordTurn(id, { turnId, sequence, timestamp: new Date().toISOString(), customerText: request.text,
       provider: local ? 'local-control' : localPolicy ? 'local-policy' : this.agent?.provider.name ?? 'claude', model: local || localPolicy ? 'none' : this.agent?.provider.model ?? 'unconfigured',
-      status, proposal, response, actions, customerChanges: changes, questionIds, productChanges, beforeRevision: before.revision, afterRevision: after.revision,
+      status, proposal, response, actions, knowledge, customerChanges: changes, questionIds, productChanges, beforeRevision: before.revision, afterRevision: after.revision,
       resultingContext: { screen: after.demoState.currentScreen, recordId: after.demoState.selectedRecordId, role: after.demoState.currentRole, site: after.demoState.currentSite, lifecycle: after.status }, errorCode: code, providerHttpStatus });
     store.turnEvent(id, 'DEMO_TURN_CREATED', turnId, code ?? undefined);
     return this.view(id);

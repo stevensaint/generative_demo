@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "packId": "acme-quality-cloud",
+  "version": "0.5.0",
+  "lanes": [
+    "Sample Management",
+    "Lab Execution",
+    "Exception/OOS",
+    "QA Review"
+  ],
+  "roles": [
+    "Analyst",
+    "QA",
+    "Lab Manager"
+  ],
+  "entityTypes": 6,
+  "records": 4,
+  "actions": 11,
+  "transitions": 10,
+  "parameters": {
+    "site_count": 1,
+    "external_partner_count": 0,
+    "sample_count": 2,
+    "sample_source": "internal",
+    "result_profile": "mixed"
+  },
+  "execution": "deterministic"
+}

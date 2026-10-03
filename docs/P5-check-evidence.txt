@@ -1,0 +1,450 @@
+
+> gde-p0@0.0.1 check
+> npm run typecheck && npm test && npm run build
+
+
+> gde-p0@0.0.1 typecheck
+> tsc --noEmit
+
+
+> gde-p0@0.0.1 test
+> tsc -p tsconfig.tests.json && node --test .test-dist/tests/*.test.js
+
+TAP version 13
+# Subtest: validated model proposal routes navigation and workflow through Controller/State Engine with turn events
+ok 1 - validated model proposal routes navigation and workflow through Controller/State Engine with turn events
+  ---
+  duration_ms: 148.98175
+  type: 'test'
+  ...
+# Subtest: malformed, unknown-field and duplicate-argument model output cannot mutate any canonical state
+ok 2 - malformed, unknown-field and duplicate-argument model output cannot mutate any canonical state
+  ---
+  duration_ms: 89.473458
+  type: 'test'
+  ...
+# Subtest: unsupported action and invalid compound action reject atomically without customer-memory side effects
+ok 3 - unsupported action and invalid compound action reject atomically without customer-memory side effects
+  ---
+  duration_ms: 42.100417
+  type: 'test'
+  ...
+# Subtest: customer inference/correction preserve source quotes and supersession; inference cannot overwrite explicit facts
+ok 4 - customer inference/correction preserve source quotes and supersession; inference cannot overwrite explicit facts
+  ---
+  duration_ms: 120.664
+  type: 'test'
+  ...
+# Subtest: ungrounded updates, invented explicit values and high-confidence inference reject before actions
+ok 5 - ungrounded updates, invented explicit values and high-confidence inference reject before actions
+  ---
+  duration_ms: 115.475375
+  type: 'test'
+  ...
+# Subtest: factual product questions are captured without provider answers, including adversarial instructions
+ok 6 - factual product questions are captured without provider answers, including adversarial instructions
+  ---
+  duration_ms: 95.936084
+  type: 'test'
+  ...
+# Subtest: free model summaries never become narration; only bounded Pack narration is customer-facing
+ok 7 - free model summaries never become narration; only bounded Pack narration is customer-facing
+  ---
+  duration_ms: 16.33875
+  type: 'test'
+  ...
+# Subtest: model context is bounded, relevant, excludes full transcript/Pack truth and credentials
+ok 8 - model context is bounded, relevant, excludes full transcript/Pack truth and credentials
+  ---
+  duration_ms: 119.97275
+  type: 'test'
+  ...
+# Subtest: Stop cancels an outstanding turn; late provider completion cannot undo paused state
+ok 9 - Stop cancels an outstanding turn; late provider completion cannot undo paused state
+  ---
+  duration_ms: 15.854375
+  type: 'test'
+  ...
+# Subtest: manual changes during a model call reject stale proposal; model cannot end without explicit request
+ok 10 - manual changes during a model call reject stale proposal; model cannot end without explicit request
+  ---
+  duration_ms: 28.526083
+  type: 'test'
+  ...
+# Subtest: turn memory, questions, events and lifecycle remain isolated across sessions
+ok 11 - turn memory, questions, events and lifecycle remain isolated across sessions
+  ---
+  duration_ms: 19.291792
+  type: 'test'
+  ...
+# Subtest: Claude adapter sends strict structured output with no tools and rejects refusal/truncation/provider failures
+ok 12 - Claude adapter sends strict structured output with no tools and rejects refusal/truncation/provider failures
+  ---
+  duration_ms: 28.054459
+  type: 'test'
+  ...
+# Subtest: backend health and fictional presentation respond with valid contracts
+ok 13 - backend health and fictional presentation respond with valid contracts
+  ---
+  duration_ms: 105.923417
+  type: 'test'
+  ...
+# Subtest: concurrent sessions require distinct tokens and isolate read/end/error events
+ok 14 - concurrent sessions require distinct tokens and isolate read/end/error events
+  ---
+  duration_ms: 190.268958
+  type: 'test'
+  ...
+# Subtest: bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+ok 15 - bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+  ---
+  duration_ms: 74.104458
+  type: 'test'
+  ...
+# Subtest: unexpected backend errors produce sanitized ERROR_OCCURRED responses
+ok 16 - unexpected backend errors produce sanitized ERROR_OCCURRED responses
+  ---
+  duration_ms: 47.118417
+  type: 'test'
+  ...
+# Subtest: production HTTP server serves built-style assets and rejects traversal
+ok 17 - production HTTP server serves built-style assets and rejects traversal
+  ---
+  duration_ms: 42.363167
+  type: 'test'
+  ...
+# Subtest: manual navigation follows the fixed walkthrough and isolates session selection
+ok 18 - manual navigation follows the fixed walkthrough and isolates session selection
+  ---
+  duration_ms: 723.156917
+  type: 'test'
+  ...
+# Subtest: navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+ok 19 - navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+  ---
+  duration_ms: 33.833584
+  type: 'test'
+  ...
+# Subtest: a dynamically loaded alternative Pack changes API presentation without core edits
+ok 20 - a dynamically loaded alternative Pack changes API presentation without core edits
+  ---
+  duration_ms: 24.0605
+  type: 'test'
+  ...
+# Subtest: HTTP commands execute the golden path, reject stale/invalid requests and restore canonical snapshots
+ok 21 - HTTP commands execute the golden path, reject stale/invalid requests and restore canonical snapshots
+  ---
+  duration_ms: 76.837208
+  type: 'test'
+  ...
+# Subtest: text turns are authorized, inspectable and isolated through HTTP
+ok 22 - text turns are authorized, inspectable and isolated through HTTP
+  ---
+  duration_ms: 56.047792
+  type: 'test'
+  ...
+# Subtest: unconfigured chat has no fake provider; manual controls still work
+ok 23 - unconfigured chat has no fake provider; manual controls still work
+  ---
+  duration_ms: 15.703042
+  type: 'test'
+  ...
+# Subtest: governed answers and escalations preserve first-class questions, knowledge events and pinned versions over HTTP
+ok 24 - governed answers and escalations preserve first-class questions, knowledge events and pinned versions over HTTP
+  ---
+  duration_ms: 37.870791
+  type: 'test'
+  ...
+# Subtest: generic engine and contracts do not import Product Packs or product semantics
+ok 25 - generic engine and contracts do not import Product Packs or product semantics
+  ---
+  duration_ms: 28.405542
+  type: 'test'
+  ...
+# Subtest: frontend does not import canonical session engine or hard-code Acme presentation
+ok 26 - frontend does not import canonical session engine or hard-code Acme presentation
+  ---
+  duration_ms: 15.61975
+  type: 'test'
+  ...
+# Subtest: environment secrets are ignored, with only the safe example permitted
+ok 27 - environment secrets are ignored, with only the safe example permitted
+  ---
+  duration_ms: 137.576041
+  type: 'test'
+  ...
+# Subtest: Dependencies contain no provider, speech, database, or agent SDKs
+ok 28 - Dependencies contain no provider, speech, database, or agent SDKs
+  ---
+  duration_ms: 1.946625
+  type: 'test'
+  ...
+# Subtest: HTTP composition receives Pack configuration without direct Acme imports
+ok 29 - HTTP composition receives Pack configuration without direct Acme imports
+  ---
+  duration_ms: 3.045709
+  type: 'test'
+  ...
+# Subtest: golden failing-result workflow enforces rejection, resolution and atomic QA/sample approval
+ok 30 - golden failing-result workflow enforces rejection, resolution and atomic QA/sample approval
+  ---
+  duration_ms: 191.924375
+  type: 'test'
+  ...
+# Subtest: boundary pH values pass; below/above range creates exactly one linked exception
+ok 31 - boundary pH values pass; below/above range creates exactly one linked exception
+  ---
+  duration_ms: 335.175167
+  type: 'test'
+  ...
+# Subtest: bad state, role, inputs and duplicate assessment do not alter canonical state
+ok 32 - bad state, role, inputs and duplicate assessment do not alter canonical state
+  ---
+  duration_ms: 86.829333
+  type: 'test'
+  ...
+# Subtest: compound actions roll back earlier transitions when a later handler fails
+ok 33 - compound actions roll back earlier transitions when a later handler fails
+  ---
+  duration_ms: 7.143042
+  type: 'test'
+  ...
+# Subtest: handler writes cannot bypass schemas/references, and read copies cannot mutate state
+ok 34 - handler writes cannot bypass schemas/references, and read copies cannot mutate state
+  ---
+  duration_ms: 15.776875
+  type: 'test'
+  ...
+# Subtest: snapshot is detached current state without event history; stale command revisions reject
+ok 35 - snapshot is detached current state without event history; stale command revisions reject
+  ---
+  duration_ms: 39.294458
+  type: 'test'
+  ...
+# Subtest: all generic navigation/context commands remain distinct from ProductState
+ok 36 - all generic navigation/context commands remain distinct from ProductState
+  ---
+  duration_ms: 48.3555
+  type: 'test'
+  ...
+# Subtest: bounded configuration generates deterministic data; site scopes and reset preserve isolation
+ok 37 - bounded configuration generates deterministic data; site scopes and reset preserve isolation
+  ---
+  duration_ms: 49.162375
+  type: 'test'
+  ...
+# Subtest: workspace values, availability and audit history follow canonical state
+ok 38 - workspace values, availability and audit history follow canonical state
+  ---
+  duration_ms: 39.006542
+  type: 'test'
+  ...
+# Subtest: failing assessments require their exception and invalid specification fails before session creation
+ok 39 - failing assessments require their exception and invalid specification fails before session creation
+  ---
+  duration_ms: 17.086167
+  type: 'test'
+  ...
+# Subtest: P5 semantic evaluation — normal
+ok 40 - P5 semantic evaluation — normal
+  ---
+  duration_ms: 24.184625
+  type: 'test'
+  ...
+# Subtest: P5 semantic evaluation — ambiguous
+ok 41 - P5 semantic evaluation — ambiguous
+  ---
+  duration_ms: 0.491958
+  type: 'test'
+  ...
+# Subtest: P5 semantic evaluation — boundary
+ok 42 - P5 semantic evaluation — boundary
+  ---
+  duration_ms: 0.454875
+  type: 'test'
+  ...
+# Subtest: Make GDE Lie — unsupported product claims are forbidden
+ok 43 - Make GDE Lie — unsupported product claims are forbidden
+  ---
+  duration_ms: 0.245542
+  type: 'test'
+  ...
+# Subtest: P5 corpus validates stable atomic facts, families, version and references
+ok 44 - P5 corpus validates stable atomic facts, families, version and references
+  ---
+  duration_ms: 37.013709
+  type: 'test'
+  ...
+# Subtest: approved claim envelopes allow phrasing/order while always preserving evidence and qualification
+ok 45 - approved claim envelopes allow phrasing/order while always preserving evidence and qualification
+  ---
+  duration_ms: 62.52925
+  type: 'test'
+  ...
+# Subtest: Claim Guard fails closed against arbitrary prose, unknown refs, added fields, promotion and missing qualifications
+ok 46 - Claim Guard fails closed against arbitrary prose, unknown refs, added fields, promotion and missing qualifications
+  ---
+  duration_ms: 8.413416
+  type: 'test'
+  ...
+# Subtest: synthesis uses a sufficient bounded evidence bundle, not related integration concepts
+ok 47 - synthesis uses a sufficient bounded evidence bundle, not related integration concepts
+  ---
+  duration_ms: 6.394542
+  type: 'test'
+  ...
+# Subtest: unavailable, future, superseded, conflicting and ambiguous truth escalates; model never adjudicates it
+ok 48 - unavailable, future, superseded, conflicting and ambiguous truth escalates; model never adjudicates it
+  ---
+  duration_ms: 22.897167
+  type: 'test'
+  ...
+# Subtest: knowledge snapshot stays pinned and retrieval context remains narrow
+ok 49 - knowledge snapshot stays pinned and retrieval context remains narrow
+  ---
+  duration_ms: 31.841708
+  type: 'test'
+  ...
+# Subtest: grounded Q&A records first-class questions, exact provenance and existing event backbone without product mutation
+ok 50 - grounded Q&A records first-class questions, exact provenance and existing event backbone without product mutation
+  ---
+  duration_ms: 48.9425
+  type: 'test'
+  ...
+# Subtest: unsupported specifics bypass model memory and remain captured; malformed claim output never mutates canonical state
+ok 51 - unsupported specifics bypass model memory and remain captured; malformed claim output never mutates canonical state
+  ---
+  duration_ms: 54.093416
+  type: 'test'
+  ...
+# Subtest: customer assertions cannot create or modify Product Truth; customer/model/UI state is not retrieval authority
+ok 52 - customer assertions cannot create or modify Product Truth; customer/model/UI state is not retrieval authority
+  ---
+  duration_ms: 99.56675
+  type: 'test'
+  ...
+# Subtest: substantive demo narration uses approved facts and qualifications and fails closed with no evidence
+ok 53 - substantive demo narration uses approved facts and qualifications and fails closed with no evidence
+  ---
+  duration_ms: 20.653125
+  type: 'test'
+  ...
+# Subtest: generic React guide renders Pack lanes, bounds and approved answers without action controls
+ok 54 - generic React guide renders Pack lanes, bounds and approved answers without action controls
+  ---
+  duration_ms: 17.503125
+  type: 'test'
+  ...
+# Subtest: Pack configuration changes rendered content and remains escaped React data
+ok 55 - Pack configuration changes rendered content and remains escaped React data
+  ---
+  duration_ms: 17.564375
+  type: 'test'
+  ...
+# Subtest: chat and turn inspection escape untrusted customer/model text and disable ended controls
+ok 56 - chat and turn inspection escape untrusted customer/model text and disable ended controls
+  ---
+  duration_ms: 202.53975
+  type: 'test'
+  ...
+# Subtest: presentation rejects broken links, duplicate screen IDs and missing table cells
+ok 57 - presentation rejects broken links, duplicate screen IDs and missing table cells
+  ---
+  duration_ms: 45.739666
+  type: 'test'
+  ...
+# Subtest: controller navigation isolates canonical selection and returns detached snapshots
+ok 58 - controller navigation isolates canonical selection and returns detached snapshots
+  ---
+  duration_ms: 130.117375
+  type: 'test'
+  ...
+# Subtest: Acme defines four reachable lanes, role-scoped actions and linked fictional product evidence
+ok 59 - Acme defines four reachable lanes, role-scoped actions and linked fictional product evidence
+  ---
+  duration_ms: 1.974292
+  type: 'test'
+  ...
+# Subtest: parameter validation uses Pack bounds/defaults and rejects unknown fields without coercion
+ok 60 - parameter validation uses Pack bounds/defaults and rejects unknown fields without coercion
+  ---
+  duration_ms: 35.920708
+  type: 'test'
+  ...
+# Subtest: Pack rejects malformed version, identity, bounds, model, rule, lane and truth references
+ok 61 - Pack rejects malformed version, identity, bounds, model, rule, lane and truth references
+  ---
+  duration_ms: 220.91
+  type: 'test'
+  ...
+# Subtest: initial Pack templates contain no invented measurements, exceptions or decisions
+ok 62 - initial Pack templates contain no invented measurements, exceptions or decisions
+  ---
+  duration_ms: 0.528709
+  type: 'test'
+  ...
+# Subtest: dynamic loader is data-only and rejects invalid/missing files
+ok 63 - dynamic loader is data-only and rejects invalid/missing files
+  ---
+  duration_ms: 44.127625
+  type: 'test'
+  ...
+# Subtest: refresh pointer stores only validated credentials; corrupt or injected snapshots are discarded
+ok 64 - refresh pointer stores only validated credentials; corrupt or injected snapshots are discarded
+  ---
+  duration_ms: 5.672416
+  type: 'test'
+  ...
+# Subtest: session creation produces unique IDs and isolated canonical state and logs
+ok 65 - session creation produces unique IDs and isolated canonical state and logs
+  ---
+  duration_ms: 7.899958
+  type: 'test'
+  ...
+# Subtest: ending is idempotent and does not end or append events in another session
+ok 66 - ending is idempotent and does not end or append events in another session
+  ---
+  duration_ms: 2.458625
+  type: 'test'
+  ...
+# Subtest: errors are session-scoped; unknown sessions remain unknown
+ok 67 - errors are session-scoped; unknown sessions remain unknown
+  ---
+  duration_ms: 1.413167
+  type: 'test'
+  ...
+# Subtest: separate application stores have no shared state
+ok 68 - separate application stores have no shared state
+  ---
+  duration_ms: 3.767084
+  type: 'test'
+  ...
+1..68
+# tests 68
+# suites 0
+# pass 68
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1584.540209
+
+> gde-p0@0.0.1 build
+> npm run typecheck && vite build --config apps/web/vite.config.ts && npm run build:server
+
+
+> gde-p0@0.0.1 typecheck
+> tsc --noEmit
+
+vite v5.4.19 building for production...
+transforming...
+✓ 53 modules transformed.
+rendering chunks...
+computing gzip size...
+../../dist/web/index.html                   0.40 kB │ gzip:  0.29 kB
+../../dist/web/assets/index-Xxwgqd_5.css   10.26 kB │ gzip:  2.95 kB
+../../dist/web/assets/index-CvbkeKPm.js   237.13 kB │ gzip: 70.35 kB
+✓ built in 644ms
+
+> gde-p0@0.0.1 build:server
+> tsc -p tsconfig.server.json && node scripts/copy-packs.mjs

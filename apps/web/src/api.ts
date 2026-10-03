@@ -4,7 +4,7 @@ import { ProductPackSchema } from '../../../packages/contracts/src/product-pack.
 import { ApiErrorSchema, CreatedSessionSchema, HealthSchema, ProductPresentationSchema, SessionViewSchema, SnapshotSchema } from '../../../packages/contracts/src/index.js';
 import { DemoPresentationSchema, type NavigationTarget } from '../../../packages/contracts/src/presentation.js';
 
-async function request<T>(path: string, schema: z.ZodType<T>, method = 'GET', accessToken?: string, body?: unknown): Promise<T> {
+async function request<T>(path: string, schema: z.ZodType<T, z.ZodTypeDef, unknown>, method = 'GET', accessToken?: string, body?: unknown): Promise<T> {
   const response = await fetch(path, { method,
     headers: { ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}), ...(body ? { 'Content-Type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),

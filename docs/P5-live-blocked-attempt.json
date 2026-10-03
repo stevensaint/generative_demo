@@ -1,0 +1,47 @@
+{
+  "status": "BLOCKED",
+  "date": "2026-10-03T02:53:47.880Z",
+  "provider": "claude",
+  "turns": [
+    {
+      "group": "normal",
+      "text": "What information does a sample hold?",
+      "status": "failed",
+      "errorCode": "PROVIDER_UNAVAILABLE",
+      "providerHttpStatus": null,
+      "proposal": null,
+      "response": "Text chat is unavailable right now. You can still use the demo controls.",
+      "question": {
+        "id": "b24b413e-209b-4c6e-b130-98c51d11e97b",
+        "sessionId": "99b9b24f-009e-4485-9e82-4204e60dd938",
+        "participantId": "customer",
+        "turnId": "72394bc7-8231-40be-a0c3-9d177fcbd5f2",
+        "text": "What information does a sample hold?",
+        "classification": "APPROVED_PRODUCT_QUESTION",
+        "status": "UNRESOLVED",
+        "answerMode": "ESCALATION",
+        "knowledgeRefs": [],
+        "familyId": null,
+        "knowledgeVersion": "1.0.0",
+        "answer": "Text chat is unavailable right now. You can still use the demo controls.",
+        "escalationReason": "PROVIDER_UNAVAILABLE",
+        "timestamp": "2026-10-03T02:53:47.976Z"
+      },
+      "knowledge": {
+        "knowledgeVersion": "1.0.0",
+        "questionId": "b24b413e-209b-4c6e-b130-98c51d11e97b",
+        "classification": "APPROVED_PRODUCT_QUESTION",
+        "answerMode": "ESCALATION",
+        "knowledgeRefs": [],
+        "familyId": null,
+        "escalationReason": "PROVIDER_UNAVAILABLE"
+      }
+    }
+  ],
+  "reason": "PROVIDER_UNAVAILABLE",
+  "assertion": {
+    "message": "PROVIDER_UNAVAILABLE\n+ actual - expected\n\n+ 'failed'\n- 'completed'\n",
+    "actual": "failed",
+    "expected": "completed"
+  }
+}

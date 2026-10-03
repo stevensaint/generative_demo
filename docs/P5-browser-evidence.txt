@@ -1,0 +1,17 @@
+P5 built browser validation — 2026-10-03
+Provider: injected browser-fixture only; no real Claude calls or external API.
+Ephemeral loopback test preview, compiled P5 backend and production web build.
+
+PASS Explore demo: isolated active session, revision 0, two received samples.
+PASS What fields does a sample contain?: approved sample fields plus required fictional/production qualification; Question ANSWERED.
+PASS Does this integrate directly with SAP S/4HANA?: safe capture response, Question ESCALATED, no compatibility claim.
+PASS How does a measurement become an exception and reach QA review?: bounded four-fact synthesis plus qualification; Question ANSWERED.
+PASS Can it do that?: concise clarification, Question UNRESOLVED.
+PASS Product workspace remains work queue with both samples received after all Q&A.
+PASS Conversation details: structured Questions show answered/escalated/unresolved; four completed Demo Turns.
+PASS Reload: authorized conversation restored, question statuses retained.
+PASS End session: message textbox and Send disabled.
+PASS Browser console: no warnings/errors captured.
+Screenshot P5-browser-questions.png visually inspected: qualified answer, safe capture and structured question statuses visible. Conversation area has independent scrolling; full transcript separately verified via accessible text.
+
+This evidence is fixture UI/orchestration validation. Live P5 acceptance remains BLOCKED; do not interpret it as real Claude behavior.

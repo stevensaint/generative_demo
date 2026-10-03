@@ -1,3 +1,4 @@
+import { LocalKnowledgeProvider } from '../../../packages/knowledge/src/local-knowledge-provider.js';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -64,13 +65,13 @@ export function createApp(options: { pack: ProductPack; runtime?: PackRuntime; s
   const pack = ProductPackSchema.parse(options.pack);
   const { metadata: presentation, presentation: demoPresentation } = pack;
   const controller = new DemoController(pack, store, options.runtime);
-  const turns = new DemoTurnExecutor(controller, options.provider ? new GDEAgent(options.provider) : undefined);
+  const turns = new DemoTurnExecutor(controller, options.provider ? new GDEAgent(options.provider, undefined, undefined, pack.knowledge ? new LocalKnowledgeProvider(pack) : undefined) : undefined);
   const accessTokens = new Map<string, string>();
   const server = createServer(async (req, res) => {
     let sessionId: string | null = null;
     try {
       const path = new URL(req.url ?? '/', 'http://localhost').pathname;
-      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P4' });
+      if (path === '/api/health' && req.method === 'GET') return json(res, 200, { status: 'ok', phase: 'P5' });
       if (path === '/api/product-pack/manifest' && req.method === 'GET') return json(res, 200, pack);
       if (path === '/api/product-pack' && req.method === 'GET') return json(res, 200, presentation);
       if (path === '/api/demo-presentation' && req.method === 'GET') return json(res, 200, demoPresentation);

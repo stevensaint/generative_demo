@@ -1,3 +1,4 @@
+import { QuestionSchema, type Question } from '../../contracts/src/knowledge.js';
 import { randomUUID } from 'node:crypto';
 import { EventSchema, SessionSchema, type Event, type ErrorCode, type Session, type SessionView, SnapshotSchema } from '../../contracts/src/index.js';
 import { TurnRecordSchema, type TurnRecord } from '../../contracts/src/turns.js';
@@ -11,18 +12,19 @@ export class SessionStore {
   private readonly sessions = new Map<string, Session>();
   private readonly events = new Map<string, Event[]>();
   private readonly systemEvents: Event[] = [];
+  private readonly questions = new Map<string, Question[]>();
   private readonly turns = new Map<string, TurnRecord[]>();
 
-  create(productPackId: string, initial?: Pick<Session, 'productState' | 'demoState' | 'productPackVersion'>): SessionView {
+  create(productPackId: string, initial?: Pick<Session, 'productState' | 'demoState' | 'productPackVersion' | 'knowledgeVersion' | 'policyVersion'>): SessionView {
     const session = SessionSchema.parse({
       sessionId: randomUUID(), status: 'active', startedAt: new Date().toISOString(), endedAt: null,
-      productPackId, productPackVersion: initial?.productPackVersion ?? '0.0.0', revision: 0,
+      productPackId, knowledgeVersion: initial?.knowledgeVersion ?? '0.0.0', policyVersion: initial?.policyVersion ?? '1.0.0', productPackVersion: initial?.productPackVersion ?? '0.0.0', revision: 0,
       productState: initial?.productState ?? { records: [] }, customerModel: { entries: [] }, conversationState: { sequence: 0, paused: false, recent: [], outstandingQuestions: [] },
       demoState: initial?.demoState ?? { currentLane: null, currentRole: null, currentSite: null, currentScreen: 'shell', selectedRecordId: null, history: [], filters: {}, highlights: [], parameters: {} },
     });
     this.sessions.set(session.sessionId, session);
     this.events.set(session.sessionId, []);
-    this.turns.set(session.sessionId, []);
+    this.turns.set(session.sessionId, []); this.questions.set(session.sessionId, []);
     this.append(session.sessionId, 'SESSION_STARTED');
     return this.get(session.sessionId);
   }
@@ -31,7 +33,7 @@ export class SessionStore {
     const session = this.sessions.get(sessionId);
     if (!session) throw new SessionError('SESSION_NOT_FOUND');
     // Callers cannot mutate canonical state or another session's event history.
-    return structuredClone({ session, events: this.events.get(sessionId)! });
+    return structuredClone({ session, events: this.events.get(sessionId)!, questions: this.questions.get(sessionId)! });
   }
 
   end(sessionId: string): SessionView {
@@ -72,6 +74,8 @@ export class SessionStore {
   turnEvent(sessionId: string, type: Event['type'], turnId: string, errorCode?: ErrorCode) {
     return this.append(sessionId, type, errorCode, { turnId, revision: this.get(sessionId).session.revision });
   }
+  recordQuestion(sessionId: string, question: Question) { this.get(sessionId); if (question.sessionId !== sessionId) throw new SessionError('INVALID_REQUEST'); this.questions.get(sessionId)!.push(QuestionSchema.parse(question)); }
+  knowledgeEvent(sessionId: string, type: Event['type'], metadata: Pick<Event, 'turnId' | 'questionId' | 'knowledgeRefs' | 'knowledgeVersion' | 'answerMode'>) { return this.append(sessionId, type, undefined, metadata); }
   recordTurn(sessionId: string, turn: TurnRecord) { this.get(sessionId); this.turns.get(sessionId)!.push(TurnRecordSchema.parse(turn)); }
   getTurns(sessionId: string): TurnRecord[] { this.get(sessionId); return structuredClone([...this.turns.get(sessionId)!].sort((a, b) => a.sequence - b.sequence).slice(-50)); }
   nextTurnSequence(sessionId: string) { this.get(sessionId); return (this.turns.get(sessionId)!.reduce((max, turn) => Math.max(max, turn.sequence), 0) ?? 0) + 1; }
@@ -82,7 +86,7 @@ export class SessionStore {
 
   snapshot(sessionId: string) {
     const view = this.get(sessionId);
-    return SnapshotSchema.parse({ formatVersion: '1.0', session: view.session,
+    return SnapshotSchema.parse({ formatVersion: '1.0', session: view.session, questions: view.questions,
       lastEventSequence: view.events.length, capturedAt: view.events.at(-1)!.timestamp });
   }
 

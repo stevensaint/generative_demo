@@ -9,5 +9,6 @@ export const proposalFormat = obj({
   customerModelUpdates: arr(obj({ field: en('responsibility', 'problem', 'goal', 'interest', 'terminology', 'fact'), key: str, value: str, status: en('explicit', 'inferred', 'correction'), confidence: num, evidenceQuote: str })),
   requestedActions: arr(obj({ type: str, args: arr(obj({ name: str, value: { anyOf: [str, num, { type: 'boolean' }, { type: 'null' }] } })) })),
   narrationIntent: en('current_view', 'after_action', 'acknowledge_interest', 'clarify_role', 'clarify_site', 'clarify_record', 'clarify_action', 'clarify_setting', 'none'),
+  answerPlan: { anyOf: [{ type: 'null' }, obj({ mode: en('APPROVED_QA','EVIDENCE_SYNTHESIS','ESCALATION'), familyId: { anyOf: [str, {type:'null'}] }, knowledgeVersion: str, claims: arr(obj({factId:str,style:en('full','brief','conversational')})) })] },
   questionHandling: en('none', 'capture'), nextStep: en('listen', 'clarify', 'pause', 'end'),
 });

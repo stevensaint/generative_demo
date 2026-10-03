@@ -1,0 +1,86 @@
+
+> gde-p0@0.0.1 test:http
+> tsc -p tsconfig.tests.json && node scripts/test-http.mjs
+
+TAP version 13
+# Subtest: backend health and fictional presentation respond with valid contracts
+ok 1 - backend health and fictional presentation respond with valid contracts
+  ---
+  duration_ms: 43.44175
+  type: 'test'
+  ...
+# Subtest: concurrent sessions require distinct tokens and isolate read/end/error events
+ok 2 - concurrent sessions require distinct tokens and isolate read/end/error events
+  ---
+  duration_ms: 61.735583
+  type: 'test'
+  ...
+# Subtest: bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+ok 3 - bad IDs, unknown routes, and unsupported payloads fail without creating sessions
+  ---
+  duration_ms: 11.124959
+  type: 'test'
+  ...
+# Subtest: unexpected backend errors produce sanitized ERROR_OCCURRED responses
+ok 4 - unexpected backend errors produce sanitized ERROR_OCCURRED responses
+  ---
+  duration_ms: 14.617791
+  type: 'test'
+  ...
+# Subtest: production HTTP server serves built-style assets and rejects traversal
+ok 5 - production HTTP server serves built-style assets and rejects traversal
+  ---
+  duration_ms: 14.3185
+  type: 'test'
+  ...
+# Subtest: manual navigation follows the fixed walkthrough and isolates session selection
+ok 6 - manual navigation follows the fixed walkthrough and isolates session selection
+  ---
+  duration_ms: 599.963
+  type: 'test'
+  ...
+# Subtest: navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+ok 7 - navigation rejects unauthorized, malformed, mismatched and ended requests without changing state
+  ---
+  duration_ms: 24.62975
+  type: 'test'
+  ...
+# Subtest: a dynamically loaded alternative Pack changes API presentation without core edits
+ok 8 - a dynamically loaded alternative Pack changes API presentation without core edits
+  ---
+  duration_ms: 24.958
+  type: 'test'
+  ...
+# Subtest: HTTP commands execute the golden path, reject stale/invalid requests and restore canonical snapshots
+ok 9 - HTTP commands execute the golden path, reject stale/invalid requests and restore canonical snapshots
+  ---
+  duration_ms: 87.058208
+  type: 'test'
+  ...
+# Subtest: text turns are authorized, inspectable and isolated through HTTP
+ok 10 - text turns are authorized, inspectable and isolated through HTTP
+  ---
+  duration_ms: 65.621833
+  type: 'test'
+  ...
+# Subtest: unconfigured chat has no fake provider; manual controls still work
+ok 11 - unconfigured chat has no fake provider; manual controls still work
+  ---
+  duration_ms: 17.394791
+  type: 'test'
+  ...
+# Subtest: governed answers and escalations preserve first-class questions, knowledge events and pinned versions over HTTP
+ok 12 - governed answers and escalations preserve first-class questions, knowledge events and pinned versions over HTTP
+  ---
+  duration_ms: 40.924708
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1106.299083

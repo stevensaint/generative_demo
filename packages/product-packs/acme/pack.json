@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "metadata": {
     "packId": "acme-quality-cloud",
     "name": "Acme Quality Cloud",
@@ -10,7 +10,7 @@
   "presentation": {
     "packId": "acme-quality-cloud",
     "homeScreenId": "work-queue",
-    "fixtureLabel": "Quality lab \u00b7 Harbor site",
+    "fixtureLabel": "Quality lab · Harbor site",
     "fixtureDescription": "Run a deterministic fictional sample workflow. Records, roles, context and outcomes belong to this isolated session.",
     "navigation": [
       {
@@ -85,7 +85,7 @@
         "kind": "work-queue",
         "recordId": null,
         "title": "Your quality work queue",
-        "subtitle": "Harbor \u00b7 2 synthetic samples",
+        "subtitle": "Harbor · 2 synthetic samples",
         "badge": {
           "label": "Live synthetic state",
           "tone": "neutral"
@@ -262,7 +262,7 @@
         "kind": "record-detail",
         "recordId": "SMP-1001",
         "title": "SMP-1001",
-        "subtitle": "Clearwater Buffer \u00b7 CB-260928-A",
+        "subtitle": "Clearwater Buffer · CB-260928-A",
         "badge": {
           "label": "received",
           "tone": "neutral"
@@ -360,7 +360,7 @@
         "kind": "execution",
         "recordId": "SMP-1001",
         "title": "Test execution",
-        "subtitle": "TST-1001 \u00b7 pH measurement \u00b7 SMP-1001",
+        "subtitle": "TST-1001 · pH measurement · SMP-1001",
         "badge": {
           "label": "ready",
           "tone": "neutral"
@@ -396,7 +396,7 @@
               },
               {
                 "label": "Fixture range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Result status",
@@ -407,7 +407,7 @@
         ],
         "notice": {
           "title": "Synthetic test execution",
-          "body": "Enter a measurement, submit the test, then assess the result. These operations affect only this session\u2019s fictional records.",
+          "body": "Enter a measurement, submit the test, then assess the result. These operations affect only this session’s fictional records.",
           "tone": "neutral"
         },
         "steps": [],
@@ -433,14 +433,14 @@
         "kind": "results",
         "recordId": "SMP-1001",
         "title": "Results",
-        "subtitle": "SMP-1001 \u00b7 Current measurement evidence",
+        "subtitle": "SMP-1001 · Current measurement evidence",
         "badge": {
           "label": "Awaiting measurement",
           "tone": "neutral"
         },
         "sections": [],
         "table": {
-          "caption": "Current results against SPEC-CB-01 \u00b7 v1.0",
+          "caption": "Current results against SPEC-CB-01 · v1.0",
           "columns": [
             {
               "key": "id",
@@ -495,7 +495,7 @@
         "kind": "record-detail",
         "recordId": "SMP-1001",
         "title": "Specification",
-        "subtitle": "SPEC-CB-01 \u00b7 Fictional range",
+        "subtitle": "SPEC-CB-01 · Fictional range",
         "badge": {
           "label": "Live synthetic state",
           "tone": "neutral"
@@ -514,7 +514,7 @@
               },
               {
                 "label": "pH range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Scope",
@@ -546,7 +546,7 @@
         "kind": "workflow",
         "recordId": "SMP-1001",
         "title": "Exception",
-        "subtitle": "SMP-1001 \u00b7 No exception",
+        "subtitle": "SMP-1001 · No exception",
         "badge": {
           "label": "None",
           "tone": "neutral"
@@ -565,7 +565,7 @@
               },
               {
                 "label": "Specification range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Owner",
@@ -617,7 +617,7 @@
         "kind": "review",
         "recordId": "SMP-1001",
         "title": "QA review",
-        "subtitle": "SMP-1001 \u00b7 Not submitted",
+        "subtitle": "SMP-1001 · Not submitted",
         "badge": {
           "label": "Not submitted",
           "tone": "neutral"
@@ -688,7 +688,7 @@
         "kind": "audit",
         "recordId": "SMP-1001",
         "title": "Audit history",
-        "subtitle": "SMP-1001 \u00b7 Live session commands",
+        "subtitle": "SMP-1001 · Live session commands",
         "badge": {
           "label": "Live synthetic state",
           "tone": "neutral"
@@ -744,7 +744,7 @@
         "kind": "record-detail",
         "recordId": "SMP-1002",
         "title": "SMP-1002",
-        "subtitle": "Clearwater Buffer \u00b7 CB-260928-B",
+        "subtitle": "Clearwater Buffer · CB-260928-B",
         "badge": {
           "label": "received",
           "tone": "neutral"
@@ -842,7 +842,7 @@
         "kind": "execution",
         "recordId": "SMP-1002",
         "title": "Test execution",
-        "subtitle": "TST-1002 \u00b7 pH measurement \u00b7 SMP-1002",
+        "subtitle": "TST-1002 · pH measurement · SMP-1002",
         "badge": {
           "label": "ready",
           "tone": "neutral"
@@ -878,7 +878,7 @@
               },
               {
                 "label": "Fixture range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Result status",
@@ -889,7 +889,7 @@
         ],
         "notice": {
           "title": "Synthetic test execution",
-          "body": "Enter a measurement, submit the test, then assess the result. These operations affect only this session\u2019s fictional records.",
+          "body": "Enter a measurement, submit the test, then assess the result. These operations affect only this session’s fictional records.",
           "tone": "neutral"
         },
         "steps": [],
@@ -915,14 +915,14 @@
         "kind": "results",
         "recordId": "SMP-1002",
         "title": "Results",
-        "subtitle": "SMP-1002 \u00b7 Current measurement evidence",
+        "subtitle": "SMP-1002 · Current measurement evidence",
         "badge": {
           "label": "Awaiting measurement",
           "tone": "neutral"
         },
         "sections": [],
         "table": {
-          "caption": "Current results against SPEC-CB-01 \u00b7 v1.0",
+          "caption": "Current results against SPEC-CB-01 · v1.0",
           "columns": [
             {
               "key": "id",
@@ -977,7 +977,7 @@
         "kind": "record-detail",
         "recordId": "SMP-1002",
         "title": "Specification",
-        "subtitle": "SPEC-CB-01 \u00b7 Fictional range",
+        "subtitle": "SPEC-CB-01 · Fictional range",
         "badge": {
           "label": "Live synthetic state",
           "tone": "neutral"
@@ -996,7 +996,7 @@
               },
               {
                 "label": "pH range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Scope",
@@ -1028,7 +1028,7 @@
         "kind": "workflow",
         "recordId": "SMP-1002",
         "title": "Exception",
-        "subtitle": "SMP-1002 \u00b7 No exception",
+        "subtitle": "SMP-1002 · No exception",
         "badge": {
           "label": "None",
           "tone": "neutral"
@@ -1047,7 +1047,7 @@
               },
               {
                 "label": "Specification range",
-                "value": "6.8\u20137.2"
+                "value": "6.8–7.2"
               },
               {
                 "label": "Owner",
@@ -1099,7 +1099,7 @@
         "kind": "review",
         "recordId": "SMP-1002",
         "title": "QA review",
-        "subtitle": "SMP-1002 \u00b7 Not submitted",
+        "subtitle": "SMP-1002 · Not submitted",
         "badge": {
           "label": "Not submitted",
           "tone": "neutral"
@@ -1170,7 +1170,7 @@
         "kind": "audit",
         "recordId": "SMP-1002",
         "title": "Audit history",
-        "subtitle": "SMP-1002 \u00b7 Live session commands",
+        "subtitle": "SMP-1002 · Live session commands",
         "badge": {
           "label": "Live synthetic state",
           "tone": "neutral"
@@ -2637,68 +2637,938 @@
       "external integrations",
       "production laboratory operation",
       "AI or voice providers"
-    ]
+    ],
+    "version": "1.0.0"
   },
   "truth": {
-    "version": "0.3.0",
+    "version": "1.0.0",
     "scope": "fictional-demo-only",
     "evidence": [
       {
-        "id": "fixture-evidence",
-        "source": "pack:presentation",
-        "description": "Pack-authored deterministic initial presentation and executable synthetic workflow."
-      },
-      {
-        "id": "model-evidence",
-        "source": "pack:productModel",
-        "description": "Declared fictional objects and rules; execution is not implemented."
-      },
-      {
-        "id": "scope-evidence",
-        "source": "pack:policy",
-        "description": "Fictional-only policy and current execution boundary."
+        "id": "authored-product-truth",
+        "source": "pack:truth@1.0.0",
+        "description": "Explicit repository-authored fictional claims and qualifications. Product Model, UI and customer text are not factual authority."
       }
     ],
     "facts": [
       {
-        "id": "fixed-walkthrough",
-        "statement": "The manually navigable fictional walkthrough now executes deterministic sample, measurement, exception and QA actions.",
+        "id": "fact.sample_record",
+        "statement": "A fictional sample record holds material, batch, site and source information.",
+        "category": "Capability",
         "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_record",
+        "claimValue": "A fictional sample record holds material, batch, site and source information.",
         "evidenceIds": [
-          "fixture-evidence"
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A fictional sample record holds material, batch, site and source information.",
+          "brief": "Samples hold material, batch, site and source details.",
+          "conversational": "You can see the material, batch, site and source on a sample."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
         ]
       },
       {
-        "id": "measurement-example",
-        "statement": "The fictional pH range is 6.8\u20137.2. Entering 6.4 and assessing it creates a below-range exception; root cause is not inferred.",
+        "id": "fact.sample_has_tests",
+        "statement": "A sample is linked to its test records.",
+        "category": "Relationship",
         "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_has_tests",
+        "claimValue": "A sample is linked to its test records.",
         "evidenceIds": [
-          "fixture-evidence"
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A sample is linked to its test records.",
+          "brief": "Samples link to their tests.",
+          "conversational": "From a sample, you can follow its linked tests."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
         ]
       },
       {
-        "id": "role-definitions",
-        "statement": "Analyst, QA and Lab Manager are demo roles. The controller enforces Pack action permissions; these roles do not establish real user identity.",
+        "id": "fact.sample_site",
+        "statement": "The sample register shows samples at the selected demo site.",
+        "category": "Behavior",
         "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_site",
+        "claimValue": "The sample register shows samples at the selected demo site.",
         "evidenceIds": [
-          "model-evidence"
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The sample register shows samples at the selected demo site.",
+          "brief": "The register shows samples for the selected site.",
+          "conversational": "The register follows your selected demo site."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
         ]
       },
       {
-        "id": "approval-definition",
-        "statement": "Synthetic approval requires completed tests, assessed results, resolved exceptions, a documented QA rationale, and an approved linked review.",
+        "id": "fact.sample_source",
+        "statement": "Sample source distinguishes internal and external lab context in the fictional records.",
+        "category": "Terminology",
         "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_source",
+        "claimValue": "Sample source distinguishes internal and external lab context in the fictional records.",
         "evidenceIds": [
-          "model-evidence",
-          "scope-evidence"
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Sample source distinguishes internal and external lab context in the fictional records.",
+          "brief": "Source identifies internal or external lab context.",
+          "conversational": "Source tells you whether the fictional lab context is internal or external."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
         ]
       },
       {
-        "id": "fictional-scope",
-        "statement": "Acme is fictional. This Pack provides no evidence of a real vendor capability, regulatory compliance or enterprise readiness.",
+        "id": "fact.sample_partner",
+        "statement": "An external source can have a named synthetic lab partner.",
+        "category": "Behavior",
         "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_partner",
+        "claimValue": "An external source can have a named synthetic lab partner.",
         "evidenceIds": [
-          "scope-evidence"
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "An external source can have a named synthetic lab partner.",
+          "brief": "External sources can name a synthetic lab partner.",
+          "conversational": "An external source can include a fictional lab partner’s name."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.sample_received",
+        "statement": "A fresh run begins with samples in the received state.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_received",
+        "claimValue": "A fresh run begins with samples in the received state.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A fresh run begins with samples in the received state.",
+          "brief": "Fresh runs start with received samples.",
+          "conversational": "At the start of a fresh run, the samples are received."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.sample_progress",
+        "statement": "Starting a sample’s test moves that sample into testing.",
+        "category": "Supported workflow",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "sample_progress",
+        "claimValue": "Starting a sample’s test moves that sample into testing.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Starting a sample’s test moves that sample into testing.",
+          "brief": "Starting a test moves its sample into testing.",
+          "conversational": "When you start the test, its sample moves into testing."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.test_method",
+        "statement": "A test record includes a fictional method, instrument and analyst.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "test_method",
+        "claimValue": "A test record includes a fictional method, instrument and analyst.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A test record includes a fictional method, instrument and analyst.",
+          "brief": "Tests include a fictional method, instrument and analyst.",
+          "conversational": "On a test, you can see the fictional method, instrument and analyst."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.test_start",
+        "statement": "An Analyst can start a ready test at the active demo site.",
+        "category": "Supported workflow",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "test_start",
+        "claimValue": "An Analyst can start a ready test at the active demo site.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "An Analyst can start a ready test at the active demo site.",
+          "brief": "An Analyst can start a ready test at the active site.",
+          "conversational": "With the Analyst demo role, you can start a ready test at the active site."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.test_result",
+        "statement": "A recorded result links to its test and sample.",
+        "category": "Relationship",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "test_result",
+        "claimValue": "A recorded result links to its test and sample.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A recorded result links to its test and sample.",
+          "brief": "Results link to their test and sample.",
+          "conversational": "You can trace a recorded result to its test and sample."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.result_measurement",
+        "statement": "The pH workflow accepts an explicitly entered numeric measurement with the pH unit.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "result_measurement",
+        "claimValue": "The pH workflow accepts an explicitly entered numeric measurement with the pH unit.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The pH workflow accepts an explicitly entered numeric measurement with the pH unit.",
+          "brief": "The pH workflow takes an explicit numeric pH measurement.",
+          "conversational": "You enter a numeric measurement in pH for this workflow."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.test_submit",
+        "statement": "Submitting a test requires a recorded result and completes the synthetic test.",
+        "category": "Supported workflow",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "test_submit",
+        "claimValue": "Submitting a test requires a recorded result and completes the synthetic test.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Submitting a test requires a recorded result and completes the synthetic test.",
+          "brief": "Submission requires a recorded result and completes the test.",
+          "conversational": "Once a result is recorded, submitting completes the synthetic test."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.result_specification",
+        "statement": "Assessment compares a result with the test’s linked specification.",
+        "category": "Relationship",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "result_specification",
+        "claimValue": "Assessment compares a result with the test’s linked specification.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Assessment compares a result with the test’s linked specification.",
+          "brief": "Assessment compares the result with its test’s specification.",
+          "conversational": "Assessment checks your result against the test’s linked specification."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.specification_range",
+        "statement": "The fictional Clearwater Buffer pH specification uses inclusive bounds of 6.8 to 7.2.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "specification_range",
+        "claimValue": "The fictional Clearwater Buffer pH specification uses inclusive bounds of 6.8 to 7.2.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The fictional Clearwater Buffer pH specification uses inclusive bounds of 6.8 to 7.2.",
+          "brief": "Clearwater Buffer’s fictional pH range is 6.8–7.2, inclusive.",
+          "conversational": "For fictional Clearwater Buffer, pH from 6.8 through 7.2 is within specification, including both endpoints."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.result_assessment",
+        "statement": "Assessment labels the recorded pH as below range, within range or above range.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "result_assessment",
+        "claimValue": "Assessment labels the recorded pH as below range, within range or above range.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Assessment labels the recorded pH as below range, within range or above range.",
+          "brief": "pH assessment labels below, within or above range.",
+          "conversational": "Assessment tells you whether the recorded pH is below, within or above range."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.exception_creation",
+        "statement": "Assessing an out-of-range pH creates a linked synthetic exception.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "exception_creation",
+        "claimValue": "Assessing an out-of-range pH creates a linked synthetic exception.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Assessing an out-of-range pH creates a linked synthetic exception.",
+          "brief": "Out-of-range pH assessment creates a linked exception.",
+          "conversational": "When the assessed pH is out of range, a linked synthetic exception is created."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.in_range",
+        "statement": "An in-range assessment creates no exception.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "in_range",
+        "claimValue": "An in-range assessment creates no exception.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "An in-range assessment creates no exception.",
+          "brief": "In-range assessments create no exception.",
+          "conversational": "If the assessment is in range, no exception is created."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.exception_evidence",
+        "statement": "An exception links to the failing result and its sample.",
+        "category": "Relationship",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "exception_evidence",
+        "claimValue": "An exception links to the failing result and its sample.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "An exception links to the failing result and its sample.",
+          "brief": "Exceptions link to the failing result and sample.",
+          "conversational": "You can follow an exception back to its failing result and sample."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.root_cause",
+        "statement": "The demonstration never infers an exception’s root cause.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "root_cause",
+        "claimValue": "The demonstration never infers an exception’s root cause.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The demonstration never infers an exception’s root cause.",
+          "brief": "Root cause is never inferred.",
+          "conversational": "The demo doesn’t infer why the exception happened."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.exception_disposition",
+        "statement": "QA documents an explicit synthetic disposition to resolve an open exception.",
+        "category": "Role behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "exception_disposition",
+        "claimValue": "QA documents an explicit synthetic disposition to resolve an open exception.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "QA documents an explicit synthetic disposition to resolve an open exception.",
+          "brief": "QA resolves an open exception with an explicit synthetic disposition.",
+          "conversational": "QA documents a synthetic disposition explicitly to resolve the open exception."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_submission",
+        "statement": "An Analyst or Lab Manager can submit a sample for QA review after result assessment.",
+        "category": "Supported workflow",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_submission",
+        "claimValue": "An Analyst or Lab Manager can submit a sample for QA review after result assessment.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "An Analyst or Lab Manager can submit a sample for QA review after result assessment.",
+          "brief": "After assessment, an Analyst or Lab Manager can submit the sample for QA review.",
+          "conversational": "Once results are assessed, an Analyst or Lab Manager can send the sample for QA review."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_link",
+        "statement": "A submitted review is linked to its sample.",
+        "category": "Relationship",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_link",
+        "claimValue": "A submitted review is linked to its sample.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "A submitted review is linked to its sample.",
+          "brief": "Reviews link to their sample.",
+          "conversational": "The submitted review stays linked to its sample."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_role",
+        "statement": "The QA demo role is required to approve a pending review.",
+        "category": "Role behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_role",
+        "claimValue": "The QA demo role is required to approve a pending review.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The QA demo role is required to approve a pending review.",
+          "brief": "Only the QA demo role can approve a pending review.",
+          "conversational": "To approve a pending review, you need the QA demo role."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_conditions",
+        "statement": "Approval requires completed testing, assessed results and resolved exception evidence.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_conditions",
+        "claimValue": "Approval requires completed testing, assessed results and resolved exception evidence.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Approval requires completed testing, assessed results and resolved exception evidence.",
+          "brief": "Approval needs completed testing, assessed results and resolved exception evidence.",
+          "conversational": "Before approval, testing must be complete, results assessed and exception evidence resolved."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_rationale",
+        "statement": "QA approval requires an explicit decision rationale.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_rationale",
+        "claimValue": "QA approval requires an explicit decision rationale.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "QA approval requires an explicit decision rationale.",
+          "brief": "QA approval needs an explicit rationale.",
+          "conversational": "QA must enter a decision rationale for approval."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.review_atomic",
+        "statement": "Approving a review also approves its linked sample in the same validated operation.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "review_atomic",
+        "claimValue": "Approving a review also approves its linked sample in the same validated operation.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Approving a review also approves its linked sample in the same validated operation.",
+          "brief": "Review and linked sample approval occur in one validated operation.",
+          "conversational": "Approving the review also approves its sample in the same validated operation."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.audit_events",
+        "statement": "The audit panel displays actual command events from the current synthetic session.",
+        "category": "Capability",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "audit_events",
+        "claimValue": "The audit panel displays actual command events from the current synthetic session.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The audit panel displays actual command events from the current synthetic session.",
+          "brief": "Audit history shows this session’s actual command events.",
+          "conversational": "The audit panel lets you inspect actual command events from this synthetic session."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.audit_timestamps",
+        "statement": "Session events include timestamps and sequence numbers.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "audit_timestamps",
+        "claimValue": "Session events include timestamps and sequence numbers.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Session events include timestamps and sequence numbers.",
+          "brief": "Events carry timestamps and sequence numbers.",
+          "conversational": "Each session event has a timestamp and a sequence number."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.audit_revision",
+        "statement": "Command events record the command type and session revision.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "audit_revision",
+        "claimValue": "Command events record the command type and session revision.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Command events record the command type and session revision.",
+          "brief": "Command events include command type and revision.",
+          "conversational": "For a command event, you can see the command type and session revision."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.audit_identity_limit",
+        "statement": "Demo role labels and authored analyst names do not establish authenticated human audit identity.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "audit_identity_limit",
+        "claimValue": "Demo role labels and authored analyst names do not establish authenticated human audit identity.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Demo role labels and authored analyst names do not establish authenticated human audit identity.",
+          "brief": "Demo names and role labels do not prove authenticated human identity.",
+          "conversational": "A displayed demo role or analyst name doesn’t establish an authenticated human audit identity."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.role_context",
+        "statement": "Analyst, QA and Lab Manager are synthetic demo roles, not enterprise identities.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "role_context",
+        "claimValue": "Analyst, QA and Lab Manager are synthetic demo roles, not enterprise identities.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Analyst, QA and Lab Manager are synthetic demo roles, not enterprise identities.",
+          "brief": "Analyst, QA and Lab Manager are synthetic roles.",
+          "conversational": "These Analyst, QA and Lab Manager roles are demo context, not enterprise identities."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.site_context",
+        "statement": "Demo site context is a fictional scenario setting, not a deployment topology.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "site_context",
+        "claimValue": "Demo site context is a fictional scenario setting, not a deployment topology.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Demo site context is a fictional scenario setting, not a deployment topology.",
+          "brief": "Site is a fictional scenario setting, not deployment topology.",
+          "conversational": "The demo site sets the fictional scenario; it doesn’t describe a deployment topology."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.session_isolation",
+        "statement": "Each demo session has its own synthetic records and command history.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "session_isolation",
+        "claimValue": "Each demo session has its own synthetic records and command history.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Each demo session has its own synthetic records and command history.",
+          "brief": "Sessions have separate synthetic records and command histories.",
+          "conversational": "Your demo session has its own synthetic records and command history."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.reset",
+        "statement": "Reset restores the run’s default records and context while retaining session events.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "reset",
+        "claimValue": "Reset restores the run’s default records and context while retaining session events.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Reset restores the run’s default records and context while retaining session events.",
+          "brief": "Reset restores defaults and keeps session events.",
+          "conversational": "Reset brings back the default records and context while keeping session events."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.filter",
+        "statement": "The sample register can be filtered by displayed record text.",
+        "category": "Capability",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "filter",
+        "claimValue": "The sample register can be filtered by displayed record text.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The sample register can be filtered by displayed record text.",
+          "brief": "The sample register filters by displayed record text.",
+          "conversational": "You can filter the sample register using text shown on the records."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.ph_only",
+        "statement": "The executable measurement workflow covers pH; conductivity remains an inactive definition.",
+        "category": "Current availability",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "ph_only",
+        "claimValue": "The executable measurement workflow covers pH; conductivity remains an inactive definition.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The executable measurement workflow covers pH; conductivity remains an inactive definition.",
+          "brief": "pH is executable; conductivity is an inactive definition.",
+          "conversational": "You can execute the pH workflow here; conductivity remains an inactive definition."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.integration_concept",
+        "statement": "External lab source and partner labels represent integration context only; no production connector is demonstrated.",
+        "category": "Integration concept",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "integration_concept",
+        "claimValue": "External lab source and partner labels represent integration context only; no production connector is demonstrated.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "External lab source and partner labels represent integration context only; no production connector is demonstrated.",
+          "brief": "External lab labels show integration context, not a production connector.",
+          "conversational": "The external source and partner labels illustrate integration context only; this demo shows no production connector."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.integration_limit",
+        "statement": "The governed Pack establishes no named-system connector compatibility.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "integration_limit",
+        "claimValue": "The governed Pack establishes no named-system connector compatibility.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "The governed Pack establishes no named-system connector compatibility.",
+          "brief": "Named-system connector compatibility is not established.",
+          "conversational": "The governed Pack doesn’t establish compatibility with any named-system connector."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.fictional_scope",
+        "statement": "Acme Quality Cloud is a fictional synthetic demonstration.",
+        "category": "Limitation",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "fictional_scope",
+        "claimValue": "Acme Quality Cloud is a fictional synthetic demonstration.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Acme Quality Cloud is a fictional synthetic demonstration.",
+          "brief": "Acme is a fictional synthetic demo.",
+          "conversational": "Acme Quality Cloud is the fictional product used for this synthetic demonstration."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
+        ]
+      },
+      {
+        "id": "fact.run_parameters",
+        "statement": "Bounded run settings can change synthetic sample count, lab source and suggested result profile; applying them restarts the run.",
+        "category": "Behavior",
+        "status": "available",
+        "version": "1.0.0",
+        "effectiveDate": "2026-10-02",
+        "conflictsWith": [],
+        "claimKey": "run_parameters",
+        "claimValue": "Bounded run settings can change synthetic sample count, lab source and suggested result profile; applying them restarts the run.",
+        "evidenceIds": [
+          "authored-product-truth"
+        ],
+        "phrases": {
+          "full": "Bounded run settings can change synthetic sample count, lab source and suggested result profile; applying them restarts the run.",
+          "brief": "Bounded settings change sample count, lab source and suggested result profile; applying them restarts the run.",
+          "conversational": "You can change synthetic sample count, lab source and suggested result profile within the allowed settings. Applying them restarts the run."
+        },
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Real vendor behavior, regulatory compliance, production validation, named integration compatibility, licensing or roadmap commitments."
         ]
       }
     ],
@@ -2706,26 +3576,26 @@
       {
         "id": "what-is-this",
         "question": "What can I explore today?",
-        "answer": "Explore four fictional paths and execute the deterministic sample-to-QA workflow. All actions affect synthetic session state only.",
+        "answer": "Acme Quality Cloud is a fictional synthetic demonstration. This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
         "factIds": [
-          "fixed-walkthrough",
-          "approval-definition"
+          "fact.fictional_scope"
         ]
       },
       {
         "id": "why-exception",
-        "question": "Why does this sample have an exception?",
-        "answer": "An entered pH outside the fictional 6.8\u20137.2 range creates an exception when assessed. The demo does not infer a root cause.",
+        "question": "Why can a sample have an exception?",
+        "answer": "Assessing an out-of-range pH creates a linked synthetic exception. The demonstration never infers an exception’s root cause. This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
         "factIds": [
-          "measurement-example"
+          "fact.exception_creation",
+          "fact.root_cause"
         ]
       },
       {
         "id": "real-product",
-        "question": "Does this represent a real vendor or establish compliance?",
-        "answer": "No. Acme is fictional, and this Pack makes no real vendor, compliance or enterprise-readiness claim.",
+        "question": "Does this establish real vendor capabilities?",
+        "answer": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
         "factIds": [
-          "fictional-scope"
+          "fact.fictional_scope"
         ]
       }
     ],
@@ -2737,5 +3607,778 @@
         "An answer would require an unsupported assumption."
       ]
     }
+  },
+  "knowledgeVersion": "1.0.0",
+  "knowledge": {
+    "families": [
+      {
+        "id": "question.sample_fields",
+        "intent": "sample_fields",
+        "examples": [
+          "What information does a sample hold?",
+          "Which fields are on a sample?"
+        ],
+        "match": [
+          [
+            "sample"
+          ],
+          [
+            "information",
+            "field",
+            "material",
+            "batch"
+          ]
+        ],
+        "factRefs": [
+          "fact.sample_record"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.sample_tests",
+        "intent": "sample_tests",
+        "examples": [
+          "Does a sample have tests?",
+          "How are samples linked to tests?"
+        ],
+        "match": [
+          [
+            "sample"
+          ],
+          [
+            "test"
+          ]
+        ],
+        "factRefs": [
+          "fact.sample_has_tests"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.sample_site",
+        "intent": "sample_site",
+        "examples": [
+          "How does site affect the sample list?",
+          "Are samples scoped to the demo site?"
+        ],
+        "match": [
+          [
+            "sample"
+          ],
+          [
+            "site"
+          ]
+        ],
+        "factRefs": [
+          "fact.sample_site"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.lab_source",
+        "intent": "lab_source",
+        "examples": [
+          "What does lab source mean?",
+          "What is an external lab partner here?"
+        ],
+        "match": [
+          [
+            "source",
+            "partner",
+            "external lab"
+          ],
+          [
+            "mean",
+            "what",
+            "represent",
+            "context"
+          ]
+        ],
+        "factRefs": [
+          "fact.sample_source",
+          "fact.sample_partner",
+          "fact.integration_concept"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.received",
+        "intent": "received",
+        "examples": [
+          "What state do samples start in?",
+          "Are new samples received?"
+        ],
+        "match": [
+          [
+            "sample"
+          ],
+          [
+            "initial",
+            "start in",
+            "fresh",
+            "received"
+          ]
+        ],
+        "factRefs": [
+          "fact.sample_received"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.test_start",
+        "intent": "test_start",
+        "examples": [
+          "Who can start a test?",
+          "What happens when a test starts?"
+        ],
+        "match": [
+          [
+            "test"
+          ],
+          [
+            "start"
+          ]
+        ],
+        "factRefs": [
+          "fact.test_start",
+          "fact.sample_progress"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.test_details",
+        "intent": "test_details",
+        "examples": [
+          "What information is on a test?",
+          "Does the test show a method or instrument?"
+        ],
+        "match": [
+          [
+            "test"
+          ],
+          [
+            "method",
+            "instrument",
+            "information",
+            "analyst"
+          ]
+        ],
+        "factRefs": [
+          "fact.test_method"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.measurement",
+        "intent": "measurement",
+        "examples": [
+          "How do I record a pH measurement?",
+          "What measurement does this workflow accept?"
+        ],
+        "match": [
+          [
+            "measurement",
+            "measure",
+            "pH"
+          ],
+          [
+            "enter",
+            "record",
+            "accept"
+          ]
+        ],
+        "factRefs": [
+          "fact.result_measurement"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.submit_test",
+        "intent": "submit_test",
+        "examples": [
+          "What does submitting a test do?",
+          "What is required to submit a test?"
+        ],
+        "match": [
+          [
+            "test"
+          ],
+          [
+            "submit",
+            "complete"
+          ]
+        ],
+        "factRefs": [
+          "fact.test_submit"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.result_links",
+        "intent": "result_links",
+        "examples": [
+          "How does a result relate to a test?",
+          "Is a result linked to its sample?"
+        ],
+        "match": [
+          [
+            "result"
+          ],
+          [
+            "link",
+            "relate",
+            "belong"
+          ]
+        ],
+        "factRefs": [
+          "fact.test_result"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.specification",
+        "intent": "specification",
+        "examples": [
+          "How is a result compared with a specification?",
+          "What specification is used to assess results?"
+        ],
+        "match": [
+          [
+            "result",
+            "assessment"
+          ],
+          [
+            "specification",
+            "spec"
+          ]
+        ],
+        "factRefs": [
+          "fact.result_specification"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.ph_bounds",
+        "intent": "ph_bounds",
+        "examples": [
+          "What are the pH bounds?",
+          "Is the pH range inclusive?"
+        ],
+        "match": [
+          [
+            "pH"
+          ],
+          [
+            "range",
+            "bound",
+            "inclusive",
+            "limit"
+          ]
+        ],
+        "factRefs": [
+          "fact.specification_range"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.assessment",
+        "intent": "assessment",
+        "examples": [
+          "What does assessment mean?",
+          "Which labels can an assessed result have?"
+        ],
+        "match": [
+          [
+            "assessment",
+            "assessed"
+          ],
+          [
+            "mean",
+            "label",
+            "what"
+          ]
+        ],
+        "factRefs": [
+          "fact.result_assessment"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.exception_creation",
+        "intent": "exception_creation",
+        "examples": [
+          "What creates an exception?",
+          "Why would a failing result cause an exception?"
+        ],
+        "match": [
+          [
+            "exception",
+            "out of spec",
+            "OOS"
+          ],
+          [
+            "create",
+            "cause",
+            "failing",
+            "out of range",
+            "why"
+          ]
+        ],
+        "factRefs": [
+          "fact.exception_creation",
+          "fact.in_range"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.exception_links",
+        "intent": "exception_links",
+        "examples": [
+          "What evidence is linked to an exception?",
+          "Does an exception reference the result?"
+        ],
+        "match": [
+          [
+            "exception"
+          ],
+          [
+            "link",
+            "reference",
+            "evidence"
+          ]
+        ],
+        "factRefs": [
+          "fact.exception_evidence"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.root_cause",
+        "intent": "root_cause",
+        "examples": [
+          "Does the demo infer a root cause?",
+          "Is a root cause automatically determined?"
+        ],
+        "match": [
+          [
+            "root cause"
+          ]
+        ],
+        "factRefs": [
+          "fact.root_cause"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.disposition",
+        "intent": "disposition",
+        "examples": [
+          "Who can resolve an exception?",
+          "How is an exception disposition documented?"
+        ],
+        "match": [
+          [
+            "exception",
+            "disposition"
+          ],
+          [
+            "resolve",
+            "document",
+            "disposition"
+          ]
+        ],
+        "factRefs": [
+          "fact.exception_disposition"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.review_submit",
+        "intent": "review_submit",
+        "examples": [
+          "Who can submit a sample for QA review?",
+          "When is a sample submitted for review?"
+        ],
+        "match": [
+          [
+            "review"
+          ],
+          [
+            "submit"
+          ]
+        ],
+        "factRefs": [
+          "fact.review_submission",
+          "fact.review_link"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.review_role",
+        "intent": "review_role",
+        "examples": [
+          "Who approves QA review?",
+          "Which role can approve a review?"
+        ],
+        "match": [
+          [
+            "review",
+            "QA"
+          ],
+          [
+            "who",
+            "role"
+          ],
+          [
+            "approv"
+          ]
+        ],
+        "factRefs": [
+          "fact.review_role"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.review_conditions",
+        "intent": "review_conditions",
+        "examples": [
+          "What is required before QA approval?",
+          "Can QA approve with an unresolved exception?"
+        ],
+        "match": [
+          [
+            "QA",
+            "approval",
+            "approve"
+          ],
+          [
+            "require",
+            "before",
+            "unresolved",
+            "condition"
+          ]
+        ],
+        "factRefs": [
+          "fact.review_conditions",
+          "fact.review_rationale"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.review_atomic",
+        "intent": "review_atomic",
+        "examples": [
+          "Does approval also approve the sample?",
+          "What records change when QA approves?"
+        ],
+        "match": [
+          [
+            "approv"
+          ],
+          [
+            "also",
+            "same",
+            "record",
+            "sample"
+          ]
+        ],
+        "factRefs": [
+          "fact.review_atomic"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.audit_history",
+        "intent": "audit_history",
+        "examples": [
+          "Is there an audit history?",
+          "What does the audit panel record?"
+        ],
+        "match": [
+          [
+            "audit"
+          ],
+          [
+            "history",
+            "panel",
+            "record",
+            "trail"
+          ]
+        ],
+        "factRefs": [
+          "fact.audit_events",
+          "fact.audit_timestamps",
+          "fact.audit_revision"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.ph_scope",
+        "intent": "ph_scope",
+        "examples": [
+          "Does conductivity run in this demo?",
+          "Which measurements are executable?"
+        ],
+        "match": [
+          [
+            "conductivity",
+            "measurements"
+          ],
+          [
+            "run",
+            "execute",
+            "executable",
+            "support",
+            "available"
+          ]
+        ],
+        "factRefs": [
+          "fact.ph_only"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      },
+      {
+        "id": "question.session_reset",
+        "intent": "session_reset",
+        "examples": [
+          "What happens when the demo resets?",
+          "Does reset retain events?"
+        ],
+        "match": [
+          [
+            "reset"
+          ],
+          [
+            "what",
+            "event",
+            "restore",
+            "retain"
+          ]
+        ],
+        "factRefs": [
+          "fact.reset"
+        ],
+        "answerGuidance": "Answer only the referenced facts. Preserve the fictional scope and all limitations.",
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "Do not extend to named integrations, compliance, real identity, deployment, roadmap or commercial promises."
+        ]
+      }
+    ],
+    "synthesis": [
+      {
+        "id": "synthesis.measurement_path",
+        "match": [
+          [
+            "measurement"
+          ],
+          [
+            "exception"
+          ],
+          [
+            "review"
+          ]
+        ],
+        "factRefs": [
+          "fact.test_result",
+          "fact.result_specification",
+          "fact.exception_creation",
+          "fact.review_conditions"
+        ],
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "No new workflows or automated review."
+        ]
+      },
+      {
+        "id": "synthesis.isolation_and_filter",
+        "match": [
+          [
+            "isolated",
+            "separate",
+            "own"
+          ],
+          [
+            "session"
+          ],
+          [
+            "filter"
+          ]
+        ],
+        "factRefs": [
+          "fact.session_isolation",
+          "fact.filter"
+        ],
+        "requiredQualification": "This is a fictional Acme demonstration, not evidence of real-vendor capabilities, regulatory compliance or production readiness.",
+        "doNotClaim": [
+          "No enterprise tenant isolation or security claim."
+        ]
+      }
+    ],
+    "narratives": [
+      {
+        "screenPrefix": "sample-list",
+        "factRefs": [
+          "fact.sample_record",
+          "fact.filter"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "sample-",
+        "factRefs": [
+          "fact.sample_record",
+          "fact.sample_has_tests"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "execution-",
+        "factRefs": [
+          "fact.result_measurement",
+          "fact.test_submit"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "results-",
+        "factRefs": [
+          "fact.result_specification",
+          "fact.result_assessment"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "exception-",
+        "factRefs": [
+          "fact.exception_creation",
+          "fact.root_cause"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "review-",
+        "factRefs": [
+          "fact.review_conditions",
+          "fact.review_rationale"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "audit-",
+        "factRefs": [
+          "fact.audit_events",
+          "fact.audit_timestamps"
+        ],
+        "maxFacts": 2
+      },
+      {
+        "screenPrefix": "specification-",
+        "factRefs": [
+          "fact.specification_range"
+        ],
+        "maxFacts": 1
+      },
+      {
+        "screenPrefix": "work-queue",
+        "factRefs": [
+          "fact.sample_received",
+          "fact.session_isolation"
+        ],
+        "maxFacts": 2
+      }
+    ]
   }
 }

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AnswerPlanSchema, KnowledgeTraceSchema } from './knowledge.js';
 import { ScalarSchema, EntitySchema } from './state.js';
 const Text = z.string().trim().min(1);
 const Field = z.enum(['responsibility', 'problem', 'goal', 'interest', 'terminology', 'fact']);
@@ -20,7 +21,7 @@ export const DemoTurnProposalSchema = z.object({
   understanding: z.object({ intent: z.enum(['navigate', 'execute', 'configure', 'customer_update', 'clarify', 'question', 'stop', 'end', 'continue']), summary: Text.max(300), confidence: z.number().min(0).max(1) }).strict(),
   customerModelUpdates: z.array(CustomerUpdateSchema).max(6), requestedActions: z.array(RequestedActionSchema).max(6),
   narrationIntent: z.enum(['current_view', 'after_action', 'acknowledge_interest', 'clarify_role', 'clarify_site', 'clarify_record', 'clarify_action', 'clarify_setting', 'none']),
-  questionHandling: z.enum(['none', 'capture']), nextStep: z.enum(['listen', 'clarify', 'pause', 'end']),
+  answerPlan: AnswerPlanSchema.nullable().optional(), questionHandling: z.enum(['none', 'capture']), nextStep: z.enum(['listen', 'clarify', 'pause', 'end']),
 }).strict();
 export const TextTurnRequestSchema = z.object({ text: Text.max(2000), expectedRevision: z.number().int().nonnegative() }).strict();
 export const TurnRecordSchema = z.object({
@@ -32,6 +33,7 @@ export const TurnRecordSchema = z.object({
   beforeRevision: z.number().int().nonnegative(), afterRevision: z.number().int().nonnegative(),
   resultingContext: z.object({ screen: z.string(), recordId: z.string().nullable(), role: z.string().nullable(), site: z.string().nullable(), lifecycle: z.enum(['active', 'ended']) }).strict(),
   errorCode: z.string().nullable(),
+  knowledge: KnowledgeTraceSchema.nullable().optional(),
   providerHttpStatus: z.number().int().nullable().optional(),
   productChanges: z.array(z.object({ recordId: z.string(), beforeState: z.string().nullable(), after: EntitySchema.nullable() }).strict()),
 }).strict();

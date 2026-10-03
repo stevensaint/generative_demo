@@ -1,0 +1,12 @@
+
+> gde-p0@0.0.1 validate:knowledge:live
+> npm run build:server && node --env-file-if-exists=.env scripts/test-knowledge-live.mjs
+
+
+> gde-p0@0.0.1 build:server
+> tsc -p tsconfig.server.json && node scripts/copy-packs.mjs
+
+1. failed: What information does a sample hold?
+P5 live acceptance BLOCKED: PROVIDER_UNAVAILABLE
+
+Authorized retry after continuation: npm run validate:knowledge:live built successfully, then first question failed with PROVIDER_UNAVAILABLE; exit 1, BLOCKED. Latest structured report is P5-live-evidence.json.

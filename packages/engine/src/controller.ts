@@ -1,3 +1,5 @@
+import { LocalKnowledgeProvider } from '../../knowledge/src/local-knowledge-provider.js';
+import { ClaimGuard } from '../../knowledge/src/claim-guard.js';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import type { ProductPack } from '../../contracts/src/product-pack.js';
@@ -10,13 +12,14 @@ import { SessionStore, SessionError } from './sessions.js';
 import { StateEngine } from './state-engine.js';
 import { CustomerModelSchema, ConversationStateSchema, type RequestedAction, type CustomerModel, type ConversationState } from '../../contracts/src/turns.js';
 
+function freezePack(value: unknown): void { if (value && typeof value === 'object' && !Object.isFrozen(value)) { for (const child of Object.values(value)) freezePack(child); Object.freeze(value); } }
 export class DemoController {
-  constructor(readonly pack: ProductPack, readonly store: SessionStore, private readonly runtime?: PackRuntime) { this.initial(parsePackParameters(this.pack, {})); }
-  private initial(parameters: Record<string, string | number>): Pick<Session, 'productState' | 'demoState' | 'productPackVersion'> {
+  constructor(readonly pack: ProductPack, readonly store: SessionStore, private readonly runtime?: PackRuntime) { this.pack = structuredClone(pack); freezePack(this.pack); this.initial(parsePackParameters(this.pack, {})); }
+  private initial(parameters: Record<string, string | number>): Pick<Session, 'productState' | 'demoState' | 'productPackVersion' | 'knowledgeVersion' | 'policyVersion'> {
     const context = this.runtime?.initialContext(this.pack, parameters) ?? { currentRole: null, currentSite: null, currentLane: null };
     const productState = this.runtime?.initialize(this.pack, parameters) ?? { records: structuredClone(this.pack.productModel.records) };
     if (this.runtime) new StateEngine(this.pack, productState, this.runtime).validate();
-    return { productState, productPackVersion: this.pack.version, demoState: {
+    return { productState, knowledgeVersion: this.pack.knowledgeVersion ?? '0.0.0', policyVersion: this.pack.policy.version, productPackVersion: this.pack.version, demoState: {
       ...context, currentScreen: this.pack.presentation.homeScreenId, selectedRecordId: null,
       history: [], filters: {}, highlights: [], parameters,
     } };
@@ -31,6 +34,11 @@ export class DemoController {
     return SessionViewSchema.parse({ ...view, workspace: { presentation, controls: this.runtime?.controls(this.pack, view.session) ?? [], siteIds: this.runtime?.sites(this.pack, view.session) ?? this.pack.sites.map(site => site.id) } });
   }
   narrative(id: string, session = this.store.get(id).session) {
+    if (this.pack.knowledge) {
+      const selection = new LocalKnowledgeProvider(this.pack).narration(session.demoState.currentScreen, session);
+      const guard = new ClaimGuard(), answer = guard.answer(selection, guard.defaultPlan(selection));
+      return answer.mode === 'ESCALATION' ? 'What would you like to explore next?' : answer.text;
+    }
     if (this.runtime?.narrative) return this.runtime.narrative(this.pack, session);
     const presentation = this.runtime?.present(this.pack, session, []) ?? this.pack.presentation;
     const screen = presentation.screens.find(item => item.id === session.demoState.currentScreen)!;

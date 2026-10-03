@@ -129,7 +129,7 @@ test('manual navigation follows the fixed walkthrough and isolates session selec
     assert.deepEqual(view.events.slice(-3).map(event => event.type), ['COMMAND_REQUESTED', 'COMMAND_APPROVED', 'STATE_CHANGED']);
   }
   const other = SessionViewSchema.parse(await (await fetch(url + '/api/sessions/' + b.session.sessionId, { headers: auth(b.accessToken) })).json());
-  assert.deepEqual(other, { session: b.session, events: b.events, workspace: b.workspace, chat: b.chat });
+  assert.deepEqual(other, { session: b.session, events: b.events, questions: b.questions, workspace: b.workspace, chat: b.chat });
   assert.deepEqual(await (await fetch(url + '/api/demo-presentation')).json(), demo);
 });
 
@@ -268,4 +268,28 @@ test('unconfigured chat has no fake provider; manual controls still work', async
   const failed = SessionViewSchema.parse(await (await fetch(path + '/turns', { method: 'POST', headers, body: JSON.stringify({ text: 'Show the first record.', expectedRevision: 0 }) })).json());
   assert.deepEqual(failed.session, created.session); assert.equal(failed.chat!.turns[0]!.errorCode, 'PROVIDER_UNAVAILABLE');
   assert.equal((await fetch(path + '/commands', { method: 'POST', headers, body: JSON.stringify({ type: 'NAVIGATE', expectedRevision: 0, args: { screenId: 'sample-list', recordId: null } }) })).status, 200);
+});
+
+test('governed answers and escalations preserve first-class questions, knowledge events and pinned versions over HTTP', async t => {
+  const { ClaimGuard } = await import('../packages/knowledge/src/claim-guard.js');
+  const guard = new ClaimGuard(); let calls = 0;
+  const {url,fetch} = await fixture(t,{provider:{name:'fixture',model:'fixture',propose:async req=>{
+    calls++; const context=JSON.parse(req.context);
+    return {understanding:{intent:'question',summary:'Answer only approved evidence.',confidence:1},customerModelUpdates:[],requestedActions:[],narrationIntent:'none',questionHandling:'none',nextStep:'listen',answerPlan:guard.defaultPlan(context.governedKnowledge)};
+  }}});
+  const created=CreatedSessionSchema.parse(await (await fetch(url+'/api/sessions',{method:'POST'})).json());
+  const path=url+'/api/sessions/'+created.session.sessionId, headers={...auth(created.accessToken),'Content-Type':'application/json'};
+  const {accessToken: _token, ...initialView}=created;
+  let view=SessionViewSchema.parse(initialView);
+  for(const text of ['How are samples linked to tests?','Explain how a measurement flows to an exception and review.','Does this integrate directly with SAP S/4HANA?','What about that?']) {
+    view=SessionViewSchema.parse(await (await fetch(path+'/turns',{method:'POST',headers,body:JSON.stringify({text,expectedRevision:view.session.revision})})).json());
+    assert.deepEqual(view.session.productState,created.session.productState);assert.deepEqual(view.session.demoState,created.session.demoState);
+  }
+  assert.equal(calls,2);assert.deepEqual(view.questions.map(q=>q.status),['ANSWERED','ANSWERED','ESCALATED','UNRESOLVED']);
+  assert.deepEqual(view.questions.map(q=>q.answerMode),['APPROVED_QA','EVIDENCE_SYNTHESIS','ESCALATION',null]);
+  assert.ok(view.questions.every(q=>q.knowledgeVersion===created.session.knowledgeVersion));
+  for(const type of ['KNOWLEDGE_RETRIEVED','APPROVED_ANSWER_USED','QUESTION_ESCALATED'])assert.ok(view.events.some(event=>event.type===type));
+  assert.deepEqual(SessionViewSchema.parse(await (await fetch(path,{headers})).json()),view);
+  assert.deepEqual(SnapshotSchema.parse(await (await fetch(path+'/snapshot',{headers})).json()).questions,view.questions);
+  assert.equal((await fetch(path,{headers:auth(randomUUID())})).status,403);
 });

@@ -1,3 +1,4 @@
+import type { KnowledgeProvider, KnowledgeSelection } from '../../knowledge/src/local-knowledge-provider.js';
 import { DemoTurnProposalSchema, type DemoTurnProposal } from '../../contracts/src/turns.js';
 import type { ProductPack } from '../../contracts/src/product-pack.js';
 import type { SessionView } from '../../contracts/src/index.js';
@@ -6,7 +7,7 @@ import { ContextBuilder } from './context-builder.js';
 import { PromptBuilder } from './prompt-builder.js';
 import { proposalFormat } from './proposal-format.js';
 export class GDEAgent {
-  constructor(readonly provider: ModelProvider, private readonly context = new ContextBuilder(), private readonly prompt = new PromptBuilder()) {}
+  constructor(readonly provider: ModelProvider, private readonly context = new ContextBuilder(), private readonly prompt = new PromptBuilder(), readonly knowledge?: KnowledgeProvider) {}
   localControl(input: string): 'stop' | 'end' | null {
     const text = input.toLowerCase().replace(/[.!]/g, '').trim();
     if (['stop', 'pause', 'stop the demo', 'pause the demo'].includes(text)) return 'stop';
@@ -17,11 +18,12 @@ export class GDEAgent {
     if (/^(what happens next|what(?:'s| is) next|can you (switch roles|go back|show|navigate|open)|show|go|skip)/i.test(input.trim())) return false;
     return /\?|^(does|is|are|can|how|what|which|do you)\b/i.test(input.trim());
   }
-  async propose(pack: ProductPack, view: SessionView, input: string, narrative: string, signal: AbortSignal): Promise<DemoTurnProposal> {
+  async propose(pack: ProductPack, view: SessionView, input: string, narrative: string, signal: AbortSignal, selection?: KnowledgeSelection): Promise<DemoTurnProposal> {
     const local = this.localControl(input);
     if (local) return DemoTurnProposalSchema.parse({ understanding: { intent: local, summary: `Customer requested ${local}.`, confidence: 1 }, customerModelUpdates: [], requestedActions: [], narrationIntent: 'none', questionHandling: 'none', nextStep: local === 'stop' ? 'pause' : 'end' });
-    if (this.isFactualQuestion(input)) return DemoTurnProposalSchema.parse({ understanding: { intent: 'question', summary: 'Capture an out-of-scope factual question for follow-up.', confidence: 1 }, customerModelUpdates: [], requestedActions: [], narrationIntent: 'none', questionHandling: 'capture', nextStep: 'listen' });
-    const raw = await this.provider.propose({ system: this.prompt.build(), context: this.context.build(pack, view, input, narrative), schema: proposalFormat }, signal);
+    if ((!selection && this.isFactualQuestion(input)) || selection?.mode === 'ESCALATION') return DemoTurnProposalSchema.parse({ understanding: { intent: 'question', summary: 'Capture an out-of-scope factual question for follow-up.', confidence: 1 }, customerModelUpdates: [], requestedActions: [], narrationIntent: 'none', questionHandling: 'capture', nextStep: 'listen' });
+    if (selection?.classification === 'UNCLEAR') return DemoTurnProposalSchema.parse({understanding:{intent:'clarify',summary:'Clarify the ambiguous question.',confidence:1},customerModelUpdates:[],requestedActions:[],narrationIntent:'clarify_action',questionHandling:'none',nextStep:'clarify'});
+    const raw = await this.provider.propose({ system: this.prompt.build(!!this.knowledge), context: this.context.build(pack, view, input, narrative, selection), schema: proposalFormat }, signal);
     return DemoTurnProposalSchema.parse(raw);
   }
 }

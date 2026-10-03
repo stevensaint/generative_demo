@@ -44,7 +44,7 @@ export function App() {
     try {
       if (action === 'start') {
         const created = await api.start();
-        setToken(created.accessToken); setView({ session: created.session, events: created.events, workspace: created.workspace, chat: created.chat });
+        setToken(created.accessToken); setView({ session: created.session, events: created.events, questions: created.questions, workspace: created.workspace, chat: created.chat });
         savePointer(sessionStorage, { sessionId: created.session.sessionId, accessToken: created.accessToken });
       } else if (view && token) {
         setView(typeof action === 'object'

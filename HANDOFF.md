@@ -1,136 +1,76 @@
 # GDE repository handoff
 
-Updated: 2026-10-02. Resume here without needing the originating chat.
+Updated: 2026-10-03. Resume here without the originating chat.
 
-## Location and transfer
+## Checkpoint and transfer
 
-Local repository: `/Users/stevenst.germain/Documents/Codex/2026-10-02/new-chat/gde`.
+Local repo: `/Users/stevenst.germain/Documents/Codex/2026-10-02/new-chat/gde`.
 Remote: <https://github.com/stevensaint/generative_demo>.
-Current branch: **p4-text-agent**. P4 is local and uncommitted/unpushed; preserve
-all working-tree changes. A GitHub clone alone does not yet include P4.
+Current branch: **p5-governed-knowledge**. P5 is local and uncommitted; preserve all working changes. GitHub alone does not include P5 yet.
 
-P3 implementation is committed and pushed at `7ff7ef6` on
-`p3-deterministic-demo-engine`; documentation checkpoint is `356db83`.
-P0 main checkpoint: `a66512b`. P1: `2029f29` on p1-demo-twin. P2: `df24449`,
-included in P3 ancestry. P0–P3 PASS records are historical recovered criteria.
+P4 is committed and pushed at **9314fae** on p4-text-agent, with all 13 gates recorded PASS, real Claude HTTP evidence (31 turns/28 calls) and live browser rehearsal. P3 implementation is pushed at 7ff7ef6 with docs 356db83. P2 df24449 is in ancestry; P1 2029f29; P0 main a66512b.
 
-To transfer current P4, copy the whole local `gde` directory including source,
-`docs`, lockfile and Git metadata, preserving uncommitted changes. Omit generated
-node_modules/dist/.test-dist if desired. Keep personal `.env` credentials private;
-configure a new ignored `.env` on the destination. Evidence is saved under docs.
+Copy the whole local gde folder including source, docs, lockfile and Git metadata to transfer P5. Generated node_modules/dist/.test-dist may be omitted. Keep credentials private; configure an ignored .env on the destination. Never commit API keys. Session data is process-local; transfer does not migrate active sessions.
 
-## Read in this order
+## Read first
 
-1. [README](README.md): running the app, manual workflow and validation.
-2. [Frozen P4 scope](docs/architecture/P4-frozen.md): user-supplied authority.
-3. [P4 validation](docs/P4-validation.md): all 13 gates and live blocker.
-4. [P4 engine](docs/P4-engine.md): context, provider, orchestration and safety.
-5. [P3 engine](docs/P3-engine.md), [P3 validation](docs/P3-validation.md) and
-   [P2 Pack authoring](docs/P2-product-pack.md): deterministic baseline.
-6. [Documentation index](docs/README.md): phase evidence.
+1. [README](README.md) for execution and manual workflow.
+2. [Frozen P5](docs/architecture/P5-frozen.md) and [P5 validation](docs/P5-validation.md).
+3. [P5 engine](docs/P5-engine.md) for authority, retrieval, Guard and limitations.
+4. [P4 engine](docs/P4-engine.md), [P4 validation](docs/P4-validation.md), [P3 engine](docs/P3-engine.md) and [P2 Pack authoring](docs/P2-product-pack.md) for the baseline.
+5. [Documentation index](docs/README.md) for all evidence.
 
-## Current status
+## Actual P5 status
 
-P4 implementation and automated validation are complete: **53/53 tests**,
-**11/11 real TCP API tests**, strict TypeScript, production builds, Pack validation
-and alternate configuration/invalid startup checks pass. Browser verification
-covers safe provider failure, substantive-question capture, refresh, Pause, End
-and manual navigation. Tests use fixture inference where indicated.
+68 automated tests, 12 real TCP API tests, 50 knowledge evaluation cases across four groups, strict TypeScript, builds, Pack validation and configuration/startup checks PASS. Built browser fixture acceptance covers qualified Q&A, synthesis, safe escalation, ambiguity, question status, refresh and End. No console warnings/errors were captured.
 
-**P4 PASS recorded.** Real Claude HTTP acceptance passed: 31 turns, 28 real
-Claude calls, complete guarded pH workflow, harmless premature approval rejection,
-provenance-preserving correction, safe question capture, Pause and End. Live browser
-acceptance also passed against the ordinary-Terminal backend: natural navigation,
-start-test state coherence, safe question capture, refresh restoration, Pause,
-End and disabled ended controls. No browser console warnings/errors were recorded.
-Evidence is saved in docs/P4-live-evidence.json and docs/P4-live-browser-evidence.txt,
-with visually inspected screenshot docs/P4-live-browser-ended.jpg. All 13 frozen
-gates are satisfied; see the validation matrix. P4 is staged, uncommitted/unpushed.
+**P5 PASS recorded.** The user’s local real-provider acceptance passed all 51 turns: 20 approved answers, one synthesis, 22 escalations and eight clarifications. Twenty-one substantive questions used real Claude; local policy handled denials/unclear input. Independent inspection confirmed approved phrase/reference/qualification matches and no unsupported claims in the bank. docs/P5-live-evidence.json is the successful report; earlier blocked attempts remain historical. Built fixture browser checks separately prove the UI; no P5 live-provider browser rehearsal is claimed.
 
-The execution sandbox’s provider restriction persists, but the user’s ordinary
-Terminal successfully ran the live checks and currently hosts the app. The
-initial overly strict filter test was corrected to assert matching record IDs;
-its report is retained as P4-live-attempt-01.json. No P5 work was performed.
+All 40 facts have distinct full/brief/conversational variants. Finite approved phrase selection/order is the reviewed minimal P5 approach; unrestricted model-written paraphrases remain outside its guarantees. Keep the question bank focused on observed failures and safety boundaries, rather than an exhaustive semantic catalog. Later approved datasets can enrich the corpus.
 
-The full original numbered Architecture V0.1 document is absent. P1–P3 criteria
-were recovered and their records qualify that limitation. P4 scope is now supplied
-and saved; it is no longer missing. Do not invent missing frozen requirements.
-P5 and later have not started and are outside current authorization.
+The supplied P5 source is saved verbatim. Original full numbered Architecture V0.1 remains absent; P0–P3 records qualify recovered criteria. P4/P5 scopes are available. Do not invent missing requirements. Stop before P6.
 
-## Boundaries and implementation map
+## Boundaries and map
 
-The AI requests. The Controller validates. The State Engine makes it true.
-GDE owns memory; the model receives bounded current-turn context.
+The AI requests. The Controller validates. The State Engine makes it true. GDE owns memory; the model receives bounded context. Product Model controls what can be shown; Product Truth controls what can be said.
 
-- packages/contracts: generic strict state, commands/events, Product Pack,
-  presentation, CustomerModel and DemoTurnProposal schemas (`src/turns.ts`).
-- packages/agent: ModelProvider, server-side ClaudeProvider, ContextBuilder,
-  PromptBuilder and single GDEAgent; no tools or state/UI authority.
-- packages/engine/src/demo-turns.ts: per-session orchestration, cancellations,
-  grounded memory, bounded narration, question capture and inspectable turns.
-- packages/engine/src/controller.ts and state-engine.ts: deterministic semantic
-  validation, detached candidate transactions, guards and atomic commits.
-- packages/engine/src/sessions.ts: process-local canonical sessions/events/turns.
-- packages/product-packs/acme: fictional objects, workflow rules, role/site/lanes,
-  bounded parameters, state-derived presentation and predefined P4 narration.
-- apps/server: token authorization and dependency composition. No arbitrary state
-  uploads; provider credentials remain server-only.
-- apps/web: generic acknowledged-state renderer and customer chat; no Pack imports,
-  domain rules, pixel/DOM execution or canonical mutation authority.
-- scripts/test-agent-live.mjs: real Claude HTTP rehearsal and saved evidence.
+- packages/contracts/src/knowledge.ts: facts, families, answer plans, Questions and traces.
+- packages/knowledge: KnowledgeProvider seam, conservative LocalKnowledgeProvider and fail-closed ClaimGuard.
+- packages/agent: one ModelProvider/ClaudeProvider/GDEAgent; ContextBuilder passes narrow evidence; PromptBuilder and proposal-format define structured claims. No UI/state tools or separate planner.
+- packages/engine: atomic semantic Controller and State Engine; DemoTurnExecutor integrates Guard/questions/events. SessionView Questions remain separate operational records so invalid proposals preserve questions without changing product reality.
+- packages/product-packs/acme: Pack 0.5.0, knowledge/Policy 1.0.0; 40 authored facts, 24 families, two bounded synthesis bundles and screen narration mappings. No production vendor claims.
+- apps/server: existing authenticated HTTP adapters and dependency composition; keys server-only.
+- apps/web: generic acknowledged-state renderer, text chat and developer traces; no Pack semantics or mutation authority.
+- tests/fixtures/p5-qa-bank.json: 20 normal, 10 ambiguous, 10 boundary, 10 named Make GDE Lie cases. Observed failure → permanent fixture.
+- scripts/test-knowledge-live.mjs: real Claude rehearsal and credential-free evidence; tests/knowledge-browser.mjs is explicitly fixture-only.
 
-Keep Acme semantics in the Pack. No Veeva IP, proprietary materials, voice,
-ElevenLabs, separate planner, database or unnecessary infrastructure. Claude API
-integration is authorized only for P4 conversational demo control. Product Q&A
-must not come from model memory: use predefined bounded narration or safe capture.
-Do not record hidden model chain-of-thought. Preserve provenance/confidence and
-customer corrections over prior inference. Malformed/unsupported actions must
-leave canonical state intact.
+Keep customer provenance/corrections intact. No model/customer/demo/UI statement becomes Product Truth. Do not store chain-of-thought. Unsupported specifics, conflicts or insufficient evidence escalate. Runtime semantic actions still pass through Controller → State Engine → events.
 
-## Verify P4 on another computer
+## Verify after transfer
 
-Requires Node 22.12+; from the repository root:
+Requires Node 22.12+:
 
 ```sh
 npm ci
 npm run check
 npm run test:http
+npm run validate:knowledge
 npm run validate:pack
 node scripts/test-pack-runtime.mjs
-npm run validate:agent:live
+npm run validate:knowledge:live
 npm start
 ```
 
-Run the live command in the user's ordinary Mac Terminal with `.env` configured;
-it records credential-free turn evidence. Inspect results, fix actual failures,
-and rehearse natural-language text in a browser backed by that Terminal process
-at <http://127.0.0.1:3001>. Resolve any port conflict with the earlier local server.
-P4 PASS is recorded for this checkpoint. Rerun checks after transfer to verify
-the new environment; stop before P5 unless the user supplies and authorizes it.
+The live check needs authorized outbound Anthropic access and a private configured key. Inspect results, fix actual failures and preserve regression evidence. P5 PASS is already recorded; browser live-provider rehearsal is optional additional experience testing. A previously running P4 backend must restart normally to load P5; new dist files alone do not update loaded server modules. Do not bypass denied outbound access through another runtime/browser or automate Terminal if denied.
 
-Sessions/tokens are in memory: restart invalidates them. Snapshots are current
-state, not persistence or an arbitrary restoration bypass. Demo roles/sites are
-synthetic context. The workflow executes pH only; conductivity remains inactive,
-and root cause is never inferred. CustomerModel and ConversationState now hold
-conversation-derived data; refresh restores the tab's authorized session view.
+The user prefers no further manual Terminal work. Use available authorized tools first and explain concrete blockers. ElevenLabs owns all future voice/timing/interruptions/silence/continuation; keep GDE nimble with thin adapters and one reasoning path. See [user-confirmed build/buy review](docs/ElevenLabs-build-buy-review.md). No P6, voice implementation, database, vector service, ingestion, admin console, real integrations or proprietary materials are authorized by P5.
 
-Suggested instruction for a future Claude coding session:
+Suggested future coding instruction:
 
-> Read CLAUDE.md, HANDOFF.md and the frozen P4 scope/validation. Preserve local
-> P4 changes and the deterministic baseline. Verify the recorded P4 PASS and
-> preserve its evidence. Stop before P5 until its scope is supplied and authorized.
-> Do not infer live model behavior from fixture-provider tests alone.
+> Read CLAUDE.md, HANDOFF.md and frozen P5/validation. Preserve the pushed P4 baseline and local P5 changes. Preserve P5 PASS evidence and its bounded phrasing limitations. Do not treat fixture inference as Claude proof. Maintain documentation and stop before P6.
 
-## Provider reuse and operator preference
+## Final phrasing refinement and live retry
 
-See [ElevenLabs build/buy review](docs/ElevenLabs-build-buy-review.md). Preserve
-the single GDE Agent and deterministic authority; prefer provider voice/timing
-capabilities and avoid duplicate reasoning loops or generic infrastructure. The
-user prefers no further manual Terminal work; use available tools and the running
-backend, explaining any concrete environment blocker before requesting action.
+All 40 facts now have distinct reviewed full, brief and conversational variants. Claude can choose concise wording and fact order within the same approved semantic envelope; required qualifications are still appended by the Guard. This improves naturalization without permitting unrestricted prose or adding a second model. The structural limit remains explicit. The final corpus passed 68 tests, 12 real TCP tests, builds, Pack validation and startup checks.
 
-The user confirmed ElevenLabs should own all voice timing/interruptions/silence
-and continuation. Keep GDE nimble with one model reasoning path and thin adapters;
-retain deterministic semantic actions, session lifecycle and stale-result guards.
-Do not implement audio timing/scheduling inside GDE. See the user-confirmed section
-of the build/buy review. P4 behavior and frozen boundaries remain intact.
+The sandbox retry remained blocked; the user’s local run then passed all 51 turns. P5 PASS is recorded. No provider restrictions were bypassed and no P6 work was started.

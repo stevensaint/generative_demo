@@ -16,7 +16,9 @@
     "check": "npm run typecheck && npm test && npm run build",
     "build:server": "tsc -p tsconfig.server.json && node scripts/copy-packs.mjs",
     "validate:pack": "npm run build:server && node scripts/validate-pack.mjs",
-    "validate:agent:live": "npm run build:server && node --env-file-if-exists=.env scripts/test-agent-live.mjs"
+    "validate:agent:live": "npm run build:server && node --env-file-if-exists=.env scripts/test-agent-live.mjs",
+    "validate:knowledge": "tsc -p tsconfig.tests.json && node --test .test-dist/tests/knowledge.test.js .test-dist/tests/knowledge-evaluations.test.js",
+    "validate:knowledge:live": "npm run build:server && node --env-file-if-exists=.env scripts/test-knowledge-live.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
